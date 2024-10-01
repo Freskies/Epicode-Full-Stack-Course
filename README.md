@@ -17,8 +17,8 @@ This course spans 6 months and is divided into 6 units. Each unit focuses on dif
 - **Unit 1**: [Front-End Basics](#unit-1---front-end-basics)
 - **Unit 2**: Styling and Frameworks
 - **Unit 3**: Advanced Front-End
-- **Unit 4**: .NET Basics
-- **Unit 5**: Advanced .NET
+- **Unit 4**: Java Basics
+- **Unit 5**: Advanced Java
 - **Unit 6**: Capstone Project
 
 Each unit is further divided into weeks and days, with practical exercises and projects assigned daily.
