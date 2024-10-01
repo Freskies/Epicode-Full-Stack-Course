@@ -47,4 +47,7 @@ Here you will find daily descriptions of the projects and exercises I'm working 
 - **Day 1: _Autobiography_**  
   _Description_: Introduce yourself and start using your first HTML tags.
 
+- **Day 2: _Blog post_**  
+  _Description_: Simple blog post structure practising semantical tags.
+
 ---
