@@ -44,10 +44,7 @@ Here you will find daily descriptions of the projects and exercises I'm working 
 
 #### Week 1
 
-- **Day 1**: _[Autobiography]_  
+- **Day 1**: _Autobiography_  
   _Description_: Use your data to introduce yourself and start using your first HTML tags.
-
-- **Day 2**: _[Project Name]_  
-  _Description_: Brief description of the project or exercise worked on today.
 
 ---
