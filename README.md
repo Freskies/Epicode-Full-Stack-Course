@@ -6,7 +6,7 @@ Welcome to my GitHub repository for the Epicode Full-Stack Developer course! Thi
 
 - [Course Overview](#course-overview)
 - [Unit Breakdown](#unit-breakdown)
-- [Daily Project Updates](#daily-project-updates)
+- [Projects](#projects)
 
 ---
 
@@ -14,7 +14,7 @@ Welcome to my GitHub repository for the Epicode Full-Stack Developer course! Thi
 
 This course spans 6 months and is divided into 6 units. Each unit focuses on different programming concepts, which build upon one another as the course progresses. The structure follows this format:
 
-- **Unit 1**: Front-End basics
+- **Unit 1**: [Front-End basics](#unit-1---front-end-basics)
 - **Unit 2**: Styling and frameworks
 - **Unit 3**: React, REDUX and more
 - **Unit 4**: Back-End basics
@@ -35,3 +35,19 @@ The folder structure follows the pattern: `U{Unit Number}-W{Week Number}-D{Day N
 |-- ...
 |-- U6-W4-D5/
 ```
+
+## Projects
+
+Here you will find daily descriptions of the projects and exercises I'm working on. I will update this section daily with a brief description of what I worked on.
+
+### Unit 1 - Front-End basics
+
+#### Week 1
+
+- **Day 1**: _[Autobiography]_  
+  _Description_: Use your data to introduce yourself and start using your first HTML tags.
+
+- **Day 2**: _[Project Name]_  
+  _Description_: Brief description of the project or exercise worked on today.
+
+---
