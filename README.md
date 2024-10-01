@@ -14,12 +14,12 @@ Welcome to my GitHub repository for the Epicode Full-Stack Developer course! Thi
 
 This course spans 6 months and is divided into 6 units. Each unit focuses on different programming concepts, which build upon one another as the course progresses. The structure follows this format:
 
-- **Unit 1**: [Front-End basics](#unit-1---front-end-basics)
-- **Unit 2**: Styling and frameworks
-- **Unit 3**: React, REDUX and more
-- **Unit 4**: Back-End basics
-- **Unit 5**: Andavanced Back-end
-- **Unit 6**: Capstone project
+- **Unit 1**: [Front-End Basics](#unit-1---front-end-basics)
+- **Unit 2**: Styling and Frameworks
+- **Unit 3**: Advanced Front-End
+- **Unit 4**: .NET Basics
+- **Unit 5**: Advanced .NET
+- **Unit 6**: Capstone Project
 
 Each unit is further divided into weeks and days, with practical exercises and projects assigned daily.
 
@@ -40,7 +40,7 @@ The folder structure follows the pattern: `U{Unit Number}-W{Week Number}-D{Day N
 
 Here you will find daily descriptions of the projects and exercises I'm working on. I will update this section daily with a brief description of what I worked on.
 
-### Unit 1 - Front-End basics
+### Unit 1 - Front-End Basics
 
 #### Week 1
 
