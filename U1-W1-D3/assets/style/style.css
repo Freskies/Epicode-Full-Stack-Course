@@ -38,6 +38,7 @@ footer {
 	display: block;
 	margin: auto;
 	width: 20vw;
+	max-width: 20rem;
 	padding: 1rem;
 }
 
@@ -63,6 +64,7 @@ footer {
 
 .container {
 	width: 65vw;
+	max-width: 72rem;
 	margin: auto;
 }
 
