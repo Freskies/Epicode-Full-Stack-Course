@@ -1,0 +1,156 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-weight: inherit;
+}
+
+html {
+	font-size: 62.5%;
+}
+
+body {
+	font-family: "Times New Roman", serif;
+	font-size: 1.6rem;
+	color: #333;
+}
+
+a:link,
+a:hover,
+a:visited,
+a:active {
+	color: inherit;
+}
+
+footer {
+	height: 2.8rem;
+}
+
+/***************************************/
+/* HEADER */
+/***************************************/
+
+.header {
+	padding: 0 0 2rem 0;
+}
+
+.logo {
+	display: block;
+	margin: auto;
+	width: 20vw;
+	padding: 1rem;
+}
+
+.header-subtitle {
+	font-size: 1rem;
+	font-weight: 400;
+	text-align: center;
+	padding: 1rem 0;
+	color: #004d4c;
+	background-color: #fdfbf1;
+	border-top: 2px solid #ffefc6;
+}
+
+.header-subtitle strong {
+	text-transform: uppercase;
+	font-weight: 800;
+}
+
+/***************************************/
+/* SECTION PREVIEW */
+/***************************************/
+
+.container {
+	width: 65vw;
+	margin: auto;
+}
+
+.section-preview {
+	padding-bottom: 4.8rem;
+}
+
+.article-title {
+	font-size: 3.6rem;
+	line-height: 0.8;
+	font-weight: 800;
+	text-align: center;
+	padding: 2rem 0;
+}
+
+.recipe-description {
+	padding-bottom: 1rem;
+}
+
+.recipe-image {
+	width: 100%;
+	border-radius: 1rem;
+	box-shadow: 5px 5px 0.6rem -3px #999;
+}
+
+.image-description {
+	color: #999;
+	text-align: center;
+	padding: 1.5rem 0 2rem 0;
+}
+
+.featured-articole {
+	border-left: 2px solid #ffefc6;
+	font-weight: 600;
+}
+
+.featured-articole > * {
+	padding-left: 1.5rem;
+}
+
+.featured-articole-title {
+	text-transform: uppercase;
+	color: #b64812;
+}
+
+.featured-articole-description {
+	text-transform: capitalize;
+	color: #107777;
+}
+
+/***************************************/
+/* GENERAL: INGRIDIENTS + METHOD */
+/***************************************/
+
+.section-title {
+	font-weight: 600;
+	font-size: 2.4rem;
+	padding-bottom: 2rem;
+	border-bottom: 1px solid #c4f3f2;
+}
+
+.section-title + * {
+	padding-top: 2.4rem;
+}
+
+.ingridient-list-title,
+.method-list-title {
+	font-weight: 600;
+	padding-bottom: 0.6rem;
+}
+
+.ingridient-list,
+.method-list {
+	padding-left: 3.6rem;
+	padding-bottom: 2.4rem;
+}
+
+.ingridient-list li,
+.method-list li {
+	padding: 0.4rem 0;
+}
+
+/***************************************/
+/* READ MORE */
+/***************************************/
+
+.read-more-link:link,
+.read-more-link:hover,
+.read-more-link:active,
+.read-more-link:visited {
+	color: #107777;
+}
