@@ -50,4 +50,7 @@ Here you will find daily descriptions of the projects and exercises I'm working 
 - **Day 2: _Blog post_**  
   _Description_: Simple blog post structure practising semantical tags.
 
+- **Day 3: _From Mockup_**  
+  _Description_: Recreate a page following a mockup.
+
 ---
