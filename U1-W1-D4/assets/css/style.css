@@ -1,0 +1,186 @@
+/* IMPOSTAZIONI GENERALI */
+
+* {
+	box-sizing: border-box;
+}
+
+html {
+	font-size: 62.5%;
+}
+
+a:link,
+a:hover,
+a:active,
+a:visited {
+	color: inherit;
+	text-decoration: none;
+}
+
+body {
+	box-sizing: content-box;
+	max-width: 500px;
+	margin: auto;
+	padding: 2.4rem;
+	font-family: sans-serif;
+	font-size: 1.4rem;
+	background-image: url("../img/sfondo.png");
+	background-repeat: repeat-y;
+	background-position: 50% -25%;
+	line-height: 1.4;
+}
+
+.container {
+	margin-bottom: 1.8rem;
+	padding: 2.8rem 1.4rem;
+}
+
+.container:last-child {
+	margin-bottom: 0;
+}
+
+/* HEADER */
+
+header {
+	background: linear-gradient(to bottom, #0091b3, #026b88);
+	color: #fff;
+}
+
+header * {
+	text-transform: uppercase;
+}
+
+.epicode-logo {
+	display: block;
+	width: 60%;
+	margin: auto;
+	padding-bottom: 3.2rem;
+}
+
+/* MAIN */
+
+main {
+	background-color: #fff;
+}
+
+header h1 {
+	font-size: 1.4rem;
+	font-weight: 700;
+	text-align: center;
+	margin-bottom: 2.8rem;
+}
+
+.navigation-bar a::before {
+	content: "⇒ ";
+}
+
+.navigation-bar a::after {
+	content: " ⇐";
+}
+
+.navigation-bar li {
+	font-weight: 600;
+	font-size: 1.4rem;
+	text-align: center;
+}
+
+/* ELEMENTI NEL MAIN - ARTICLE */
+
+.title {
+	font-size: 2.8rem;
+	font-weight: 600;
+}
+
+.title + p {
+	color: #999;
+}
+
+.article-post-template p,
+.article-post-template h2,
+.section-explanation ul,
+.section-explanation ol {
+	margin-bottom: 1.4rem;
+}
+
+.section-explanation em {
+	color: #aa2072;
+	font-weight: 600;
+}
+
+.tag-list,
+.project-list {
+	padding-left: 3.2rem;
+}
+
+.tag-list {
+	list-style: disc;
+}
+
+.tag {
+	background-color: #ddd;
+	border: 1px solid #aaa;
+	border-radius: 5px;
+}
+
+.project-list {
+	list-style: decimal;
+}
+
+/* TABELLE */
+
+.section-table em {
+	font-weight: 700;
+	font-style: italic;
+}
+
+.section-table caption {
+	text-align: center;
+}
+
+.table {
+	width: 100%;
+	border-bottom: 2px solid #3366cc;
+	margin-bottom: 2.8rem;
+}
+
+.table th {
+	background-color: #3366cc;
+	color: #fff;
+	padding: 1.5rem;
+	vertical-align: bottom;
+	border-right: 1px solid #688cd2;
+}
+
+.table th:last-child {
+	border-right: none;
+}
+
+.table td {
+	text-align: center;
+	vertical-align: center;
+	padding: 1rem;
+}
+
+.table tr:nth-child(even) {
+	background-color: #eee;
+}
+
+.section-table a {
+	color: #51a7c8;
+	font-weight: 700;
+	text-decoration: underline;
+}
+
+.video {
+	display: inline-block;
+	width: 100%;
+}
+
+/* FORM */
+
+/* ELEMENTI NELL' ASIDE */
+
+/* FOOTER */
+
+footer {
+	background-color: #0091b3;
+}
