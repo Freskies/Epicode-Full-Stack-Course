@@ -53,4 +53,7 @@ Here you will find daily descriptions of the projects and exercises I'm working 
 - **Day 3: _Recipe_**  
   _Description_: Recreate a page following a mockup.
 
+- **Day 4: _Blog post 2_**  
+  _Description_: Style the blog post from dey 2 following a mock up.
+
 ---
