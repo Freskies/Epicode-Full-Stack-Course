@@ -32,6 +32,7 @@ body {
 .container {
 	margin-bottom: 1.8rem;
 	padding: 2.8rem 1.4rem;
+	box-shadow: 0px 2px 3px 1px #444;
 }
 
 .container:last-child {
@@ -41,7 +42,7 @@ body {
 /* HEADER */
 
 header {
-	background: linear-gradient(to bottom, #0091b3, #026b88);
+	background: linear-gradient(to top, #00000044, #026b88c7), #026b88;
 	color: #fff;
 }
 
@@ -210,6 +211,7 @@ header h1 {
 	border: none;
 	height: 2.4rem;
 	border-bottom: 1px dotted #aaa;
+	width: 75%;
 }
 
 .box--new button {
@@ -234,8 +236,27 @@ header h1 {
 	margin: 1.2rem;
 }
 
+.others-article h4 {
+	color: #51a7c8;
+	font-weight: 700;
+	text-decoration: underline;
+}
+
+.others-article p:last-child {
+	text-align: end;
+	font-size: 1.2rem;
+	margin-top: 1.2rem;
+}
+
 /* FOOTER */
 
-footer {
-	background-color: #0091b3;
+footer.container {
+	background: linear-gradient(to top, #00000095, #0055667f), #005566;
+	color: #d7d7d7;
+	text-align: center;
+	padding-top: 1.4rem;
+}
+
+footer p:first-child {
+	margin-bottom: 1.8rem;
 }
