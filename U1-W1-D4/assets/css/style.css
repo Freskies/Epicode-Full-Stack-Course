@@ -171,13 +171,68 @@ header h1 {
 }
 
 .video {
-	display: inline-block;
+	display: block;
 	width: 100%;
+	height: auto;
+	border-radius: 2rem;
+	margin-bottom: 2.4rem;
 }
 
 /* FORM */
 
+.box {
+	background-color: #ddd;
+	border: 1px solid #aaa;
+	padding: 1.4rem;
+}
+
+.box--new {
+	border: none;
+}
+
+.box--new h6 {
+	text-align: center;
+	font-weight: 700;
+	font-size: 1.6rem;
+	text-transform: uppercase;
+	margin-bottom: 1.6rem;
+}
+
+.box--new p {
+	margin-bottom: 1.4rem;
+}
+
+.box--new form {
+	width: 100%;
+}
+
+.box--new input {
+	border: none;
+	height: 2.4rem;
+	border-bottom: 1px dotted #aaa;
+}
+
+.box--new button {
+	border: none;
+	background-color: #4d68c1;
+	height: 2.2rem;
+	color: #fff;
+	font-weight: 700;
+}
+
 /* ELEMENTI NELL' ASIDE */
+
+.others-article h3 {
+	text-align: center;
+	font-weight: 700;
+	font-size: 1.8rem;
+	text-transform: uppercase;
+	margin: 3.2rem 0 2.4rem 0;
+}
+
+.others-article .box {
+	margin: 1.2rem;
+}
 
 /* FOOTER */
 
