@@ -54,6 +54,9 @@ Here you will find daily descriptions of the projects and exercises I'm working 
   _Description_: Recreate a page following a mockup.
 
 - **Day 4: _Blog post 2_**  
-  _Description_: Style the blog post from dey 2 following a mock up.
+  _Description_: Style the blog post from day 2 following a mock up.
+
+- **Day 5: _Epicode landing page_**  
+  _Description_: Style the epicode landing page from a given mockup.
 
 ---
