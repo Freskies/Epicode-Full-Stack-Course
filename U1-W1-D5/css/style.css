@@ -59,6 +59,10 @@ h6 {
 	border-radius: 5px;
 }
 
+.underline {
+	text-decoration: underline;
+}
+
 /***********************************/
 /* HEADER */
 /***********************************/
@@ -141,7 +145,7 @@ h6 {
 .section-testimonial {
 	background-color: #e22d0e;
 	color: #fff;
-	padding-bottom: 2.8rem;
+	padding-bottom: 4.8rem;
 }
 
 .section-testimonial > * {
@@ -217,11 +221,23 @@ h6 {
 	color: inherit;
 }
 
-.footer-title {
+.footer .footer-title {
+	color: #fff;
+	font-size: 3.6rem;
+	margin-bottom: 2.4rem;
 }
 
 .contact-info {
+	padding-bottom: 2.4rem;
+}
+
+.contact-info .fas {
+	color: #fff;
 }
 
 .copyright {
+	display: inline-block;
+	border-top: 1px solid;
+	padding-top: 2.4rem;
+	font-size: 1.4rem;
 }
