@@ -59,4 +59,9 @@ Here you will find daily descriptions of the projects and exercises I'm working 
 - **Day 5: _Epicode landing page_**  
   _Description_: Style the epicode landing page from a given mockup.
 
+#### Week 2
+
+- **Day 1: _Javascript Data Types_**  
+  _Description_: Put your hands in javascript datatypes (with console).
+
 ---
