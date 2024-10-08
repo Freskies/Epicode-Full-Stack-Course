@@ -64,4 +64,7 @@ Here you will find daily descriptions of the projects and exercises I'm working 
 - **Day 1: _Javascript Data Types_**  
   _Description_: Put your hands in javascript datatypes (with console).
 
+- **Day 2: _Javascript if-else_**  
+  _Description_: Put your hands in javascript if-else block (with console).
+
 ---
