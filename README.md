@@ -65,6 +65,12 @@ Here you will find daily descriptions of the projects and exercises I'm working 
   _Description_: Put your hands in javascript datatypes (with console).
 
 - **Day 2: _Javascript if-else_**  
-  _Description_: Put your hands in javascript if-else block (with console).
+  _Description_: Put your hands in javascript if-else statement (with console).
+
+- **Day 3: _Javascript loops_**  
+  _Description_: Put your hands in javascript for/while statements (with console).
+
+- **Day 4: _Javascript idk_**  
+  _Description_: Put your hands in your balls.
 
 ---
