@@ -64,8 +64,8 @@ const reverseString = function (s) {
 
 function upperFirst(s, toUpperFirst = true) {
 	if (!s) return "";
-	const firstChar = toUpperFirst ? s.charAt(0).toUpperCase() : s.charAt(0);
-	return firstChar + upperFirst(s.slice(1), s.charAt(0) === " ");
+	const firstChar = toUpperFirst ? s[0].toUpperCase() : s[0];
+	return firstChar + upperFirst(s.slice(1), s[0] === " ");
 }
 
 /* ESERCIZIO 9
