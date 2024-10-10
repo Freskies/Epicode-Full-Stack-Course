@@ -1,5 +1,7 @@
 # Epicode-Full-Stack-Course
 
+[You can see everithing HERE!](https://freskies-epicode.netlify.app/)
+
 Welcome to my GitHub repository for the Epicode Full-Stack Developer course! This repository is organized by units, weeks, and days. Each unit contains 4 weeks, and each week consists of 5 days. Below you'll find a brief overview of the course structure, followed by daily updates on the projects and exercises I'm working on.
 
 ## Table of Contents
