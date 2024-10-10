@@ -21,7 +21,6 @@ const crazySum = function (addend1, addend2) {
 */
 
 const crazyDiff = function (number) {
-	const absoluteNumber = 19;
 	const differece = Math.abs(19 - number);
 	return number > 19 ? differece * 3 : differece;
 };
