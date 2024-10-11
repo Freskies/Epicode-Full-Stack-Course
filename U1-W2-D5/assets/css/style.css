@@ -136,6 +136,7 @@ body {
 
 .section-gifts {
 	background-color: #fff;
+	padding: 0.8rem 0;
 }
 
 .gift-container {
@@ -145,7 +146,6 @@ body {
 .gift-title {
 	display: inline-block;
 	font-size: 2rem;
-	margin-top: 1.6rem;
 }
 
 .gift-img {
@@ -155,6 +155,7 @@ body {
 	object-fit: cover;
 	border-radius: 15px;
 	margin-right: 1%;
+	box-shadow: 10px 10px 31px -8px rgba(0, 0, 0, 0.3);
 }
 
 .gift-img:last-of-type {
