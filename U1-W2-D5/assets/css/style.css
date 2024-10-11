@@ -1,3 +1,7 @@
+/***********************************/
+/* RESET */
+/***********************************/
+
 * {
 	box-sizing: border-box;
 }
@@ -9,10 +13,107 @@ html {
 a:link,
 a:visited,
 a:hover,
-a::after {
+a:active {
 	text-decoration: none;
+	color: inherit;
 }
 
 li {
 	list-style: none;
 }
+
+/***********************************/
+/* GENERAL */
+/***********************************/
+
+body {
+	font-family: "Arial", "Helvetica", sans-serif;
+	color: #fff;
+}
+
+.layer {
+	width: 100%;
+}
+
+.layer--dark {
+	background-color: #222f3f;
+}
+
+.layer--light {
+	background-color: #364759;
+}
+
+.container {
+	margin: 2.8rem 5.2rem;
+	overflow: hidden;
+}
+
+/***********************************/
+/* HEADER */
+/***********************************/
+
+.header > .layer {
+	padding-left: 2.8rem;
+}
+
+.header .logo {
+	padding: 0.8rem;
+	width: 20rem;
+}
+
+.navigation {
+	font-size: 1.8rem;
+}
+
+.navigation > li {
+	display: inline-block;
+}
+
+.navigation > li > a {
+	display: inherit;
+	padding: 0.8rem;
+}
+
+/***********************************/
+/* SECTION TITLE */
+/***********************************/
+
+.section-title {
+	background-color: #f56600;
+}
+
+.title {
+	font-size: 1.8rem;
+	text-align: center;
+	padding: 0.8rem;
+}
+
+/***********************************/
+/* SECTION GIFT GUIDES */
+/***********************************/
+
+.section-gift-guides {
+	background-image: url("./../images/bg-image.png");
+	background-size: 90%;
+}
+
+.gift-guides-title,
+.gift-guides-description {
+	font-weight: 700;
+	text-align: center;
+}
+
+.gift-guides-title {
+	padding-top: 6.6rem;
+	padding-bottom: 2.4rem;
+	font-size: 3.2rem;
+}
+
+.gift-guides-description {
+	font-size: 2rem;
+	padding-bottom: 4.8rem;
+}
+
+/***********************************/
+/* SECTION GIFT */
+/***********************************/
