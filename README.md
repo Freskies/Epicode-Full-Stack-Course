@@ -72,7 +72,10 @@ Here you will find daily descriptions of the projects and exercises I'm working 
 - **Day 3: _Javascript loops_**  
   _Description_: Put your hands in javascript for/while statements (with console).
 
-- **Day 4: _Javascript idk_**  
-  _Description_: Put your hands in your balls.
+- **Day 4: _Javascript functions_**  
+  _Description_: Put your hands in javascript functions (with console).
+
+- **Day 5: _Amazon Mockup + JS excercises_**  
+  _Description_: Style Amazon landing page and solve some js problems.
 
 ---
