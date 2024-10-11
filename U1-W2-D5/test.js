@@ -76,3 +76,13 @@ console.log("EXCLUDED:");
 until32Excluded(numericArray);
 console.log("INCLUDED:");
 until32Included(numericArray);
+
+/***********************************/
+/* ESERCIZIO 10 */
+/***********************************/
+
+showExcerciseNumber(10);
+
+// createTerribleCode();
+
+console.log(getAlphabeticValues(charactersArray));
