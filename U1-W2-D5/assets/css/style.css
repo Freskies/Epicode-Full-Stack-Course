@@ -46,16 +46,22 @@ body {
 
 .container {
 	margin: 2.8rem 5.2rem;
-	overflow: hidden;
 }
 
 .cta-links:link,
 .cta-links:hover,
 .cta-links:visited,
 .cta-links:active {
-	margin-left: 1.8rem;
+	margin-left: 1.6rem;
 	color: #19555e;
 	font-size: 1.6rem;
+	font-weight: 600;
+}
+
+.subtitle {
+	color: #000;
+	font-size: 1.8rem;
+	font-weight: 500;
 }
 
 /***********************************/
@@ -130,8 +136,6 @@ body {
 
 .section-gifts {
 	background-color: #fff;
-	color: #000;
-	font-weight: 600;
 }
 
 .gift-container {
@@ -141,6 +145,7 @@ body {
 .gift-title {
 	display: inline-block;
 	font-size: 2rem;
+	margin-top: 1.6rem;
 }
 
 .gift-img {
@@ -157,16 +162,46 @@ body {
 }
 
 /***********************************/
-/* SECTION GAME */
+/* SECTIONS GAME & SOUND */
 /***********************************/
-
-.section-game {
-}
 
 .banner {
 	width: 100%;
 	object-fit: cover;
+	margin-bottom: 0.4rem;
 }
 
 .banner-description {
+	text-align: center;
+}
+
+.banner-subtitle {
+	display: inline-block;
+}
+
+/***********************************/
+/* FOOTER */
+/***********************************/
+
+.footer {
+	text-align: center;
+}
+
+.bottom-navigation > li {
+	display: inline-block;
+}
+
+.bottom-navigation > li > a {
+	font-size: 1.6rem;
+	font-weight: 700;
+	text-decoration: underline;
+	display: inline-block;
+	padding: 1.6rem;
+}
+
+.footer .logo {
+	display: inline-block;
+	padding: 4.8rem;
+	padding-bottom: 5.6rem;
+	width: 32rem;
 }
