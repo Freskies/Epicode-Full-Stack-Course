@@ -1,1 +1,18 @@
-/* Your styles here */
+* {
+	box-sizing: border-box;
+}
+
+html {
+	font-size: 62.5%;
+}
+
+a:link,
+a:visited,
+a:hover,
+a::after {
+	text-decoration: none;
+}
+
+li {
+	list-style: none;
+}
