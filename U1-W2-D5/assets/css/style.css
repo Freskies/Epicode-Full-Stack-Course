@@ -29,6 +29,7 @@ li {
 body {
 	font-family: "Arial", "Helvetica", sans-serif;
 	color: #fff;
+	background-color: #e9edee;
 }
 
 .layer {
@@ -46,6 +47,15 @@ body {
 .container {
 	margin: 2.8rem 5.2rem;
 	overflow: hidden;
+}
+
+.cta-links:link,
+.cta-links:hover,
+.cta-links:visited,
+.cta-links:active {
+	margin-left: 1.8rem;
+	color: #19555e;
+	font-size: 1.6rem;
 }
 
 /***********************************/
@@ -117,3 +127,46 @@ body {
 /***********************************/
 /* SECTION GIFT */
 /***********************************/
+
+.section-gifts {
+	background-color: #fff;
+	color: #000;
+	font-weight: 600;
+}
+
+.gift-container {
+	margin: 1.8rem 2.8rem;
+}
+
+.gift-title {
+	display: inline-block;
+	font-size: 2rem;
+}
+
+.gift-img {
+	display: inline-block;
+	width: 24%;
+	aspect-ratio: 0.8;
+	object-fit: cover;
+	border-radius: 15px;
+	margin-right: 1%;
+}
+
+.gift-img:last-of-type {
+	margin-right: 0;
+}
+
+/***********************************/
+/* SECTION GAME */
+/***********************************/
+
+.section-game {
+}
+
+.banner {
+	width: 100%;
+	object-fit: cover;
+}
+
+.banner-description {
+}
