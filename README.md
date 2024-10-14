@@ -78,4 +78,21 @@ Here you will find daily descriptions of the projects and exercises I'm working 
 - **Day 5: _Amazon Mockup + JS excercises_**  
   _Description_: Style Amazon landing page and solve some js problems.
 
+#### Week 3
+
+- **Day 1: _Javascript Array Methods_**  
+  _Description_: Put your hands in javascript array methods (with console).
+
+- **Day 2: _Javascript x_**  
+  _Description_: Put your hands in javascript (with console).
+
+- **Day 3: _Javascript x_**  
+  _Description_: Put your hands in javascript (with console).
+
+- **Day 4: _Javascript x_**  
+  _Description_: Put your hands in javascript (with console).
+
+- **Day 5: _x_**  
+  _Description_: LALALAL.
+
 ---
