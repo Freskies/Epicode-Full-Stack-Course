@@ -39,3 +39,28 @@ const x =
 
 const cacca =
 	"ci godo le mie palle. ciao mi chiamo luis e mi fa male il dentino. io non pago affitto";
+
+const lol = "ciao";
+
+function addL(arr) {
+	if (!arr[0]) return 0;
+	return 1 + addR([...arr.slice(1)]);
+}
+
+function addR(arr) {
+	if (!arr[0]) return 0;
+	return 1 + addL([...arr.slice(1)]);
+}
+
+const addL1 = function (arr) {
+	if (!arr[0]) return 0;
+	return 1 + addR1([...arr.slice(1)]);
+};
+
+const addR1 = function (arr) {
+	if (!arr[0]) return 0;
+	return 1 + addL1([...arr.slice(1)]);
+};
+
+console.log(addL1(arr));
+console.log(addL1(arr));
