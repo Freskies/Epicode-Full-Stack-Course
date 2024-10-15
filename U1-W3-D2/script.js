@@ -38,7 +38,7 @@ Scrivi una funzione che cambi la proprietà href di ogni link (tranne quello nel
 
 const changeUrls = function () {
 	document
-		.querySelectorAll("a")
+		.querySelectorAll("a:not(footer a)")
 		.forEach(a => (a.href = "https://www.google.com"));
 };
 
