@@ -83,8 +83,8 @@ Here you will find daily descriptions of the projects and exercises I'm working 
 - **Day 1: _Javascript Array Methods_**  
   _Description_: Put your hands in javascript array methods (with console).
 
-- **Day 2: _Javascript x_**  
-  _Description_: Put your hands in javascript (with console).
+- **Day 2: _Javascript DOM Manipulation_**  
+  _Description_: Put your hands in javascript DOM Manipulation.
 
 - **Day 3: _Javascript x_**  
   _Description_: Put your hands in javascript (with console).
