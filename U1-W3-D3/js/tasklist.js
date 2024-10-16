@@ -45,7 +45,3 @@ const tasklistWebapp = {
 };
 
 tasklistWebapp.start();
-tasklistWebapp.addTask("ciao");
-tasklistWebapp.addTask("mi");
-tasklistWebapp.addTask("chiamo");
-tasklistWebapp.addTask("luis");
