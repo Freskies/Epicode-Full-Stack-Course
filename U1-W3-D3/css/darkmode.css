@@ -1,0 +1,14 @@
+.darkmode {
+	--main-color: #60f6da;
+	--second-color: #08b0c4;
+	--third-color: #044155;
+	--text-color: #f4fdfc;
+}
+
+.darkmode .dark-mode-icon {
+	display: none;
+}
+
+.darkmode .light-mode-icon {
+	display: block;
+}

@@ -5,6 +5,7 @@ const tasklistWebapp = {
 		taskForm: document.querySelector(".task-form"),
 		taskInput: document.querySelector(".task-input"),
 		taskList: document.querySelector(".task-list"),
+		buttonDelete: document.querySelector(".section-tasks > .btn"),
 	},
 
 	addTask: function (task) {
@@ -12,13 +13,22 @@ const tasklistWebapp = {
 			const li = this.htmlElements.taskList.appendChild(
 				document.createElement("li"),
 			);
-			li.textContent = task;
+			const span = li.appendChild(document.createElement("span"));
+			span.textContent = task;
+			const button = li.appendChild(
+				this.htmlElements.buttonDelete.cloneNode(true),
+			);
+			button.addEventListener("click", () => this.deleteTaskListener(li));
 			li.addEventListener("click", this.clickTaskListener);
 		}
 	},
 
 	clickTaskListener: function () {
 		this.classList.toggle("completed-task");
+	},
+
+	deleteTaskListener: function (li) {
+		li.remove();
 	},
 
 	formListener: function (self, e) {
@@ -35,3 +45,7 @@ const tasklistWebapp = {
 };
 
 tasklistWebapp.start();
+tasklistWebapp.addTask("ciao");
+tasklistWebapp.addTask("mi");
+tasklistWebapp.addTask("chiamo");
+tasklistWebapp.addTask("luis");
