@@ -3,7 +3,36 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Document</title>
+		<meta name="description" content="a tasklist webapp" />
+		<title>Task List</title>
+
+		<!-- ICONS -->
+		<link rel="icon" href="./img/favicon-desktop.png" />
+		<link rel="apple-touch-icon" href="img/favicon-iphone.png" />
+		<link rel="manifest" href="./manifest.webmanifest" />
+
+		<!-- STYLE -->
+		<link rel="stylesheet" href="./css/style.css" />
+
+		<!-- JS -->
+		<!-- <script type="text/javascript" src="./practice.js" defer></script> -->
+		<script type="text/javascript" src="./js/tasklist.js" defer></script>
 	</head>
-	<body></body>
+	<body>
+		<header class="header">
+			<h1>TASKLIST</h1>
+		</header>
+		<main class="app">
+			<section class="container tasks-input">
+				<form>
+					<input class="task-input" type="text" />
+					<button class="add-task" type="submit">SUBMIT</button>
+				</form>
+			</section>
+			<section class="container tasks-list"></section>
+		</main>
+		<footer class="footer">
+			<p>&copy; 2024 - Giacchini Valerio</p>
+		</footer>
+	</body>
 </html>
