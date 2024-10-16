@@ -3,3 +3,22 @@
 	padding: 0;
 	box-sizing: border-box;
 }
+
+html {
+	font-size: 62.5%;
+}
+
+body {
+	height: 100vh;
+	overflow: hidden;
+}
+
+.logo {
+	display: block;
+	width: 2rem;
+}
+
+.completed-task {
+	color: #666;
+	text-decoration: line-through;
+}
