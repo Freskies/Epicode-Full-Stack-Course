@@ -1,8 +1,13 @@
 .darkmode {
-	--main-color: #60f6da;
-	--second-color: #08b0c4;
-	--third-color: #044155;
-	--text-color: #f4fdfc;
+	--primary-color: #c6d8d9;
+	--primary-color-shade: #c6d8d9;
+	--primary-color-shade-transparent: #455a5b6c;
+	--secondary-color-1: #1e3e62a6;
+	--secondary-color-1-shade: #c6d8d976;
+	--secondary-color-1-shade-transparent: #1e3e62a6;
+	--secondary-color-2: #773d16;
+	--secondary-color-2-shade: #ff6600;
+	--background-default: #0b192c;
 }
 
 .darkmode .dark-mode-icon {
@@ -11,4 +16,16 @@
 
 .darkmode .light-mode-icon {
 	display: block;
+}
+
+.darkmode .title {
+	color: var(--background-default);
+}
+
+.darkmode .light-mode-icon {
+	fill: var(--background-default);
+}
+
+.darkmode .header {
+	border-color: var(--background-default);
 }
