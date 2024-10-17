@@ -1,6 +1,7 @@
 "use strict";
 
-const BOARD_SIZE = 90;
+const BOARD_SIZE = 71;
+const BOARD_COLUMNS = Math.ceil(BOARD_SIZE / 10);
 const CARD_SIZE = Math.ceil(BOARD_SIZE / 6);
 
 const tombola_number = {
@@ -37,7 +38,7 @@ const board = {
 };
 
 const card = {
-	columns: Math.ceil(BOARD_SIZE / 10),
+	columns: BOARD_COLUMNS,
 	card: undefined,
 
 	generateCard() {
@@ -49,7 +50,6 @@ const card = {
 				(_, j) => j + 1 + i * 10,
 			),
 		);
-		// console.log(numbers);
 
 		const weighedNumbers = Array.from(numbers, numberSet => ({
 			weight: numberSet.length <= 3 ? numberSet.length : 3,
@@ -79,8 +79,6 @@ const card = {
 			}
 		});
 
-		console.log(weighedNumbers);
-
 		this.card = Array.from({ length: this.columns }, _ => []);
 
 		for (const randomNumber of randomNumbers) {
@@ -88,10 +86,24 @@ const card = {
 			this.card[index].push(randomNumber);
 		}
 
-		console.log(this.card);
+		this.card.forEach(column => column.sort());
+
+		this.card.map(column => {
+			let missingElements = 3 - column.length;
+
+			while (missingElements > 0) {
+				let randomIndex = Math.floor(Math.random() * (column.length + 1));
+				column.splice(randomIndex, 0, null);
+				missingElements--;
+			}
+
+			return column;
+		});
 	},
 
-	init() {},
+	init() {
+		this.generateCard();
+	},
 };
 
 const tombolaWebApp = {
@@ -100,7 +112,7 @@ const tombolaWebApp = {
 		reset: document.querySelector(".btn--reset"),
 		extract: document.querySelector(".btn-extract"),
 		extractBox: document.querySelector(".extract-number-box"),
-		add: document.querySelector(".btn--add-card"),
+		addCard: document.querySelector(".btn--add-card"),
 	},
 
 	logicBoard: board,
@@ -132,6 +144,29 @@ const tombolaWebApp = {
 		}
 	},
 
+	initCard(cardLogic) {
+		console.log(cardLogic.card);
+		// const createItem = ()
+
+		const divCard = document.createElement("div");
+		div.classList.add("card-container");
+
+		return 0;
+
+		const createItem = ({ number: num }) => {
+			const div = document.createElement("div");
+			div.textContent = num;
+			div.classList.add("number");
+			return div;
+		};
+
+		this.logicBoard.board.forEach(num => {
+			const item = createItem(num);
+			this.htmlElements.board.appendChild(item);
+			this.board.set(num, item);
+		});
+	},
+
 	resetListener(self) {
 		self.reset();
 	},
@@ -141,12 +176,29 @@ const tombolaWebApp = {
 		self.board.get(cell).classList.add("number--extracted");
 	},
 
+	addCardListener(self) {
+		const newCard = { ...card };
+		newCard.init();
+		self.cards.push({ logic: newCard, htmlEl: self.initCard(newCard) });
+	},
+
 	reset() {
 		for (const [_, cell] of this.board) cell.remove();
 		this.start(true);
 	},
 
+	setColumns() {
+		this.htmlElements.board.style.gridTemplateColumns = `repeat(${BOARD_COLUMNS}, 1fr)`;
+		document
+			.querySelectorAll(".card")
+			.forEach(
+				cardEl =>
+					(cardEl.style.gridTemplateColumns = `repeat(${BOARD_COLUMNS}, 1fr)`),
+			);
+	},
+
 	start(reset = false) {
+		this.setColumns();
 		this.logicBoard.init();
 		this.initBoard();
 		if (!reset) {
@@ -156,9 +208,11 @@ const tombolaWebApp = {
 			this.htmlElements.extract.addEventListener("click", () => {
 				this.extractListener(this);
 			});
+			this.htmlElements.addCard.addEventListener("click", () => {
+				this.addCardListener(this);
+			});
 		}
 	},
 };
 
 tombolaWebApp.start();
-card.generateCard();
