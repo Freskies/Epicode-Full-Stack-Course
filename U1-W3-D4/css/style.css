@@ -1,0 +1,19 @@
+/*****************************/
+/* GENERAL */
+/*****************************/
+
+/*****************************/
+/* SECTION BOARD */
+/*****************************/
+
+.board-container {
+	display: grid;
+	grid-template-columns: repeat(10, 1fr);
+}
+
+.number {
+}
+
+.number--extracted {
+	color: red;
+}
