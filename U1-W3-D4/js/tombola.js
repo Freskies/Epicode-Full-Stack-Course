@@ -1,6 +1,7 @@
 "use strict";
 
 const BOARD_SIZE = 90;
+const CARD_SIZE = Math.ceil(BOARD_SIZE / 6);
 
 const tombola_number = {
 	number: undefined,
@@ -35,6 +36,64 @@ const board = {
 	},
 };
 
+const card = {
+	columns: Math.ceil(BOARD_SIZE / 10),
+	card: undefined,
+
+	generateCard() {
+		const numbers = Array.from({ length: this.columns }, (_, i) =>
+			Array.from(
+				{
+					length: i === this.columns - 1 ? (BOARD_SIZE - i * 10) % 11 : 10,
+				},
+				(_, j) => j + 1 + i * 10,
+			),
+		);
+		// console.log(numbers);
+
+		const weighedNumbers = Array.from(numbers, numberSet => ({
+			weight: numberSet.length <= 3 ? numberSet.length : 3,
+			numberSet,
+		}));
+
+		const randomNumbers = Array.from({ length: CARD_SIZE }, () => {
+			const totalWeight = weighedNumbers.reduce(
+				(acc, { weight }) => (acc += weight),
+				0,
+			);
+
+			const randomWeight = Math.floor(Math.random() * totalWeight + 1);
+			let counter = 0;
+
+			for (let i = 0; i < weighedNumbers.length; i++) {
+				for (const _ of Array(weighedNumbers[i].weight)) {
+					counter++;
+					if (randomWeight === counter) {
+						weighedNumbers[weighedNumbers.indexOf(weighedNumbers[i])].weight--;
+						const index = Math.floor(
+							Math.random() * weighedNumbers[i].numberSet.length,
+						);
+						return weighedNumbers[i].numberSet.splice(index, 1)[0];
+					}
+				}
+			}
+		});
+
+		console.log(weighedNumbers);
+
+		this.card = Array.from({ length: this.columns }, _ => []);
+
+		for (const randomNumber of randomNumbers) {
+			const index = Number(String(randomNumber - 1).padStart(2, "0")[0]);
+			this.card[index].push(randomNumber);
+		}
+
+		console.log(this.card);
+	},
+
+	init() {},
+};
+
 const tombolaWebApp = {
 	htmlElements: {
 		board: document.querySelector(".board-container"),
@@ -46,6 +105,7 @@ const tombolaWebApp = {
 
 	logicBoard: board,
 	board: new Map(),
+	cards: new Array(),
 
 	initBoard() {
 		const createItem = ({ number: num }) => {
@@ -90,7 +150,6 @@ const tombolaWebApp = {
 		this.logicBoard.init();
 		this.initBoard();
 		if (!reset) {
-			console.log("first");
 			this.htmlElements.reset.addEventListener("click", () => {
 				this.resetListener(this);
 			});
@@ -102,3 +161,4 @@ const tombolaWebApp = {
 };
 
 tombolaWebApp.start();
+card.generateCard();
