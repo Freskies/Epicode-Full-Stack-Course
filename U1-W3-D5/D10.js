@@ -112,7 +112,7 @@ const onlyLetters = s => s.replace(/[0-9]/g, "").replace(/  +/g, " ");
 const isThisAnEmail = email =>
 	email.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g) !== null;
 
-// btw 'cause i'm not able to write by myself i will do also a larger function on my own
+// btw 'cause i'm not able to write it by myself i will do also a larger function on my own
 const isThisAnEmailByMyself = email => {
 	// check if it has only one @
 	if (email.match(/@/g)?.length !== 1) return false;
