@@ -496,13 +496,21 @@ const halfTree = len => {
 
 */
 
-const tree = (len, pad = 0) => {
+// in this function you have to insert 5 to get the expected result for 3
+const treeOld = (len, pad = 0) => {
 	if (len < 1) return "";
 	return `${tree(len - 2, pad + 1)}
   ${" ".repeat(pad)}${"*".repeat(len)}${" ".repeat(pad)}`;
 };
+// console.log(treeOld(16), "\n\n", treeOld(15));
 
-// console.log(tree(16), "\n\n", tree(15));
+const tree = (len, pad = 0) => {
+	if (len < 1) return "";
+	return `${tree(len - 1, pad + 1)}
+  ${" ".repeat(pad)}${"*".repeat(len * 2 - 1)}${" ".repeat(pad)}`;
+};
+
+console.log(tree(3), "\n\n", tree(5));
 
 /* ESERCIZIO 29
   Crea una funzione chiamata "isItPrime" che riceve un numero come parametro e ritorna true se il numero fornito è un numero primo.
