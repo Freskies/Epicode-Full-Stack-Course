@@ -484,6 +484,12 @@ const halfTree = len => {
 
 // console.log(halfTree(6));
 
+const halfTreeIterativeLog = len => {
+	for (let i = 1; i <= len; i++) console.log(`*`.repeat(i));
+};
+
+// halfTreeIterativeLog(3);
+
 /* ESERCIZIO 28
   Crea una funzione chiamata "tree" che riceve un numero come parametro e costruisce un albero di "*" (asterischi) dell'altezza fornita.
 
@@ -510,7 +516,14 @@ const tree = (len, pad = 0) => {
   ${" ".repeat(pad)}${"*".repeat(len * 2 - 1)}${" ".repeat(pad)}`;
 };
 
-console.log(tree(3), "\n\n", tree(5));
+// console.log(tree(3), "\n\n", tree(5));
+
+const treeIterativeLog = len => {
+	for (let i = 1; i <= len; i++)
+		console.log(`${" ".repeat(len - i)}${"*".repeat(i * 2 - 1)}`);
+};
+
+// treeIterative(3);
 
 /* ESERCIZIO 29
   Crea una funzione chiamata "isItPrime" che riceve un numero come parametro e ritorna true se il numero fornito è un numero primo.
