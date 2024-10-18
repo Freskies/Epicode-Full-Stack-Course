@@ -473,6 +473,13 @@ const tableRowTest = () =>
 
 */
 
+const halfTree = len => {
+	if (!len) return "";
+	return `${halfTree(len - 1)}\n${"*".repeat(len)}`;
+};
+
+// console.log(halfTree(6));
+
 /* ESERCIZIO 28
   Crea una funzione chiamata "tree" che riceve un numero come parametro e costruisce un albero di "*" (asterischi) dell'altezza fornita.
 
@@ -485,6 +492,28 @@ const tableRowTest = () =>
 
 */
 
+const tree = (len, pad = 0) => {
+	if (len < 1) return "";
+	return `${tree(len - 2, pad + 1)}
+  ${" ".repeat(pad)}${"*".repeat(len)}${" ".repeat(pad)}`;
+};
+
+// console.log(tree(16), "\n\n", tree(15));
+
 /* ESERCIZIO 29
   Crea una funzione chiamata "isItPrime" che riceve un numero come parametro e ritorna true se il numero fornito è un numero primo.
 */
+const isItPrime = (n, divisor = 2) => {
+	if (n <= 1) return false; // 0, 1 are not prime
+	if (divisor > n / 2) return true;
+	return Boolean(n % divisor) && isItPrime(n, divisor + 1);
+};
+
+// const test100 = Array.from({ length: 100 }, (_, i) => ({
+// 	number: i,
+// 	isPrime: isItPrime(i),
+// }));
+
+// const prime100 = test100.filter(test => test.isPrime);
+
+// prime100.forEach(prime => console.log(prime.number));
