@@ -1,6 +1,6 @@
 "use strict";
 
-const BOARD_SIZE = 71;
+const BOARD_SIZE = 90;
 const BOARD_COLUMNS = Math.ceil(BOARD_SIZE / 10);
 const CARD_SIZE = Math.ceil(BOARD_SIZE / 6);
 
