@@ -97,7 +97,11 @@ const deleteOne = (s, cutFirst) => (cutFirst ? s.slice(1) : s.slice(0, -1));
 
 // i used one regex to delete every char that is not "a-z", 'A-Z', ' '
 // the second regex is to trim multiple spaces like in the exaple
-const onlyLetters = s => s.replace(/[^a-zA-Z ]/g, "").replace(/  +/g, " ");
+const onlyLettersOld = s => s.replace(/[^a-zA-Z ]/g, "").replace(/  +/g, " ");
+// console.log(onlyLettersOld("I have 4 dogs"));
+
+// actually i just read that i have to cut off only numbers:
+const onlyLetters = s => s.replace(/[0-9]/g, "").replace(/  +/g, " ");
 // console.log(onlyLetters("I have 4 dogs"));
 
 /* ESERCIZIO 6
