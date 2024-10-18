@@ -534,6 +534,12 @@ const isItPrime = (n, divisor = 2) => {
 	return Boolean(n % divisor) && isItPrime(n, divisor + 1);
 };
 
+const isItPrimeIterative = n => {
+	if (n <= 1) return false;
+	for (let i = 2; i <= n / 2; i++) if (!(n % i)) return false;
+	return true;
+};
+
 // const test100 = Array.from({ length: 100 }, (_, i) => ({
 // 	number: i,
 // 	isPrime: isItPrime(i),
