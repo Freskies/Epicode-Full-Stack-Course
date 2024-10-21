@@ -62,6 +62,39 @@ const restourant = {
 	},
 };
 
+const questions = [
+	new Map([
+		["id", 1],
+		[("question", "what's the best programming language?")],
+		[1, "C"],
+		[2, "Java"],
+		[3, "Javascript"],
+		["correct", 3],
+		[true, "correct!"],
+		[false, "Try again!"],
+	]),
+	new Map([
+		["id", 2],
+		[("question", "io sono bello")],
+		[1, "si"],
+		[2, "certo"],
+		[3, "assolutamente"],
+		["correct", 3],
+		[true, "correct!"],
+		[false, "Try again!"],
+	]),
+	new Map([
+		["id", 3],
+		[("question", "what's the best programming language?")],
+		[1, "C"],
+		[2, "Java"],
+		[3, "Javascript"],
+		["correct", 3],
+		[true, "correct!"],
+	]),
+];
+
+/*
 const airline = "TAP Air Portugal";
 const plane = "A320";
 
@@ -136,7 +169,7 @@ console.log(capitalize("ciao Mi CHIamo LUIs"));
 
 const maskCreditCard = number => number.slice(-4).padStart(number.length, "x");
 console.log(maskCreditCard("1234486701487845").match(/.{4}/g).join("-"));
-/*
+
 //////////////////////////////////////////
 //// maps 2
 
