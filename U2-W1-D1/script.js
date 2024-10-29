@@ -1,125 +1,76 @@
-"use strict";
+'use strict';
 
-// PART 1
+/////////////////////////////////////////////////
+/////////////////////////////////////////////////
+// BANKIST APP
 
-const country = "Italy";
-const continent = "Europe";
-let population = 10;
-
-const isIsland = false;
-
-for (const info of [country, continent, population, isIsland])
-	console.log(typeof info);
-
-const language = "Italian";
-
-const half = population / 2;
-population++;
-console.log(population);
-
-const moreThanFinland = 6 > population;
-const lessThanAvarage = 33 > population;
-
-const description = `${country} is in ${continent}, and its ${population} million people speak ${language}`;
-console.log(description);
-
-/*
-console.log('9' - '5'); -> 4
-console.log('19' - '13' + '17'); -> '617'
-console.log('19' - '13' + 17); -> 23
-console.log('123' < 57); -> false
-console.log(5 + 6 + '4' + 9 - 4 - 2); -> 1143
-*/
-
-if (population < 50 && language === "english" && !isIsland) console.log("yes");
-else console.log("no");
-
-switch (language.toLowerCase()) {
-	case "chinese":
-	case "mandarin":
-		console.log("MOST number of native speakers!");
-		break;
-	case "spanish":
-		console.log("2nd place in number of native speakers");
-		break;
-	case "english":
-		console.log("3rd place");
-		break;
-	case "hindi":
-		console.log("Number 4");
-		break;
-	case "arabic":
-		console.log("5th most spoken language");
-		break;
-	default:
-		console.log("Great language too :D");
-}
-
-console.log(
-	`Portugal's population is ${population > 33 ? "above" : "below"} average`,
-);
-
-console.log("----------------------------------------");
-
-// FUNCTIONS
-
-function describeCountry(country, population, capitalCity) {
-	return `${country} has ${population} million people and its capital city is ${capitalCity}`;
-}
-
-console.log(describeCountry("Finland", 6, "Helsinki"));
-
-// 7900 : 100 = p : x => 100 * p / 7900
-function percentageOfWorld1(population) {
-	return (population * 100) / 7900;
-}
-
-const percentageOfWorld2 = function (population) {
-	return (population * 100) / 7900;
+// Data
+const account1 = {
+  owner: 'Jonas Schmedtmann',
+  movements: [200, 450, -400, 3000, -650, -130, 70, 1300],
+  interestRate: 1.2, // %
+  pin: 1111,
 };
 
-const percentageOfWorld3 = population => (population * 100) / 7900;
-
-console.log(percentageOfWorld1(1441));
-
-const describePopulation = (country, population) =>
-	`${country} has ${population} million people, which is about ${percentageOfWorld3(
-		population,
-	).toFixed(1)}% of the world`;
-
-console.log(describePopulation("China", 1441));
-
-const populations = [1140, 30, 6, 50];
-console.log(populations.length === 4);
-
-const percentages = populations.map(population =>
-	percentageOfWorld3(population),
-);
-
-const neighbours = ["Norway", "Sweden", "Russia"];
-neighbours.push("Utopia");
-neighbours.pop();
-
-if (neighbours.indexOf("Germany") === -1) console.log("ci godo");
-
-neighbours[neighbours.indexOf("Sweden")] = "Republic of Sweeden";
-
-const myCountry = {
-	country: "Italy",
-	capital: "Rome",
-	language: "Italian",
-	population: 10,
-	neighbours: ["Austria", "San Marino"],
-	pappa: 5,
-
-	describe() {
-		return `${this.country} has ${this.population} million ${this.language}-speaking people, ${this.neighbours.length} neighbouring countries and a capital called ${this.capital}`;
-	},
+const account2 = {
+  owner: 'Jessica Davis',
+  movements: [5000, 3400, -150, -790, -3210, -1000, 8500, -30],
+  interestRate: 1.5,
+  pin: 2222,
 };
 
-myCountry.population += 2;
-myCountry["population"] -= 2;
+const account3 = {
+  owner: 'Steven Thomas Williams',
+  movements: [200, -200, 340, -300, -20, 50, 400, -460],
+  interestRate: 0.7,
+  pin: 3333,
+};
 
-console.log(myCountry.describe());
+const account4 = {
+  owner: 'Sarah Smith',
+  movements: [430, 1000, 700, 50, 90],
+  interestRate: 1,
+  pin: 4444,
+};
 
-// JAVASCRIPT FUNCTIONS PART 2 - OBJECT METHODS
+const accounts = [account1, account2, account3, account4];
+
+// Elements
+const labelWelcome = document.querySelector('.welcome');
+const labelDate = document.querySelector('.date');
+const labelBalance = document.querySelector('.balance__value');
+const labelSumIn = document.querySelector('.summary__value--in');
+const labelSumOut = document.querySelector('.summary__value--out');
+const labelSumInterest = document.querySelector('.summary__value--interest');
+const labelTimer = document.querySelector('.timer');
+
+const containerApp = document.querySelector('.app');
+const containerMovements = document.querySelector('.movements');
+
+const btnLogin = document.querySelector('.login__btn');
+const btnTransfer = document.querySelector('.form__btn--transfer');
+const btnLoan = document.querySelector('.form__btn--loan');
+const btnClose = document.querySelector('.form__btn--close');
+const btnSort = document.querySelector('.btn--sort');
+
+const inputLoginUsername = document.querySelector('.login__input--user');
+const inputLoginPin = document.querySelector('.login__input--pin');
+const inputTransferTo = document.querySelector('.form__input--to');
+const inputTransferAmount = document.querySelector('.form__input--amount');
+const inputLoanAmount = document.querySelector('.form__input--loan-amount');
+const inputCloseUsername = document.querySelector('.form__input--user');
+const inputClosePin = document.querySelector('.form__input--pin');
+
+/////////////////////////////////////////////////
+/////////////////////////////////////////////////
+// LECTURES
+
+const currencies = new Map([
+  ['USD', 'United States dollar'],
+  ['EUR', 'Euro'],
+  ['GBP', 'Pound sterling'],
+]);
+
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+/////////////////////////////////////////////////
