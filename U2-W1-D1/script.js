@@ -67,6 +67,7 @@ const inputClosePin = document.querySelector(".form__input--pin");
 
 // global variables
 let currentAccount = undefined;
+let sortMovements = false;
 
 // USER
 const createUsernames = users => {
@@ -83,10 +84,13 @@ const createUsernames = users => {
 createUsernames(accounts);
 
 // MOVEMENTS
-const displayMovements = movements => {
+const displayMovements = (movements, sort = sortMovements) => {
 	containerMovements.innerHTML = "";
+	const movementsToDisplay = sort
+		? movements.slice().sort((a, b) => a - b)
+		: movements;
 
-	movements.forEach((movement, i) => {
+	movementsToDisplay.forEach((movement, i) => {
 		const type = movement > 0 ? "deposit" : "withdrawal";
 		const html = `
       <div class="movements__row">
@@ -98,6 +102,13 @@ const displayMovements = movements => {
     `;
 		containerMovements.insertAdjacentHTML("afterbegin", html);
 	});
+	/*
+	const movementUI = Array.from(
+		document.querySelectorAll(".movements__value"),
+		el => parseInt(el.textContent),
+	).reduce((acc, movement) => acc + movement, 0);
+	console.log(movementUI);
+	*/
 };
 
 // BALANCE
@@ -245,3 +256,28 @@ loanForm.addEventListener("submit", e => {
 		updateUI(currentAccount);
 	}
 });
+
+btnSort.addEventListener("click", e => {
+	e.preventDefault();
+	sortMovements = !sortMovements;
+	displayMovements(currentAccount.movements);
+});
+
+// OVERAL BALANCE
+
+/* old way
+const overalBalance = accounts
+	.map(({ movements }) => movements)
+	.flat()
+	.reduce((acc, movement) => acc + movement, 0);
+*/
+
+const overalBalance = accounts =>
+	accounts
+		.flatMap(({ movements }) => movements)
+		.reduce((acc, movement) => acc + movement, 0);
+
+const overalDeposit = accounts =>
+	accounts
+		.flatMap(({ movements }) => movements)
+		.reduce((acc, movement) => (movement > 0 ? acc + movement : acc), 0);

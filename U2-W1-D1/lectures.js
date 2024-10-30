@@ -72,3 +72,12 @@ console.log(movements.some(movement => movement > 0));
 
 // any deposit above 5000
 console.log(movements.some(movement => movement > 5000));
+
+const bho = [[1, 2, 3], [4, 5, 6], 7, 8];
+console.log(bho.flat());
+
+const bhoDeep = [[1, [2, 3]], [4, 5, 6], 7, 8];
+console.log(bhoDeep.flat(2));
+
+movements.sort((a, b) => a - b);
+console.log(movements);
