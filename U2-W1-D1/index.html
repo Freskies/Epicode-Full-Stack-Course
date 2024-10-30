@@ -12,6 +12,9 @@
 		/>
 
 		<link rel="stylesheet" href="style.css" />
+
+		<script type="text/javascript" src="script.js" defer></script>
+		<script type="text/javascript" src="lectures.js" defer></script>
 		<title>Bankist</title>
 	</head>
 	<body>
@@ -82,7 +85,9 @@
 				<form class="form form--transfer">
 					<input type="text" class="form__input form__input--to" />
 					<input type="number" class="form__input form__input--amount" />
-					<button class="form__btn form__btn--transfer">&rarr;</button>
+					<button class="form__btn form__btn--transfer" type="submit">
+						&rarr;
+					</button>
 					<label class="form__label">Transfer to</label>
 					<label class="form__label">Amount</label>
 				</form>
@@ -93,7 +98,9 @@
 				<h2>Request loan</h2>
 				<form class="form form--loan">
 					<input type="number" class="form__input form__input--loan-amount" />
-					<button class="form__btn form__btn--loan">&rarr;</button>
+					<button class="form__btn form__btn--loan" type="submit">
+						&rarr;
+					</button>
 					<label class="form__label form__label--loan">Amount</label>
 				</form>
 			</div>
@@ -108,7 +115,9 @@
 						maxlength="6"
 						class="form__input form__input--pin"
 					/>
-					<button class="form__btn form__btn--close">&rarr;</button>
+					<button class="form__btn form__btn--close" type="submit">
+						&rarr;
+					</button>
 					<label class="form__label">Confirm user</label>
 					<label class="form__label">Confirm PIN</label>
 				</form>
@@ -121,10 +130,6 @@
 			</p>
 		</main>
 
-		<!-- <footer>
-      &copy; by Jonas Schmedtmann. Don't claim as your own :)
-    </footer> -->
-
-		<script src="script.js"></script>
+		<footer>&copy; by Jonas Schmedtmann. Don't claim as your own :)</footer>
 	</body>
 </html>

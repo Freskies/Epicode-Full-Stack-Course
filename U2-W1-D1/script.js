@@ -49,9 +49,12 @@ const containerMovements = document.querySelector(".movements");
 
 const loginForm = document.querySelector(".login");
 const btnLogin = document.querySelector(".login__btn");
+const transferForm = document.querySelector(".form--transfer");
 const btnTransfer = document.querySelector(".form__btn--transfer");
 const btnLoan = document.querySelector(".form__btn--loan");
+const loanForm = document.querySelector(".form--loan");
 const btnClose = document.querySelector(".form__btn--close");
+const closeForm = document.querySelector(".form--close");
 const btnSort = document.querySelector(".btn--sort");
 
 const inputLoginUsername = document.querySelector(".login__input--user");
@@ -98,13 +101,15 @@ const displayMovements = movements => {
 };
 
 // BALANCE
+
 const calcBalance = movements =>
 	movements.reduce((acc, movement) => (acc += movement), 0);
 
 const displayBalance = balance => (labelBalance.textContent = `${balance} EUR`);
 
 const updateBalance = user => {
-	displayBalance(calcBalance(user.movements));
+	user.balance = calcBalance(user.movements);
+	displayBalance(user.balance);
 };
 
 const calcIncomingSummary = movements =>
@@ -138,7 +143,18 @@ const updateSummary = ({ movements, interestRate }) => {
 	);
 };
 
+const updateUI = account => {
+	displayMovements(account.movements);
+	updateBalance(account);
+	updateSummary(account);
+};
+
 // LOGIN
+
+const searchAccount = (username, pin) => {
+	const account = accounts.find(({ username: uName }) => uName === username);
+	return account?.pin === Number(pin) ? account : undefined;
+};
 
 const login = account => {
 	// display UI
@@ -148,9 +164,7 @@ const login = account => {
 	labelWelcome.textContent = `Welcome back, ${account.owner.split(" ")[0]}`;
 
 	// display data from account
-	displayMovements(account.movements);
-	updateBalance(account);
-	updateSummary(account);
+	updateUI(account);
 };
 
 loginForm.addEventListener("submit", e => {
@@ -158,11 +172,76 @@ loginForm.addEventListener("submit", e => {
 	const inputUsername = inputLoginUsername.value;
 	const inputPin = inputLoginPin.value;
 
-	currentAccount = accounts.find(({ username }) => username === inputUsername);
-	if (currentAccount?.pin === Number(inputPin)) login(currentAccount);
+	currentAccount = searchAccount(inputUsername, inputPin);
+	if (currentAccount) login(currentAccount);
 
 	// clear form
 	inputLoginUsername.value = "";
 	inputLoginPin.value = "";
 	inputLoginPin.blur();
+});
+
+transferForm.addEventListener("submit", e => {
+	e.preventDefault();
+
+	// get data from form
+	const amount = Number(inputTransferAmount.value);
+	const receiverAccount = accounts.find(
+		({ username }) => username === inputTransferTo.value,
+	);
+
+	// clear form
+	inputTransferAmount.value = "";
+	inputTransferTo.value = "";
+
+	// the account to transfer must exist
+	if (!receiverAccount) return;
+	// the account must be not myself
+	if (receiverAccount === currentAccount) return;
+	// amount must be > 0
+	if (amount <= 0) return;
+	// you must have enough money
+	if (currentAccount.balance < amount) return;
+
+	currentAccount.movements.push(-amount);
+	receiverAccount.movements.push(amount);
+
+	updateUI(currentAccount);
+});
+
+closeForm.addEventListener("submit", e => {
+	e.preventDefault();
+
+	const useranme = inputCloseUsername.value;
+	const pin = inputClosePin.value;
+
+	const account = searchAccount(useranme, pin);
+
+	if (account === currentAccount) {
+		// delete account
+		accounts.splice(
+			accounts.findIndex(({ username }) => username === account.username),
+			1,
+		);
+		// hide UI (log out)
+		containerApp.style.opacity = 0;
+	}
+});
+
+loanForm.addEventListener("submit", e => {
+	e.preventDefault();
+
+	const amount = Number(inputLoanAmount.value);
+
+	// clear form
+	inputLoanAmount.value = "";
+
+	// amount must be grather than 0
+	if (amount < 0) return;
+
+	// amount must me at maximum 10 times bigger than your bigger deposit
+	if (currentAccount.movements.some(movement => movement >= amount * 0.1)) {
+		currentAccount.movements.push(amount);
+		updateUI(currentAccount);
+	}
 });

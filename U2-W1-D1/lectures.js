@@ -64,3 +64,11 @@ const currenciesUnique = new Set(["USD", "GBP", "EUR"]);
 currenciesUnique.forEach((value, _, set) => {
 	console.log(`${value}: ${value}`);
 });
+
+console.log("--------------------------------------");
+
+// any deposit
+console.log(movements.some(movement => movement > 0));
+
+// any deposit above 5000
+console.log(movements.some(movement => movement > 5000));
