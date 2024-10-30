@@ -1,0 +1,217 @@
+:root {
+	/* COLORS */
+	--main-color: #ffdf7f;
+	--main-color--light: #fef7e2;
+	--accent-color: #732104;
+	--third-color: #fff;
+	/* NAVIGATION */
+	--nav-li-height: 4rem;
+	--nav-li-shop-height: calc(var(--nav-li-height) * 2);
+	--nav-gap: 2.4rem;
+	--nav-li-gap: 2.4rem;
+	--nav-li-font-size: 1.8rem;
+	--nav-li-shop-font-size: 3.2rem;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html {
+	font-size: 62.5%;
+}
+
+a:link,
+a:hover,
+a:active,
+a:visited {
+	text-decoration: none;
+	color: inherit;
+}
+
+button {
+	color: inherit;
+}
+
+/******************************/
+/* GENERAL */
+/******************************/
+
+body {
+	font-family: sans-serif;
+	color: var(--accent-color);
+	background-color: var(--third-color);
+	font-size: 1.6rem;
+	overflow-x: hidden;
+}
+
+/******************************/
+/* NAVIGATION */
+/******************************/
+
+.navigation {
+	background-color: var(--main-color--light);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 7.2rem;
+	margin: 1.8rem;
+}
+
+.navigation-links {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	padding: var(--nav-gap);
+	width: 100%;
+	gap: var(--nav-li-gap);
+}
+
+.navigation-links > li {
+	background-color: var(--main-color);
+	border-radius: 50px;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: var(--nav-li-height);
+	flex-basis: calc(50% - (var(--nav-li-gap) / 2));
+}
+
+.navigation-links > li > a {
+	height: 100%;
+	width: 100%;
+	text-align: center;
+	align-content: center;
+	font-weight: 600;
+}
+
+.navigation-links > .navigation-link--shop {
+	flex-basis: 100%;
+	height: var(--nav-li-shop-height);
+	font-size: 3.2rem;
+}
+
+.navigation-link--shop > a {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 1rem;
+}
+
+.navigation-link--shop img {
+	height: var(--nav-li-shop-font-size);
+	aspect-ratio: 1;
+}
+
+/******************************/
+/* SECTION PRODUCTS */
+/******************************/
+
+.section-products {
+	margin-top: 2.4rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.prducts-title {
+	text-align: center;
+	font-size: 3.2rem;
+	padding: 0 10%;
+}
+
+/* PRODUCTS */
+
+.product {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 90vw;
+	gap: 2.4rem;
+	border-radius: 7.2rem;
+	overflow: hidden;
+	background-color: var(--main-color--light);
+	margin: 2.4rem;
+}
+
+.product-image {
+	width: 100%;
+}
+
+.product-description {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+}
+
+.product-description-wrapper {
+	display: inline-flex;
+	flex-direction: column;
+}
+
+.product-description-header {
+	font-weight: 600;
+}
+
+/* .product-description-italian {} */
+
+.product-description-price {
+	font-weight: 500;
+}
+
+.add-to-cart {
+	background-color: var(--main-color);
+	border: none;
+	border-radius: 4.8rem;
+	padding: 1.2rem;
+	margin-bottom: 1.6rem;
+	width: 45vw;
+	font-weight: 700;
+}
+
+/******************************/
+/* SECTION NEWS */
+/******************************/
+
+.section-news {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1.2rem;
+}
+
+.news-title {
+	font-size: 3.2rem;
+}
+
+.our-honey {
+	background-color: var(--main-color--light);
+	border-radius: 2.4rem;
+	overflow: hidden;
+	width: 90vw;
+	padding: 2.4rem;
+	display: flex;
+	flex-direction: column;
+	gap: 1.6rem;
+}
+
+.our-honey-text-wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 1.2rem;
+}
+
+.our-honey-title {
+}
+
+.our-honey-text {
+}
+
+.our-honey-image {
+	width: 100%;
+}

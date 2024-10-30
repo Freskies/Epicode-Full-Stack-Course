@@ -1,0 +1,41 @@
+/*******************************************/
+/* BELOW 336px (Smaller Phones) */
+/*******************************************/
+
+@media screen and (max-width: 21em) {
+	:root {
+		--nav-li-gap: 1.6rem;
+	}
+}
+
+/*******************************************/
+/* ABOVE 576px (Smaller Tablets) */
+/*******************************************/
+
+@media screen and (min-width: 36em) {
+	.navigation {
+		border-radius: 0;
+		margin: 0;
+	}
+
+	.navigation-links {
+		flex-wrap: nowrap;
+	}
+
+	.navigation-links > li {
+		order: 2;
+	}
+
+	.navigation-links > li:nth-child(2),
+	.navigation-links > li:nth-child(3) {
+		order: 0;
+	}
+
+	.navigation-links > .navigation-link--shop {
+		order: 1;
+	}
+
+	.prducts-title {
+		align-self: flex-start;
+	}
+}
