@@ -11,6 +11,8 @@
 	--nav-li-gap: 2.4rem;
 	--nav-li-font-size: 1.8rem;
 	--nav-li-shop-font-size: 3.2rem;
+	/* PRODUCTS */
+	--product-gap: 2.4rem;
 }
 
 * {
@@ -45,6 +47,8 @@ body {
 	background-color: var(--third-color);
 	font-size: 1.6rem;
 	overflow-x: hidden;
+	display: flex;
+	flex-direction: column;
 }
 
 /******************************/
@@ -93,6 +97,7 @@ body {
 	flex-basis: 100%;
 	height: var(--nav-li-shop-height);
 	font-size: 3.2rem;
+	order: -1;
 }
 
 .navigation-link--shop > a {
@@ -121,7 +126,16 @@ body {
 .prducts-title {
 	text-align: center;
 	font-size: 3.2rem;
-	padding: 0 10%;
+	margin: 0 var(--product-gap);
+}
+
+.products-wrapper {
+	margin: 2.4rem 0;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: var(--product-gap);
 }
 
 /* PRODUCTS */
@@ -130,12 +144,11 @@ body {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	width: 90vw;
-	gap: 2.4rem;
 	border-radius: 7.2rem;
 	overflow: hidden;
 	background-color: var(--main-color--light);
-	margin: 2.4rem;
+	flex-basis: 90%;
+	gap: var(--product-gap);
 }
 
 .product-image {
@@ -170,7 +183,7 @@ body {
 	border-radius: 4.8rem;
 	padding: 1.2rem;
 	margin-bottom: 1.6rem;
-	width: 45vw;
+	width: 45%;
 	font-weight: 700;
 }
 
@@ -187,6 +200,7 @@ body {
 
 .news-title {
 	font-size: 3.2rem;
+	margin: 0 5vw;
 }
 
 .our-honey {
