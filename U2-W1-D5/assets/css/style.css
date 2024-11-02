@@ -1,0 +1,18 @@
+:root {
+	/* COLOR */
+	--main-color: #ffc017;
+	--black-color: #191919;
+	--accent-color: #1a8917;
+}
+
+body {
+	color: var(--black-color);
+	font-size: 1.6rem;
+}
+
+.header {
+	background-color: var(--main-color);
+}
+
+.navbar {
+}
