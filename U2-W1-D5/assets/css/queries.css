@@ -1,0 +1,33 @@
+@media screen and (max-width: 66em) {
+	.m-layout {
+		left: calc(var(--general-padding-left-right) + var(--hero-wrapper-width));
+		right: initial;
+		right: auto;
+	}
+}
+
+@media screen and (max-width: 63em) {
+	.tredings-cards {
+		grid-template-columns: 1fr 1fr;
+	}
+}
+
+@media screen and (max-width: 61em) {
+	.section-discover {
+		grid-template-columns: 1fr;
+	}
+
+	.articles-wrapper {
+		grid-row: 2;
+	}
+}
+
+@media screen and (max-width: 37em) {
+	:root {
+		--general-padding-left-right: 4vw;
+	}
+
+	.m-layout {
+		display: none;
+	}
+}

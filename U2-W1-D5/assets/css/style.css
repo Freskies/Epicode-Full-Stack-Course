@@ -37,6 +37,7 @@
 	/* DISCOVER > ARTICLES */
 	--discover-article-row-gap: 3.2rem;
 	--discover-article-col-gap: 1.6rem;
+	--discover-article-meta-gap: var(--training-card-meta-gap);
 
 	/* DISCOVER > DISCOVER */
 }
@@ -76,6 +77,12 @@ body {
 .header {
 	background-color: var(--main-color);
 	border-bottom: 1px solid #191919;
+	transition: all 300ms linear;
+}
+
+.header.scrolled {
+	background-color: var(--white-color);
+	transition: all 300ms linear;
 }
 
 .navbar {
@@ -90,7 +97,15 @@ body {
 .btn--get-started:hover,
 .btn--get-started:active,
 .btn--get-started:visited {
+	transition: all 300ms linear;
 	padding: 1rem 2rem;
+}
+
+.header.scrolled .btn--get-started:link,
+.header.scrolled .btn--get-started:hover,
+.header.scrolled .btn--get-started:active,
+.header.scrolled .btn--get-started:visited {
+	background-color: var(--accent-color);
 }
 
 /******************************/
@@ -163,6 +178,10 @@ body {
 	font-weight: 600;
 }
 
+.trending-card-info {
+	gap: 0.8rem;
+}
+
 .trending-card-person {
 	gap: 1rem;
 }
@@ -225,50 +244,102 @@ body {
 }
 
 .article-info-wrapper {
+	gap: 1rem;
 }
 
 .article-info-person {
+	gap: 1rem;
 }
 
 .article-info-image {
+	border-radius: 50%;
+	width: 2rem;
 }
 
 .article-info-name {
+	font-size: 1.4rem;
+	font-weight: 500;
 }
 
 .article-info-description-wrapper {
+	gap: 0.4rem;
 }
 
 .article-info-title {
+	font-size: 2rem;
 }
 
 .article-info-description {
-	display: -webkit-box;
-	-webkit-line-clamp: 2;
-	line-clamp: 2;
-	-webkit-box-orient: vertical;
-	overflow: hidden;
-	text-overflow: ellipsis;
+	color: var(--grey-color);
 }
 
 .article-info-meta {
+	position: relative;
+	color: var(--grey-color);
+	font-size: 1.4rem;
+	gap: var(--discover-article-meta-gap);
+	align-items: center;
 }
 
-.article-info-date {
-}
-
-.article-info-read-time {
+.article-info-meta > *:not(:last-child)::after {
+	content: "·";
+	position: absolute;
+	transform: translateX(calc(var(--discover-article-meta-gap) / 2 - 50%));
 }
 
 .article-info-etiquette {
+	gap: 0.4rem;
 }
 
 .article-info-etiquette-text {
+	padding: 0.3rem 0.6rem;
+	border-radius: 1.2rem;
+	background-color: var(--number-color);
 }
 
 .article-info-bookmark {
+	position: absolute;
+	right: 0;
 }
 
 /******************************/
 /* DISCOVER > DISCOVER */
 /******************************/
+
+.discover {
+}
+
+.discover-title {
+	font-size: 1.4rem;
+	font-weight: 800;
+}
+
+.discover-labels {
+	gap: 0.8rem;
+	padding-top: 2.4rem;
+	padding-bottom: 3.2rem;
+	border-bottom: 1px solid var(--number-color);
+}
+
+.discover-label {
+	color: var(--grey-color);
+	background-color: var(--white-color);
+	border: 1px solid var(--number-color);
+	padding: 0.6rem 1.2rem;
+	border-radius: 0.3rem;
+	font-size: 1.4rem;
+	font-weight: 500;
+}
+
+.discover-footer {
+	padding-top: 2.4rem;
+	color: var(--grey-color);
+	gap: 1rem;
+}
+
+.discover-link:link,
+.discover-link:hover,
+.discover-link:active,
+.discover-link:visited {
+	padding: 0 0.5rem;
+}
