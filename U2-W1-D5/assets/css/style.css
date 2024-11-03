@@ -3,16 +3,272 @@
 	--main-color: #ffc017;
 	--black-color: #191919;
 	--accent-color: #1a8917;
+	--white-color: #fff;
+	--grey-color: #757575;
+	--number-color: #e6e7e7;
+
+	/* GENERAL */
+	--general-padding-left-right: 10vw;
+
+	/* HEADER/HERO BUTTON */
+	--header-hero-button-radius: 2rem;
+
+	/* HEADER NAVIGATION */
+	--header-navigation-height: 6.4rem;
+	--header-navigation-link-gap: 2.4rem;
+
+	/* HERO SECTION */
+	--hero-gap: 2.8rem;
+	--hero-description-width: 30rem;
+	--hero-pad-top: 3.6rem;
+	--hero-pad-bottom: 5.2rem;
+	--hero-marbo: 4.2rem;
+
+	/* TRANDING SECTION */
+	--trending-padbo: 4.2rem;
+	--trending-marbo: 4.2rem;
+
+	/* TRANDING CARDS */
+	--training-card-meta-gap: 1.4rem;
+
+	/* DISCOVER SECTION */
+	--discover-gap: 4.8rem;
+
+	/* DISCOVER > ARTICLES */
+	--discover-article-row-gap: 3.2rem;
+	--discover-article-col-gap: 1.6rem;
+
+	/* DISCOVER > DISCOVER */
 }
+
+/******************************/
+/* GENERAL */
+/******************************/
 
 body {
 	color: var(--black-color);
 	font-size: 1.6rem;
+	font-family: "Outfit", sans-serif;
 }
+
+.header,
+.main > * {
+	padding: 0 var(--general-padding-left-right);
+}
+
+/******************************/
+/* HEADER/HERO BUTTON STYLE */
+/******************************/
+
+.btn:link,
+.btn:hover,
+.btn:active,
+.btn:visited {
+	background-color: var(--black-color);
+	color: var(--white-color);
+	border-radius: var(--header-hero-button-radius);
+}
+
+/******************************/
+/* HEADER NAVIGATION */
+/******************************/
 
 .header {
 	background-color: var(--main-color);
+	border-bottom: 1px solid #191919;
 }
 
 .navbar {
+	height: var(--header-navigation-height);
 }
+
+.nav-links {
+	gap: var(--header-navigation-link-gap);
+}
+
+.btn--get-started:link,
+.btn--get-started:hover,
+.btn--get-started:active,
+.btn--get-started:visited {
+	padding: 1rem 2rem;
+}
+
+/******************************/
+/* SECTION HERO */
+/******************************/
+
+.section-hero {
+	background-color: var(--main-color);
+	padding-top: var(--hero-pad-top);
+	padding-bottom: var(--hero-pad-bottom);
+	border-bottom: 1px solid var(--black-color);
+	margin-bottom: var(--hero-marbo);
+}
+
+.hero-title {
+	font-family: "Spectral", serif;
+	font-size: 6.8rem;
+	font-weight: 400;
+	letter-spacing: -3px;
+}
+
+.hero-description {
+	width: var(--hero-description-width);
+	margin-bottom: var(--hero-gap);
+}
+
+.btn--start-reading:link,
+.btn--start-reading:hover,
+.btn--start-reading:active,
+.btn--start-reading:visited {
+	padding: 0.5rem 4rem;
+}
+
+/******************************/
+/* SECTION TRENDING */
+/******************************/
+
+.main .section-trending {
+	padding-bottom: var(--trending-padbo);
+	border-bottom: 1px solid var(--number-color);
+	margin-bottom: var(--trending-marbo);
+}
+
+.trending-title-wrapper {
+	gap: 1.2rem;
+	margin-bottom: 1.6rem;
+}
+
+.tanding-title {
+	font-size: 1.4rem;
+	font-weight: 800;
+	letter-spacing: 1px;
+}
+
+.tredings-cards {
+	gap: 2.4rem;
+}
+
+/******************************/
+/* TRENDING CARD */
+/******************************/
+
+.trending-card {
+	gap: 1.6rem;
+}
+
+.trending-counter {
+	color: var(--number-color);
+	font-size: 2.8rem;
+	font-weight: 600;
+}
+
+.trending-card-person {
+	gap: 1rem;
+}
+
+.trending-card-img {
+	border-radius: 50%;
+	width: 2rem;
+	aspect-ratio: 1;
+}
+
+.trending-card-name {
+	font-size: 1.4rem;
+	font-weight: 500;
+}
+
+.trending-card-name .grey-in {
+	color: var(--grey-color);
+}
+
+.trending-card-description {
+	font-weight: 700;
+}
+
+.trending-card-meta {
+	color: var(--grey-color);
+	font-size: 1.4rem;
+	gap: var(--training-card-meta-gap);
+}
+
+.trending-card-meta > *:not(:last-child)::after {
+	content: "·";
+	position: absolute;
+	transform: translateX(calc(var(--training-card-meta-gap) / 2 - 50%));
+}
+
+/******************************/
+/* SECTION DISCOVER */
+/******************************/
+
+.section-discover {
+	gap: var(--discover-gap);
+}
+
+.articles-wrapper {
+	row-gap: var(--discover-article-row-gap);
+}
+
+/******************************/
+/* DISCOVER > ARTICLES */
+/******************************/
+
+.discover-article {
+	column-gap: var(--discover-article-col-gap);
+}
+
+.discover-article > img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.article-info-wrapper {
+}
+
+.article-info-person {
+}
+
+.article-info-image {
+}
+
+.article-info-name {
+}
+
+.article-info-description-wrapper {
+}
+
+.article-info-title {
+}
+
+.article-info-description {
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.article-info-meta {
+}
+
+.article-info-date {
+}
+
+.article-info-read-time {
+}
+
+.article-info-etiquette {
+}
+
+.article-info-etiquette-text {
+}
+
+.article-info-bookmark {
+}
+
+/******************************/
+/* DISCOVER > DISCOVER */
+/******************************/
