@@ -1,7 +1,6 @@
 @media screen and (max-width: 66em) {
 	.m-layout {
 		left: calc(var(--general-padding-left-right) + var(--hero-wrapper-width));
-		right: initial;
 		right: auto;
 	}
 }
@@ -10,9 +9,7 @@
 	.tredings-cards {
 		grid-template-columns: 1fr 1fr;
 	}
-}
 
-@media screen and (max-width: 61em) {
 	.section-discover {
 		grid-template-columns: 1fr;
 	}
@@ -22,12 +19,45 @@
 	}
 }
 
-@media screen and (max-width: 37em) {
+@media screen and (max-width: 63em) {
+	.header {
+		padding: 0 1rem;
+	}
+}
+
+@media screen and (max-width: 43em) {
+	html {
+		font-size: 50%;
+	}
+}
+
+@media screen and (max-width: 36em) {
 	:root {
-		--general-padding-left-right: 4vw;
+		--general-padding-left-right: 5vw;
 	}
 
 	.m-layout {
 		display: none;
+	}
+
+	.nav-links > li:nth-child(1),
+	.nav-links > li:nth-child(2),
+	.nav-links > li:nth-child(3) {
+		display: none;
+	}
+
+	.tredings-cards {
+		grid-template-columns: 1fr;
+	}
+
+	.article-info-meta {
+		flex-wrap: wrap;
+		padding-right: 2.4rem;
+	}
+}
+
+@media screen and (max-width: 24em) {
+	html {
+		font-size: 42%;
 	}
 }
