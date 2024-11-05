@@ -43,7 +43,22 @@ const randomInt = (min, max) =>
 // console.log([...poss].sort((a, b) => a - b));
 
 console.log(+(2.7).toFixed(3));
-*/
 
 const diameter = 287_460_000_000;
 console.log(diameter);
+*/
+
+/*
+// BIG INT
+console.log(Number.MAX_SAFE_INTEGER);
+console.log(Number.MAX_SAFE_INTEGER + 2);
+console.log(131654651516543521561215n);
+
+// operation
+console.log(10_000n + 20_000n);
+
+const huge = 516165165156121681516813n;
+const num = 23;
+
+console.log(huge * BigInt(num));
+*/
