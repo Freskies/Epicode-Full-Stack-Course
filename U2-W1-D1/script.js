@@ -1,5 +1,19 @@
 "use strict";
 
+const FAKE_LOGIN = true;
+
+// USEFUL FUNCTIONS
+
+const getDateInfo = date => {
+	return {
+		day: `${date.getDate()}`.padStart(2, 0),
+		month: `${date.getMonth() + 1}`.padStart(2, 0),
+		year: date.getFullYear(),
+		hour: `${date.getHours()}`.padStart(2, 0),
+		minute: `${date.getMinutes()}`.padStart(2, 0),
+	};
+};
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // BANKIST APP
@@ -95,19 +109,30 @@ const createUsernames = users => {
 createUsernames(accounts);
 
 // MOVEMENTS
-const displayMovements = (movements, sort = sortMovements) => {
+const displayMovements = (
+	{ movements, movementsDates },
+	sort = sortMovements,
+) => {
 	containerMovements.innerHTML = "";
 	const movementsToDisplay = sort
 		? movements.slice().sort((a, b) => a - b)
 		: movements;
 
 	movementsToDisplay.forEach((movement, i) => {
+		// deposit / withdrawal
 		const type = movement > 0 ? "deposit" : "withdrawal";
+
+		// date
+		const { year, month, day } = getDateInfo(new Date(movementsDates[i]));
+		const displayDate = `${day}/${month}/${year}`;
+
+		// html
 		const html = `
       <div class="movements__row">
         <div class="movements__type movements__type--${type}">${
 			i + 1
 		} ${type}</div>
+				<div class="movements_date">${displayDate}</div>
         <div class="movements__value">${movement.toFixed(2)}€</div>
       </div>
     `;
@@ -167,7 +192,7 @@ const updateSummary = ({ movements, interestRate }) => {
 };
 
 const updateUI = account => {
-	displayMovements(account.movements);
+	displayMovements(account);
 	updateBalance(account);
 	updateSummary(account);
 };
@@ -186,9 +211,15 @@ const login = account => {
 	// display welcome message
 	labelWelcome.textContent = `Welcome back, ${account.owner.split(" ")[0]}`;
 
+	// display date
+	const { day, month, year, hour, minute } = getDateInfo(new Date());
+	labelDate.textContent = `${day}/${month}/${year}, ${hour}:${minute}`;
+
 	// display data from account
 	updateUI(account);
 };
+
+// EVENT HANDLERS
 
 loginForm.addEventListener("submit", e => {
 	e.preventDefault();
@@ -226,8 +257,13 @@ transferForm.addEventListener("submit", e => {
 	// you must have enough money
 	if (currentAccount.balance < amount) return;
 
+	// movement
 	currentAccount.movements.push(-amount);
 	receiverAccount.movements.push(amount);
+
+	// movement date
+	currentAccount.movementsDates.push(new Date().toISOString());
+	receiverAccount.movementsDates.push(new Date().toISOString());
 
 	updateUI(currentAccount);
 });
@@ -265,6 +301,7 @@ loanForm.addEventListener("submit", e => {
 	// amount must me at maximum 10 times bigger than your bigger deposit
 	if (currentAccount.movements.some(movement => movement >= amount * 0.1)) {
 		currentAccount.movements.push(amount);
+		currentAccount.movementsDates.push(new Date().toISOString());
 		updateUI(currentAccount);
 	}
 });
@@ -272,7 +309,7 @@ loanForm.addEventListener("submit", e => {
 btnSort.addEventListener("click", e => {
 	e.preventDefault();
 	sortMovements = !sortMovements;
-	displayMovements(currentAccount.movements);
+	displayMovements(currentAccount);
 });
 
 // OVERAL BALANCE
@@ -293,3 +330,8 @@ const overalDeposit = accounts =>
 	accounts
 		.flatMap(({ movements }) => movements)
 		.reduce((acc, movement) => (movement > 0 ? acc + movement : acc), 0);
+
+if (FAKE_LOGIN) {
+	currentAccount = account1;
+	login(currentAccount);
+}

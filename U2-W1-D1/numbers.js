@@ -62,3 +62,23 @@ const num = 23;
 
 console.log(huge * BigInt(num));
 */
+
+/*
+// const now = new Date();
+// console.log(now);
+
+// console.log(new Date("December 24, 2015"));
+// console.log(new Date(2037, 10, 19, 15, 23, 5));
+// console.log(new Date(2037, 10, 31));
+
+// console.log(new Date(3 * 24 * 60 * 60 * 1000));
+
+const future = new Date(2037, 10, 19, 15, 23);
+console.log(future);
+console.log(future.getFullYear());
+console.log(future.getDate());
+console.log(future.getDay());
+console.log(future.toISOString());
+
+console.log(Date.now());
+*/
