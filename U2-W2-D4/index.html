@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="description" content="" />
+		<title>Web Student &mdash; Giacchini Valerio</title>
+		<!-- CSS (BOOTSTRAP + SASS) -->
+		<link rel="stylesheet" href="style.css" />
+
+		<script type="text/javascript" src="./script.js" defer></script>
+	</head>
+	<body>
+		<header>
+			<nav
+				id="main-navigation"
+				class="navbar navbar-expand-lg navbar-light bg-light p-3 justify-content-between"
+			>
+				<!-- LOGO -->
+				<img src="./assets/logo.svg" alt="WS-Logo" class="navbar-brand" />
+
+				<!-- HAMBURGER BUTTON -->
+				<button
+					class="navbar-toggler d-lg-none order-3 ml-auto"
+					type="button"
+					data-toggle="collapse"
+					data-target="#navbarNavDropdown"
+					aria-controls="navbarNavDropdown"
+					aria-expanded="false"
+					aria-label="Toggle navigation"
+				>
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+				<!-- PROFILE -->
+				<div
+					class="profile-wrapper d-flex gap-3 align-content-center order-2 order-lg-3 ml-auto"
+				>
+					<!-- NOTIFY BELL -->
+					<div class="notify-bell">
+						<img src="./assets/bell.svg" alt="bell" />
+					</div>
+					<!-- PROFILE IMAGE -->
+				</div>
+
+				<!-- EXPANDED NAVBAR (LG)  -->
+				<div
+					class="collapse navbar-collapse order-1 order-lg-2"
+					id="navbarNavDropdown"
+				>
+					<!-- LINKS -->
+					<ul class="navbar-nav mr-auto d-flex gap-3">
+						<li class="nav-item ml-1 ml-lg-0 align-content-center">
+							<p
+								class="fake-dropdown d-flex gap-2 py-0 mb-0 fw-semibold"
+								data-dropdown="false"
+							>
+								Browse
+							</p>
+						</li>
+						<li class="nav-item ml-1 ml-lg-0 align-content-center">
+							<p
+								class="fake-dropdown d-flex gap-2 py-0 mb-0 fw-semibold"
+								data-dropdown="false"
+							>
+								Landings
+							</p>
+						</li>
+						<li class="nav-item ml-1 ml-lg-0 align-content-center">
+							<p
+								class="fake-dropdown d-flex gap-2 py-0 mb-0 fw-semibold"
+								data-dropdown="false"
+							>
+								Pages
+							</p>
+						</li>
+						<li class="nav-item ml-1 ml-lg-0 align-content-center">
+							<p
+								class="fake-dropdown d-flex gap-2 py-0 mb-0 fw-semibold"
+								data-dropdown="false"
+							>
+								Accounts
+							</p>
+						</li>
+					</ul>
+				</div>
+			</nav>
+		</header>
+		<main>
+			<section aria-labelledby="section-hero"></section>
+			<section aria-labelledby="section-pros"></section>
+			<section aria-labelledby="section-courses">
+				<article aria-labelledby="article-reccomended-to-you"></article>
+				<article aria-labelledby="article-popular"></article>
+				<article aria-labelledby="article-trending"></article>
+			</section>
+		</main>
+		<footer>
+			<p aria-labelledby="copyright"></p>
+			<nav aria-labelledby="footer-navigation"></nav>
+		</footer>
+
+		<!-- JS (BOOTSTRAP + JQUERY) -->
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	</body>
+</html>

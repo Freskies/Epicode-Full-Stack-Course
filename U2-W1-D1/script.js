@@ -1,6 +1,8 @@
 "use strict";
 
-const FAKE_LOGIN = true;
+const FAKE_LOGIN = false;
+const LOG_OUT_TIMER_SECONDS = 10 * 60;
+// const LOG_OUT_TIMER_SECONDS = 10;
 
 // USEFUL FUNCTIONS
 
@@ -36,6 +38,18 @@ const formatDate = (date, locale) => {
 		default:
 			return `${days} days ago`;
 	}
+};
+
+const formatCurrency = (value, locale, currency) =>
+	new Intl.NumberFormat(locale, {
+		style: "currency",
+		currency,
+	}).format(value);
+
+const formatTimer = seconds => {
+	const mm = String(Math.trunc(seconds / 60)).padStart(2, 0);
+	const ss = String(seconds % 60).padStart(2, 0);
+	return `${mm}:${ss}`;
 };
 
 /////////////////////////////////////////////////
@@ -114,6 +128,8 @@ const inputLoanAmount = document.querySelector(".form__input--loan-amount");
 const inputCloseUsername = document.querySelector(".form__input--user");
 const inputClosePin = document.querySelector(".form__input--pin");
 
+labelTimer.setAttribute("data-timer", formatTimer(LOG_OUT_TIMER_SECONDS));
+
 // global variables
 let currentAccount = undefined;
 let sortMovements = false;
@@ -134,7 +150,7 @@ createUsernames(accounts);
 
 // MOVEMENTS
 const displayMovements = (
-	{ movements, movementsDates, locale },
+	{ movements, movementsDates, locale, currency },
 	sort = sortMovements,
 ) => {
 	containerMovements.innerHTML = "";
@@ -145,6 +161,7 @@ const displayMovements = (
 	movementsToDisplay.forEach((movement, i) => {
 		const type = movement > 0 ? "deposit" : "withdrawal";
 		const displayDate = formatDate(new Date(movementsDates[i]), locale);
+		const formattedMovement = formatCurrency(movement, locale, currency);
 
 		const html = `
       <div class="movements__row">
@@ -152,7 +169,7 @@ const displayMovements = (
 			i + 1
 		} ${type}</div>
 				<div class="movements_date">${displayDate}</div>
-        <div class="movements__value">${movement.toFixed(2)}€</div>
+        <div class="movements__value">${formattedMovement}</div>
       </div>
     `;
 		containerMovements.insertAdjacentHTML("afterbegin", html);
@@ -171,12 +188,12 @@ const displayMovements = (
 const calcBalance = movements =>
 	movements.reduce((acc, movement) => (acc += movement), 0);
 
-const displayBalance = balance =>
-	(labelBalance.textContent = `${balance.toFixed(2)} EUR`);
+const displayBalance = (balance, locale, currency) =>
+	(labelBalance.textContent = formatCurrency(balance, locale, currency));
 
-const updateBalance = user => {
-	user.balance = calcBalance(user.movements);
-	displayBalance(user.balance);
+const updateBalance = ({ balance, movements, locale, currency }) => {
+	balance = calcBalance(movements);
+	displayBalance(balance, locale, currency);
 };
 
 const calcIncomingSummary = movements =>
@@ -196,17 +213,19 @@ const calcInterestSummary = (movements, intrestRate) =>
 		.filter(interest => interest >= 1)
 		.reduce((acc, interest) => acc + interest, 0);
 
-const displaySummary = (incoming, outcoming, interest) => {
-	labelSumIn.textContent = `${incoming.toFixed(2)} €`;
-	labelSumOut.textContent = `${outcoming.toFixed(2)} €`;
-	labelSumInterest.textContent = `${interest.toFixed(2)} €`;
+const displaySummary = (incoming, outcoming, interest, locale, currency) => {
+	labelSumIn.textContent = formatCurrency(incoming, locale, currency);
+	labelSumOut.textContent = formatCurrency(outcoming, locale, currency);
+	labelSumInterest.textContent = formatCurrency(interest, locale, currency);
 };
 
-const updateSummary = ({ movements, interestRate }) => {
+const updateSummary = ({ movements, interestRate, locale, currency }) => {
 	displaySummary(
 		calcIncomingSummary(movements),
 		calcOutcomingSummary(movements),
 		calcInterestSummary(movements, interestRate),
+		locale,
+		currency,
 	);
 };
 
@@ -218,12 +237,43 @@ const updateUI = account => {
 
 // LOGIN
 
+let currentTimer;
+
 const searchAccount = (username, pin) => {
 	const account = accounts.find(({ username: uName }) => uName === username);
 	return account?.pin === Number(pin) ? account : undefined;
 };
 
+const logout = () => {
+	containerApp.style.opacity = 0;
+};
+
+const startLogOutTimer = () => {
+	let seconds = LOG_OUT_TIMER_SECONDS;
+
+	const tick = () => {
+		labelTimer.setAttribute("data-timer", formatTimer(seconds));
+		if (seconds === 0) {
+			clearInterval(logoutTimer);
+			logout();
+		}
+		seconds--;
+	};
+
+	tick();
+	const logoutTimer = setInterval(tick, 1000);
+	return logoutTimer;
+};
+
+const resetLogOutTimer = () => {
+	clearInterval(currentTimer);
+	currentTimer = startLogOutTimer();
+};
+
 const login = account => {
+	// clear timer
+	if (currentTimer) clearInterval(currentTimer);
+
 	// display UI
 	containerApp.style.opacity = 100;
 
@@ -247,6 +297,8 @@ const login = account => {
 
 	// display data from account
 	updateUI(account);
+
+	currentTimer = startLogOutTimer();
 };
 
 // EVENT HANDLERS
@@ -266,6 +318,7 @@ loginForm.addEventListener("submit", e => {
 });
 
 transferForm.addEventListener("submit", e => {
+	resetLogOutTimer();
 	e.preventDefault();
 
 	// get data from form
@@ -299,6 +352,7 @@ transferForm.addEventListener("submit", e => {
 });
 
 closeForm.addEventListener("submit", e => {
+	resetLogOutTimer();
 	e.preventDefault();
 
 	const useranme = inputCloseUsername.value;
@@ -318,6 +372,7 @@ closeForm.addEventListener("submit", e => {
 });
 
 loanForm.addEventListener("submit", e => {
+	resetLogOutTimer();
 	e.preventDefault();
 
 	const amount = Math.floor(inputLoanAmount.value);
@@ -329,14 +384,16 @@ loanForm.addEventListener("submit", e => {
 	if (amount < 0) return;
 
 	// amount must me at maximum 10 times bigger than your bigger deposit
-	if (currentAccount.movements.some(movement => movement >= amount * 0.1)) {
-		currentAccount.movements.push(amount);
-		currentAccount.movementsDates.push(new Date().toISOString());
-		updateUI(currentAccount);
-	}
+	if (currentAccount.movements.some(movement => movement >= amount * 0.1))
+		setTimeout(() => {
+			currentAccount.movements.push(amount);
+			currentAccount.movementsDates.push(new Date().toISOString());
+			updateUI(currentAccount);
+		}, 2500);
 });
 
 btnSort.addEventListener("click", e => {
+	resetLogOutTimer();
 	e.preventDefault();
 	sortMovements = !sortMovements;
 	displayMovements(currentAccount);

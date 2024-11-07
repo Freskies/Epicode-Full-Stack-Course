@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Web Student &mdash; Giacchini Valerio</title>
+
+		<!-- INTER FONT -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap"
+			rel="stylesheet"
+		/>
+
+		<link rel="stylesheet" href="./public/output.css" />
+		<link
+			href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+			rel="stylesheet"
+		/>
+	</head>
+	<body class="font-inter">
+		<header>
+			<nav aria-labelledby="main-navigation" class="bg-white p-4">
+				<div class="container mx-auto flex justify-between items-center">
+					<!-- Logo and Links -->
+					<div class="flex items-center space-x-4">
+						<!-- Logo -->
+						<div class="text-lg font-bold">
+							<img src="./assets/logo.svg" alt="Purple Man" />
+						</div>
+						<!-- Links -->
+						<ul class="hidden md:flex space-x-4 text-gray-800">
+							<li><a href="#" class="hover:text-gray-600">Home</a></li>
+							<li><a href="#" class="hover:text-gray-600">About</a></li>
+							<li><a href="#" class="hover:text-gray-600">Services</a></li>
+							<li><a href="#" class="hover:text-gray-600">Contact</a></li>
+						</ul>
+					</div>
+					<!-- Icons -->
+					<div class="flex items-center space-x-4 text-gray-800">
+						<button class="focus:outline-none">
+							<svg
+								class="w-6 h-6"
+								fill="none"
+								stroke="currentColor"
+								viewBox="0 0 24 24"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									stroke-width="2"
+									d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V4a2 2 0 10-4 0v1.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
+								></path>
+							</svg>
+						</button>
+						<button class="focus:outline-none">
+							<img
+								class="h-8 rounded-full"
+								src="./assets/avatar-1.jpg"
+								alt="avatar-1"
+							/>
+						</button>
+						<!-- Hamburger Menu -->
+						<div class="md:hidden">
+							<button id="menu-btn" class="text-primary focus:outline-none">
+								<svg
+									class="w-6 h-6"
+									fill="none"
+									stroke="currentColor"
+									viewBox="0 0 24 24"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<path
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										stroke-width="2"
+										d="M4 6h16M4 12h16m-7 6h7"
+									></path>
+								</svg>
+							</button>
+						</div>
+					</div>
+				</div>
+				<!-- Dropdown Menu -->
+				<div id="menu" class="hidden md:hidden">
+					<ul class="bg-white text-gray-800 space-y-2 p-4">
+						<li><a href="#" class="block hover:text-gray-600">Home</a></li>
+						<li><a href="#" class="block hover:text-gray-600">About</a></li>
+						<li><a href="#" class="block hover:text-gray-600">Services</a></li>
+						<li><a href="#" class="block hover:text-gray-600">Contact</a></li>
+					</ul>
+				</div>
+			</nav>
+		</header>
+
+		<script>
+			const menuBtn = document.getElementById("menu-btn");
+			const menu = document.getElementById("menu");
+
+			menuBtn.addEventListener("click", () => {
+				menu.classList.toggle("hidden");
+			});
+		</script>
+		<main>
+			<section aria-labelledby="section-hero"></section>
+			<section aria-labelledby="section-pros"></section>
+			<section aria-labelledby="section-courses">
+				<article aria-labelledby="article-reccomended-to-you"></article>
+				<article aria-labelledby="article-popular"></article>
+				<article aria-labelledby="article-trending"></article>
+			</section>
+		</main>
+		<footer>
+			<p aria-labelledby="copyright"></p>
+			<nav aria-labelledby="footer-navigation"></nav>
+		</footer>
+		<script>
+			const menuBtn = document.getElementById("menu-btn");
+			const menu = document.getElementById("menu");
+
+			menuBtn.addEventListener("click", () => {
+				menu.classList.toggle("hidden");
+			});
+		</script>
+	</body>
+</html>

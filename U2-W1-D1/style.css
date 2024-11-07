@@ -289,3 +289,7 @@ h2 {
 .timer {
 	font-weight: 600;
 }
+
+span.timer::after {
+	content: attr(data-timer);
+}
