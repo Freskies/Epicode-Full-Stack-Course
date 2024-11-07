@@ -82,3 +82,13 @@ console.log(future.toISOString());
 
 console.log(Date.now());
 */
+
+const future = new Date(2037, 10, 19, 15, 23);
+console.log(Number(future));
+
+const calcdaysPassed = (date1, date2) =>
+	Math.round(Math.abs(date2 - date1) / (1000 * 60 * 60 * 24));
+
+console.log(
+	calcdaysPassed(new Date(2037, 10, 19), new Date(2037, 9, 29, 10, 10)),
+);

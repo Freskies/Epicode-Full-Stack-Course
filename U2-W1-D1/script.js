@@ -14,6 +14,30 @@ const getDateInfo = date => {
 	};
 };
 
+const daysPassed = (date1, date2) =>
+	Math.round(Math.abs(date2 - date1) / (1000 * 60 * 60 * 24));
+
+const formatDate = (date, locale) => {
+	const days = daysPassed(date, new Date());
+	switch (true) {
+		case days === 0:
+			return "Today";
+		case days === 1:
+			return "Yesterday";
+		case days > 7:
+			// const { year, month, day } = getDateInfo(date);
+			// return `${day}/${month}/${year}`;
+			const options = {
+				day: "numeric",
+				month: "numeric",
+				year: "numeric",
+			};
+			return new Intl.DateTimeFormat(locale, options).format(date);
+		default:
+			return `${days} days ago`;
+	}
+};
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // BANKIST APP
@@ -110,7 +134,7 @@ createUsernames(accounts);
 
 // MOVEMENTS
 const displayMovements = (
-	{ movements, movementsDates },
+	{ movements, movementsDates, locale },
 	sort = sortMovements,
 ) => {
 	containerMovements.innerHTML = "";
@@ -119,14 +143,9 @@ const displayMovements = (
 		: movements;
 
 	movementsToDisplay.forEach((movement, i) => {
-		// deposit / withdrawal
 		const type = movement > 0 ? "deposit" : "withdrawal";
+		const displayDate = formatDate(new Date(movementsDates[i]), locale);
 
-		// date
-		const { year, month, day } = getDateInfo(new Date(movementsDates[i]));
-		const displayDate = `${day}/${month}/${year}`;
-
-		// html
 		const html = `
       <div class="movements__row">
         <div class="movements__type movements__type--${type}">${
@@ -212,8 +231,19 @@ const login = account => {
 	labelWelcome.textContent = `Welcome back, ${account.owner.split(" ")[0]}`;
 
 	// display date
-	const { day, month, year, hour, minute } = getDateInfo(new Date());
-	labelDate.textContent = `${day}/${month}/${year}, ${hour}:${minute}`;
+	const options = {
+		hour: "numeric",
+		minute: "numeric",
+		day: "numeric",
+		month: "numeric",
+		year: "numeric",
+		// weekday: "long", // short / narrow
+	};
+	// const locale = navigator.language;
+	labelDate.textContent = new Intl.DateTimeFormat(
+		account.locale,
+		options,
+	).format(new Date());
 
 	// display data from account
 	updateUI(account);
