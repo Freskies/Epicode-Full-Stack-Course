@@ -21,8 +21,35 @@ html {
 	font-size: 62.5%;
 }
 
+body {
+	font-family: "Roboto", sans-serif;
+}
+
 .netflix-logo {
 	width: 15rem;
+}
+
+a:link,
+a:hover,
+a:active,
+a:visited {
+	color: inherit;
+}
+
+/****************************/
+/* HOME PAGE */
+/****************************/
+
+.carousel-item img {
+	padding: 0.2rem;
+}
+
+.carousel-item img:hover {
+	padding: 0;
+}
+
+i {
+	color: #808080;
 }
 
 /****************************/
