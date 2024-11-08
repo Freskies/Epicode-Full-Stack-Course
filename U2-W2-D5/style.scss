@@ -1,4 +1,15 @@
 @import "./scss/functions";
 @import "./scss/variables";
 
+// non mi ricordo la sintassi
+$new-danger: #7550fe;
+$new-success: #1acb98;
+
+$new-colors: (
+	"danger": $new-danger,
+	"success": $new-success,
+);
+
+$theme-colors: map-merge($theme-colors, $new-colors);
+
 @import "./scss/bootstrap.scss";
