@@ -3,15 +3,206 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<title>Netflex &mdash; Giacchini Valerio</title>
+		<title>Netflix &mdash; Profile</title>
 
 		<!-- BOOTSTRAP CSS -->
 		<link rel="stylesheet" href="./style.css" />
+
+		<style>
+			@media screen and (max-width: 576px) {
+				html {
+					font-size: 50%;
+				}
+			}
+		</style>
 	</head>
-	<body>
-		<header></header>
-		<main></main>
-		<footer></footer>
+	<body class="bg-background text-text">
+		<header class="text-background">
+			<nav style="background: linear-gradient(to bottom, black, currentColor)">
+				<!-- navigation brand -->
+				<a href="./index.html" class="navbar-brand d-block px-4 py-2">
+					<img
+						class="netflix-logo"
+						src="./assets/netflix_logo.png"
+						alt="Netflix"
+					/>
+				</a>
+			</nav>
+		</header>
+		<main class="d-flex justify-content-center align-items-center mt-5 pb-5">
+			<div class="container">
+				<div class="row d-flex justify-content-center">
+					<div class="col col-sm-11 col-md-9 col-lg-7 col-xl-6">
+						<!-- ROW 1 -->
+						<div class="row">
+							<div class="col">
+								<h2 class="profile-title fw-normal" style="font-size: 6.2rem">
+									Edit Profile
+								</h2>
+							</div>
+						</div>
+						<hr />
+						<!-- ROW 2 -->
+						<div class="row text-white pt-3">
+							<div class="col col-3">
+								<div class="image-wrapper position-relative ps-2 ps-md-0 mb-4 mb-md-4">
+									<!-- overlay with the pencil icon (to change the profile photo) -->
+									<img
+										class="profile-avatar d-block w-100"
+										src="./assets/avatar.png"
+										alt="Avatar"
+									/>
+									<div
+										class="overlay position-absolute p-2 rounded-circle shadow-lg bg-background border border-1 border-text overflow-hidden"
+										style="bottom: 1rem; left: 1rem"
+									>
+										<img
+											class="d-block text-text"
+											src="./assets/pencil-fill.svg"
+											alt=""
+										/>
+									</div>
+								</div>
+							</div>
+							<div class="col col-11 col-md-8 ms-3">
+								<!-- Profile Main -->
+								<div class="row d-flex flex-column pb-3">
+									<h5
+										class="strive-student m-2 mb-3 p-2 ps-4 bg-secondary col col-10 fw-normal"
+										style="font-size: 1.8rem"
+									>
+										Strive Student
+									</h5>
+									<div class="language-wrapper">
+										<p
+											class="mb-0 pb-2 mt-2 fw-normal text-text"
+											style="letter-spacing: 0.1px; font-size: 1.8rem"
+										>
+											Language:
+										</p>
+										<select
+											class="form-select bg-black text-white rounded-0 d-inline-block fw-semibold ps-4"
+											style="
+												width: 12rem;
+												font-size: 1.4rem;
+												letter-spacing: 1px;
+											"
+											id="languageSelect"
+										>
+											<option selected>English</option>
+										</select>
+									</div>
+								</div>
+								<hr />
+
+								<!-- Maturity Settings -->
+								<div class="row d-flex flex-column">
+									<div class="form-section">
+										<p
+											class="mb-2 pb-2 mt-2 fw-normal text-text"
+											style="letter-spacing: 0.1px; font-size: 1.8rem"
+										>
+											Maturity Settings:
+										</p>
+										<p
+											class="d-inline-block px-3 py-2 fw-semibold mb-4"
+											style="
+												background-color: #333;
+												font-size: 1.4rem;
+												letter-spacing: 0.7px;
+											"
+										>
+											ALL MATURITY RATINGS
+										</p>
+										<p class="" style="font-size: 1.4rem">
+											Show titles of all maturity ratings for this profile.
+										</p>
+										<br />
+										<button
+											class="btn btn-profile py-2 border-secondary text-secondary text-uppercase rounded-0 fw-medium mb-4"
+											style="
+												font-size: 1.4rem;
+												letter-spacing: 2px;
+												padding: 2.4rem;
+											"
+										>
+											EDIT
+										</button>
+									</div>
+								</div>
+								<hr />
+
+								<!-- Autoplay Controls -->
+								<div class="row d-flex flex-column mb-4">
+									<p
+										class="mb-0 pb-2 mt-2 fw-normal text-text"
+										style="letter-spacing: 0.1px; font-size: 1.8rem"
+									>
+										Autoplay Controls
+									</p>
+									<!-- 2 checkboxes -->
+									<form
+										id="proceed-form"
+										class="proceed-form d-flex flex-column"
+									>
+										<div class="d-flex align-items-center mb-2">
+											<input
+												class="checkbox"
+												type="checkbox"
+												name=""
+												id="answer-myself"
+												checked
+												required
+											/>
+											<label class="d-block ps-4" style="font-size: 1.3rem;" for="answer-myself">
+												Autoplay next episode in a series on all devices.
+											</label>
+										</div>
+										<div class="d-flex align-items-center">
+											<input
+												class="checkbox"
+												type="checkbox"
+												name=""
+												id="answer-myself"
+												checked
+												required
+											/>
+											<label class="d-block ps-4"" style="font-size: 1.3rem;" for="answer-myself">
+												Autoplay next episode in a series on all devices.
+											</label>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+						<hr />
+						<!-- ROW 3 -->
+						<div class="row">
+							<div class="col d-flex flex-wrap gap-4 mt-4">
+								<button
+									class="btn btn-profile px-5 py-2 border-text bg-text text-background text-uppercase rounded-0 fw-semibold tracking-widest"
+									style="font-size: 1.6rem; letter-spacing: 2px"
+								>
+									Save
+								</button>
+								<button
+									class="btn btn-profile px-5 py-2 border-secondary text-secondary text-uppercase rounded-0 fw-semibold"
+									style="font-size: 1.6rem; letter-spacing: 2px"
+								>
+									Cancel
+								</button>
+								<button
+									class="btn btn-profile px-5 py-2 border-secondary text-secondary text-uppercase rounded-0 fw-semibold"
+									style="font-size: 1.6rem; letter-spacing: 2px"
+								>
+									delete profile
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
 
 		<!-- BOOTSTRAP JS -->
 		<script

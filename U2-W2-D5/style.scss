@@ -1,15 +1,58 @@
 @import "./scss/functions";
 @import "./scss/variables";
 
-// non mi ricordo la sintassi
-$new-danger: #7550fe;
-$new-success: #1acb98;
+$primary: #d2111a;
+$text: #e4e4e4;
+$secondary: #808080;
+$background: #141414;
 
 $new-colors: (
-	"danger": $new-danger,
-	"success": $new-success,
+	"primary": $primary,
+	"text": $text,
+	"secondary": $secondary,
+	"background": $background,
 );
 
 $theme-colors: map-merge($theme-colors, $new-colors);
 
 @import "./scss/bootstrap.scss";
+
+html {
+	font-size: 62.5%;
+}
+
+.netflix-logo {
+	width: 15rem;
+}
+
+/****************************/
+/* FORM PROFILE */
+/****************************/
+
+.checkbox {
+	-webkit-appearance: none;
+	appearance: none;
+	background-color: transparent;
+	color: $text;
+	width: 2.6rem;
+	height: 2.6rem;
+	border: 1px solid #333;
+	border-radius: 0.15em;
+	display: grid;
+	place-content: center;
+}
+
+.checkbox::before {
+	content: "";
+	width: 2.6rem * 0.6;
+	height: 2.6rem * 0.6;
+	transform: scale(0);
+	/* transition: 120ms transform ease-in-out; */
+	box-shadow: inset 2.6rem 2.6rem $text;
+}
+
+.checkbox:checked::before {
+	transform: scale(1);
+	transform-origin: bottom left;
+	clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
