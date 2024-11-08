@@ -49,7 +49,23 @@ a:visited {
 }
 
 i {
+	scale: 1.8;
+}
+
+header i {
+	color: $text;
+}
+
+main i {
 	color: #808080;
+}
+
+.nav-link:hover {
+	color: $primary;
+}
+
+.navbar-toggler {
+	border: none;
 }
 
 /****************************/

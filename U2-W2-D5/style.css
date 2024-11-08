@@ -10968,7 +10968,23 @@ a:visited {
 }
 
 i {
+  scale: 1.8;
+}
+
+header i {
+  color: #e4e4e4;
+}
+
+main i {
   color: #808080;
+}
+
+.nav-link:hover {
+  color: #d2111a;
+}
+
+.navbar-toggler {
+  border: none;
 }
 
 /****************************/
