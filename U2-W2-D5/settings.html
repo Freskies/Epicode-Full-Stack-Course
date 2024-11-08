@@ -3,16 +3,114 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<title>Netflex &mdash; Profile</title>
+		<title>Netflix &mdash; Profile</title>
 
 		<!-- BOOTSTRAP CSS -->
 		<link rel="stylesheet" href="./style.css" />
 	</head>
 	<body>
 		<header>
-			<nav>
-				<!-- navigation brand -->
-				<a href="./index.html" class="nav-brand">Netflex</a>
+			<nav class="navbar navbar-expand-lg bg-black text-white">
+				<div class="container-fluid px-5" style="font-size: 1.2rem">
+					<!-- navigation brand -->
+					<a href="./index.html" class="navbar-brand d-block py-2">
+						<img
+							class="netflix-logo"
+							src="./assets/netflix_logo.png"
+							alt="Netflix"
+							style="width: 10rem; scale: 1.2"
+						/>
+					</a>
+					<!-- navigation toggle button (hamburger button) -->
+					<button
+						class="navbar-toggler"
+						type="button"
+						data-bs-toggle="collapse"
+						data-bs-target="#navbarNav"
+						aria-controls="navbarNav"
+						aria-expanded="false"
+						aria-label="Toggle navigation"
+					>
+						<i class="fas fa-bars" style="color: #d2111a"></i>
+					</button>
+					<div class="collapse navbar-collapse" id="navbarNav">
+						<ul class="navbar-nav me-auto">
+							<li class="nav-item">
+								<a class="nav-link" aria-current="page" href="#">Home</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#tv-shows">TV Shows</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#trending">Movies</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#new-releases">Recently Added</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#watch-again">My List</a>
+							</li>
+						</ul>
+						<ul
+							class="navbar-nav ms-auto d-flex justify-content-start flex-row align-items-center gap-4"
+							style="transform: translateX(0.8rem)"
+						>
+							<li class="nav-item">
+								<a class="nav-link" href="#"><i class="fas fa-search"></i></a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">KIDS</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#"><i class="fas fa-bell"></i></a>
+							</li>
+							<li class="nav-item dropdown">
+								<a
+									class="nav-link dropdown-toggle"
+									href="#"
+									id="profileDropdown"
+									role="button"
+									data-bs-toggle="dropdown"
+									aria-expanded="false"
+								>
+									<img
+										src="./assets/avatar.png"
+										alt="Profile"
+										style="width: 30px; height: 30px"
+									/>
+								</a>
+								<ul
+									class="dropdown-menu dropdown-menu-end"
+									aria-labelledby="profileDropdown"
+								>
+									<li>
+										<a
+											class="dropdown-item"
+											href="profile.html"
+											style="font-size: 1.2rem"
+										>
+											Account
+										</a>
+									</li>
+									<li>
+										<a
+											class="dropdown-item"
+											href="settings.html"
+											style="font-size: 1.2rem"
+										>
+											Settings
+										</a>
+									</li>
+									<li>
+										<a class="dropdown-item" href="#" style="font-size: 1.2rem">
+											Logout
+										</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</div>
 			</nav>
 		</header>
 		<main></main>
