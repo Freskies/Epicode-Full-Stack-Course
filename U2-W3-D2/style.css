@@ -18,7 +18,9 @@ body {
 
 main {
 	display: flex;
-	gap: 2em;
+	flex-direction: column;
+	align-items: center;
+	gap: 4em;
 }
 
 /*******************************/
@@ -83,4 +85,21 @@ main {
 	font-size: 1.4rem;
 	font-weight: 700;
 	color: #777;
+}
+
+/*******************************/
+/* WAI */
+/*******************************/
+
+.wai {
+	display: inline-block;
+	padding: 1em;
+	background-color: orangered;
+	border-radius: 15px;
+	width: 12em;
+	color: #e4e4e4;
+	font-weight: 500;
+	font-size: 1.6rem;
+	border: none;
+	box-shadow: 0 5px 15px #777;
 }

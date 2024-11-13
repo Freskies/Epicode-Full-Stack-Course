@@ -1,6 +1,7 @@
 "use strict";
 
 const cardsContainer = document.querySelector(".cards-container");
+const wai = document.querySelector(".wai");
 
 const renderCountry = (data, className = "") => {
 	const card = `
@@ -51,4 +52,6 @@ const getCountryAndNeighbourData = country => {
 		.then(([data]) => renderCountry(data, "neighbour"));
 };
 
-getCountryAndNeighbourData("portugal");
+wai.addEventListener("click", () => {
+	getCountryAndNeighbourData("italy");
+});
