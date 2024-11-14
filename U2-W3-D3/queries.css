@@ -1,0 +1,13 @@
+@media screen and (max-width: 36em) {
+	.main {
+		.navigation {
+			grid-row: 1;
+			grid-column: 1 / -1;
+		}
+
+		.shopping-cart {
+			grid-column: 2;
+			grid-row: 2;
+		}
+	}
+}
