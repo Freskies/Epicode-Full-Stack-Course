@@ -20,7 +20,11 @@ function createProduct(product) {
 			"Content-Type": "application/json",
 		},
 		body: JSON.stringify(product),
-	}).then(response => console.log(response));
+	})
+		.then(response => console.log(response))
+		.catch(error => {
+			alert("Something went wrong in pushing a product! Error: " + error);
+		});
 }
 
 const nameInput = document.querySelector("#name");
@@ -113,6 +117,9 @@ if (id) {
 			brandInput.value = product.brand;
 			priceInput.value = product.price;
 			imageInput.value = product.imageUrl;
+		})
+		.catch(error => {
+			alert("Product not found! Error: " + error);
 		});
 }
 
@@ -151,9 +158,14 @@ form.addEventListener("submit", e => {
 						imageUrl: imageInput.value,
 					}),
 				),
-			}).then(_ => {
-				alert("Product modified!");
-			});
+			})
+				.then(_ => {
+					alert("Product modified!");
+				})
+				.catch(error => {
+					alert("Something went wrong! Error: " + error);
+					window.location.href = "back_office.html";
+				});
 		} else {
 			createProduct(
 				new Card({
