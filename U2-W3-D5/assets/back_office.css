@@ -9,36 +9,36 @@
 
 .main-form {
 	width: 90vw;
-	padding: 2.4em;
-	margin-top: 4.8em;
+	padding: var(--padding-small);
+	margin-top: var(--padding-large);
 	background-color: var(--secondary-color);
-	border-radius: 0.8em;
-	box-shadow: 0 0.4em 0.8em rgba(0, 0, 0, 0.1);
+	border-radius: var(--border-radius);
+	box-shadow: var(--box-shadow);
 	display: grid;
 	grid-template-columns: auto 1fr;
-	gap: 1.6em;
+	gap: var(--gap-medium);
 
 	label {
-		font-size: 1.6rem;
-		padding-top: 0.4em;
+		font-size: var(--font-size-label);
+		padding-top: var(--padding-xxsmall);
 	}
 
 	input {
 		width: 100%;
-		min-width: 30em;
-		padding: 0.4em 0.8em;
-		font-size: 1.6rem;
-		border: 1px solid rgba(0, 0, 0, 0.1);
-		border-radius: 0.4em;
+		padding: var(--padding-input);
+		font-size: var(--font-size-input);
+		border: var(--border-width) solid rgba(0, 0, 0, 0.1);
+		border-radius: var(--border-radius);
 	}
 
 	textarea {
 		width: 100%;
-		height: 10em;
-		padding: 0.8em;
-		font-size: 1.6rem;
-		border: 1px solid rgba(0, 0, 0, 0.1);
-		border-radius: 0.4em;
+		height: var(--height-textarea);
+		padding: var(--padding-textarea);
+		font-size: var(--font-size-input);
+		border: var(--border-width) solid rgba(0, 0, 0, 0.1);
+		border-radius: var(--border-radius);
+		font-family: inherit;
 	}
 
 	.action-wrapper {
@@ -46,32 +46,31 @@
 		width: 100%;
 		display: flex;
 		justify-content: flex-end;
-		gap: 1.6em;
+		gap: var(--gap-medium);
 
 		button {
-			padding: 0.8em 1.8em;
-			font-size: 1.6rem;
+			padding: var(--padding-button);
+			font-size: var(--font-size-input);
 			color: var(--main-color);
 			border: none;
-			border-radius: 0.4em;
+			border-radius: var(--border-radius);
 			cursor: pointer;
-			transition: background-color 0.2s ease-in-out;
-
-			font-weight: 600;
-			letter-spacing: 1px;
+			transition: background-color var(--transition-duration) ease-in-out;
+			font-weight: var(--font-weight-button);
+			letter-spacing: var(--letter-spacing-button);
 
 			&.sweep {
-				background-color: #e4e4e4;
+				background-color: var(--button-bg-color);
 
 				&:hover {
-					background-color: #c7c7c7;
+					background-color: var(--button-bg-hover-color);
 				}
 
 				svg {
 					fill: var(--accent-color);
-					height: 1.2em;
-					width: 1.2em;
-					scale: 1.2;
+					height: var(--svg-size);
+					width: var(--svg-size);
+					scale: var(--svg-scale);
 				}
 			}
 
@@ -84,12 +83,50 @@
 			}
 
 			&.delete {
-				background-color: #e4e4e4;
+				background-color: var(--button-bg-color);
 
 				&:hover {
-					background-color: #c7c7c7;
+					background-color: var(--button-bg-hover-color);
 				}
 			}
 		}
 	}
 }
+
+/* 576px */
+@media screen and (max-width: 36em) {
+	.main-form {
+		grid-template-columns: 1fr;
+
+		.action-wrapper {
+			grid-column: 1;
+		}
+	}
+}
+
+/* 432px */
+@media screen and (max-width: 27em) {
+	html {
+		font-size: 50%;
+	}
+}
+
+/* 320px */
+@media screen and (max-width: 20em) {
+	html {
+		font-size: 40%;
+	}
+
+	.main-form {
+		width: 100vw;
+	}
+}
+
+/* 272px */
+@media screen and (max-width: 17em) {
+	html {
+		font-size: 30%;
+	}
+}
+
+/* UNDER 200px THIS LAYOUT BREAKS */

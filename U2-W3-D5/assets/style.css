@@ -19,6 +19,8 @@
 	--accent-color-lighter: #f9c9a6;
 	--accent-color-dark: #e27d60;
 	--accent-color-darker: #934534;
+	--button-bg-color: #e4e4e4;
+	--button-bg-hover-color: #c7c7c7;
 
 	/* MEASUREMENTS */
 	--font-size-base: 62.5%;
@@ -47,6 +49,16 @@
 	--border-radius-circle: 999999px;
 	--translate-small: -0.4em;
 	--translate-xsmall: 1px;
+	--font-size-label: 1.6rem;
+	--font-size-input: 1.6rem;
+	--padding-input: 0.4em 0.8em;
+	--height-textarea: 10em;
+	--padding-textarea: 0.8em;
+	--padding-button: 0.8em 1.8em;
+	--font-weight-button: 600;
+	--letter-spacing-button: 1px;
+	--svg-size: 1.2em;
+	--svg-scale: 1.2;
 }
 
 /****************************/

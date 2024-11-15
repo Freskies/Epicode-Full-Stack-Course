@@ -43,7 +43,7 @@
 		position: absolute;
 		top: var(--padding-xsmall);
 		right: var(--padding-xsmall);
-		padding: var(--padding-xsmall) var(--padding-small);
+		padding: 0.8em 1em;
 
 		cursor: pointer;
 		border-radius: var(--border-radius-circle);
