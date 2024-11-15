@@ -32,10 +32,15 @@ const form = document.querySelector("form");
 const deleteButton = document.querySelector("#delete");
 const addModifyButton = document.querySelector("#add-modify");
 const confirmDialog = document.querySelector("#confirm-popup");
+const dialogInfoWrapper = document.querySelector(".confirm-wrapper");
 
 function closeDialog() {
 	confirmDialog.close();
 }
+
+confirmDialog.addEventListener("click", e => {
+	if (!dialogInfoWrapper.contains(e.target)) confirmDialog.close();
+});
 
 function showDialog(message, callback) {
 	const messageField = document.querySelector("#confirm-popup .message");
