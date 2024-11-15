@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Card Shop &mdash; Giacchini Valerio</title>
+
+		<!-- CSS -->
+		<link rel="stylesheet" href="./assets/style.css" />
+		<link rel="stylesheet" href="./assets/index.css" />
+
+		<!-- JS -->
+		<script type="text/javascript" src="./scripts/card.js" defer></script>
+		<script type="text/javascript" src="./scripts/index.js" defer></script>
+	</head>
+	<body>
+		<header>
+			<nav class="main-navigation">
+				<ul>
+					<li class="brand"><a href="#">CARD SHOP</a></li>
+					<li><a href="./back_office.html">Back-Office</a></li>
+					<li><a href="#">Info</a></li>
+				</ul>
+			</nav>
+		</header>
+		<main class="products-container">
+			<div id="loading-indicator" style="display: none">Loading...</div>
+		</main>
+		<footer></footer>
+		<dialog id="pop-up">
+			<!-- insite there is all the details of the product (js will fill the placeholders). the info are displayed in a card like structure. image on top and all details after -->
+			<div class="info-wrapper">
+				<div class="container">
+					<img class="product-image" src="" alt="" />
+					<div class="details">
+						<div class="top-wrapper">
+							<h2 class="name"></h2>
+							<p class="brand"></p>
+						</div>
+						<div class="middle-wrapper">
+							<p class="description"></p>
+						</div>
+						<div class="bottom-wrapper">
+							<p class="price"></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</dialog>
+	</body>
+</html>
