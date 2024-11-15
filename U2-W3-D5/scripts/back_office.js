@@ -130,7 +130,6 @@ form.addEventListener("submit", e => {
 		if (id)
 			showDialog("Are you sure you want to delete this product?", () => {
 				deleteProduct(id);
-				closeDialog();
 				alert("Product deleted!");
 				window.location.href = "back_office.html";
 			});
