@@ -37,6 +37,15 @@ class Playlist {
 	}
 
 	/**
+	 * Returns the current song from the playlist.
+	 *
+	 * @returns {Song} The current song object.
+	 */
+	current() {
+		return this.#songList[this.#currentSongIndex];
+	}
+
+	/**
 	 * Advances to the next song in the playlist.
 	 * If the current song is the last one in the list, it wraps around to the first song.
 	 * @returns {Song} The new song that is now playing.
@@ -57,5 +66,13 @@ class Playlist {
 		if (this.#currentSongIndex > 0) this.#currentSongIndex--;
 		else this.#currentSongIndex = this.#songList.length - 1;
 		return this.#songList[this.#currentSongIndex];
+	}
+
+	/**
+	 * Returns a new array iterator object that contains the values for each index in the playlist.
+	 * @returns {Iterator} An array iterator object.
+	 */
+	[Symbol.iterator]() {
+		return this.#songList.values();
 	}
 }

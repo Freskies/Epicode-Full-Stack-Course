@@ -54,7 +54,8 @@ body {
 	}
 }
 
-.progress-wrapper {
+.progress-wrapper,
+.volume-wrapper {
 	padding: 5px 0;
 	cursor: pointer;
 }
@@ -68,8 +69,62 @@ body {
 }
 
 .progress {
-	width: 23%;
+	width: 0;
 	background-color: #0f0;
+	position: relative;
+
+	&::after {
+		content: "";
+		width: 15px;
+		height: 15px;
+		background-color: #fff;
+		border-radius: 50%;
+		position: absolute;
+		right: 0;
+		transform: translate(50%, -32%);
+	}
+}
+
+.volume-wrapper {
+	position: relative;
+
+	&:hover .volume-bar::before {
+		content: attr(data-volume);
+		position: absolute;
+		top: -3em;
+		right: 0;
+		transform: translateX(50%);
+		background-color: #333;
+		color: #fff;
+		padding: 0.5em;
+		border-radius: 0.5em;
+	}
+}
+
+.volume-container,
+.volume-bar {
+	height: 4px;
+	width: 10em;
+	border-radius: 2.5px;
+	background-color: #c7c7c7;
+}
+
+.volume-bar {
+	width: 23%;
+	background-color: #fff;
+	position: relative;
+
+	&::after {
+		content: "";
+		width: 10px;
+		height: 10px;
+		background-color: #fff;
+		border-radius: 50%;
+		z-index: 50;
+		position: absolute;
+		right: 0;
+		transform: translate(50%, -32%);
+	}
 }
 
 /* SWITCH PLAY / PAUSE BUTTONS */

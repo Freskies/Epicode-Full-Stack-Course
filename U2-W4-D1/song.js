@@ -1,5 +1,6 @@
 class Song {
-	constructor(src) {
+	constructor(src, duration) {
 		this.src = src;
+		this.duration = duration;
 	}
 }
