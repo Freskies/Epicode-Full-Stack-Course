@@ -54,7 +54,7 @@ class Playlist {
 		if (this.#songList.length - 1 > this.#currentSongIndex)
 			this.#currentSongIndex++;
 		else this.#currentSongIndex = 0;
-		return this.#songList[this.#currentSongIndex];
+		return this.current();
 	}
 
 	/**
@@ -65,7 +65,7 @@ class Playlist {
 	previous() {
 		if (this.#currentSongIndex > 0) this.#currentSongIndex--;
 		else this.#currentSongIndex = this.#songList.length - 1;
-		return this.#songList[this.#currentSongIndex];
+		return this.current();
 	}
 
 	/**
