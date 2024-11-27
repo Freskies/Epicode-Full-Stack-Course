@@ -1,0 +1,31 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html {
+	font-size: 62.5%;
+}
+
+body {
+	font-size: 1.4rem;
+}
+
+ul,
+li {
+	list-style-type: none;
+}
+
+nav {
+	height: 7.2rem;
+	place-content: center;
+	font-size: 1.8rem;
+	padding-left: 1.6rem;
+	background-color: #c3c3c3;
+
+	ul {
+		display: flex;
+		gap: 1.2rem;
+	}
+}
