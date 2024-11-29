@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function Carousel({ episodes }) {
 	const [columns, setColumns] = useState(4);
@@ -17,6 +17,23 @@ function Carousel({ episodes }) {
 	const scrollLeft = () => {
 		setCurrent(current - columns < 0 ? 0 : current - columns);
 	};
+
+	useEffect(() => {
+		const getColumns = () => {
+			const width = window.innerWidth;
+			if (width < 672) return 1;
+			return Math.ceil((width - 672) / 304) + 1;
+		};
+
+		const updateColumns = () => setColumns(getColumns());
+
+		updateColumns();
+		window.addEventListener("resize", updateColumns);
+
+		return () => {
+			window.removeEventListener("resize", updateColumns);
+		};
+	}, []);
 
 	return (
 		<div className="carousel">

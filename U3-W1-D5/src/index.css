@@ -148,6 +148,11 @@ input[type="checkbox"] {
 	h2 {
 		font-size: 4.8rem;
 		margin-bottom: 2.4rem;
+		text-align: center;
+	}
+
+	h2.error {
+		color: var(--secondary-color-light);
 	}
 }
 
@@ -177,8 +182,8 @@ input[type="checkbox"] {
 	}
 
 	.carousel-content {
-		display: grid;
-		grid-template-columns: repeat(4, 1fr);
+		display: flex;
+		/* grid-template-columns: repeat(4, 1fr); */
 		gap: 1rem;
 
 		.episode {
@@ -359,7 +364,6 @@ footer {
 	margin-top: 7.2rem;
 	padding-top: 4.8rem;
 	padding-bottom: 3.2rem;
-	/* background-color: var(--secondary-color); */
 	border-top: 1px solid var(--secondary-color-light);
 	text-align: center;
 
@@ -388,6 +392,15 @@ footer {
 /***************************/
 /* QUERIES - HOME */
 /***************************/
+
+/* 496px */
+@media screen and (max-width: 31em) {
+	.home-series {
+		h2 {
+			font-size: 3.6rem;
+		}
+	}
+}
 
 /***************************/
 /* QUERIES - PROFILE */
