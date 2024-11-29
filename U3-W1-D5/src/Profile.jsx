@@ -1,4 +1,5 @@
 import BackToHomeArrow from "./components/BackToHomeArrow";
+import Footer from "./components/Footer";
 import ProfileInfo from "./components/ProfileInfo";
 
 function Profile({ displayHome, profile }) {
@@ -26,7 +27,7 @@ function Profile({ displayHome, profile }) {
 					</div>
 				</div>
 			</main>
-			<footer></footer>
+			<Footer />
 		</div>
 	);
 }

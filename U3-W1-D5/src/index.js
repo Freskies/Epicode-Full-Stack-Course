@@ -5,6 +5,14 @@ import Home from "./Home";
 import Profile from "./Profile";
 import Settings from "./Settings";
 import profile from "./assets/profile.json";
+import { IDBD_API_KEY } from "./imdbKey";
+
+function normalizeTitle(title) {
+	return Array.from(
+		title.toLowerCase().trim().replace(/\s+/g, " ").split(" "),
+		word => word[0].toUpperCase() + word.slice(1),
+	).join(" ");
+}
 
 function App() {
 	// PAGE FLOW
@@ -15,21 +23,21 @@ function App() {
 
 	// SERIES TO RENDER
 	const [series, setSeries] = useState([
-		"The Mentalist",
+		"Lord Of The Rings",
 		"Breaking Bad",
 		"Harry Potter",
 	]);
-
 	const changeSeries = (title, newTitle) =>
 		setSeries(
 			[...series].map(itemTitle =>
-				itemTitle === title ? newTitle : itemTitle,
+				itemTitle === title ? normalizeTitle(newTitle) : itemTitle,
 			),
 		);
 	const addSeries = title => setSeries([...series, title]);
 	const removeSeries = title =>
 		setSeries(series.filter(itemTitle => itemTitle !== title));
 
+	// RENDER PAGE
 	switch (displayPage) {
 		case "Home":
 			return (
@@ -37,6 +45,8 @@ function App() {
 					profile={profile}
 					displayProfile={displayProfile}
 					displaySettings={displaySettings}
+					series={series}
+					IDBD_API_KEY={IDBD_API_KEY}
 				/>
 			);
 		case "Profile":

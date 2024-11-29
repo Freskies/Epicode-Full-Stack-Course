@@ -1,6 +1,14 @@
+import Footer from "./components/Footer";
 import MainNavbar from "./components/MainNavbar";
+import Series from "./components/Series";
 
-function Home({ profile, displayProfile, displaySettings }) {
+function Home({
+	profile,
+	displayProfile,
+	displaySettings,
+	series,
+	IDBD_API_KEY,
+}) {
 	return (
 		<div className="home-page">
 			<header>
@@ -10,8 +18,15 @@ function Home({ profile, displayProfile, displaySettings }) {
 					displaySettings={displaySettings}
 				/>
 			</header>
-			<main></main>
-			<footer></footer>
+			<main>
+				{series.map(
+					title =>
+						title && (
+							<Series key={title} title={title} IDBD_API_KEY={IDBD_API_KEY} />
+						),
+				)}
+			</main>
+			<Footer />
 		</div>
 	);
 }

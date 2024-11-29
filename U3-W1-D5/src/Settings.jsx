@@ -1,4 +1,5 @@
 import BackToHomeArrow from "./components/BackToHomeArrow";
+import Footer from "./components/Footer";
 import SettingsTitle from "./components/SettingsTitle";
 
 const requests = [
@@ -52,7 +53,7 @@ function Settings({
 					</div>
 				</div>
 			</main>
-			<footer></footer>
+			<Footer />
 		</div>
 	);
 }

@@ -136,6 +136,64 @@ input[type="checkbox"] {
 }
 
 /***************************/
+/* HOME - MAIN APP */
+/***************************/
+
+.home-series {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 4.8rem;
+
+	h2 {
+		font-size: 4.8rem;
+		margin-bottom: 2.4rem;
+	}
+}
+
+/***************************/
+/* HOME - CAROUSEL */
+/***************************/
+
+.carousel {
+	display: flex;
+	align-items: center;
+
+	.scroll-left,
+	.scroll-right {
+		width: 4rem;
+		height: 10rem;
+		border: none;
+		background-color: transparent;
+		color: var(--white-color);
+		display: grid;
+		place-content: center;
+		cursor: pointer;
+
+		i {
+			font-size: 2.6rem;
+			height: 100%;
+		}
+	}
+
+	.carousel-content {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 1rem;
+
+		.episode {
+			width: 28rem;
+			height: 42rem;
+			object-fit: cover;
+
+			&:hover {
+				transform: scale(1.025);
+			}
+		}
+	}
+}
+
+/***************************/
 /* PROFILE */
 /***************************/
 
@@ -212,6 +270,7 @@ input[type="checkbox"] {
 
 	h3 {
 		margin-bottom: 1.2rem;
+		font-size: 2.4rem;
 	}
 
 	.search-wrapper {
@@ -228,6 +287,7 @@ input[type="checkbox"] {
 				border: none;
 				background-color: transparent;
 				color: var(--white-color);
+				font-size: 1.8rem;
 
 				&:focus,
 				&:hover {
@@ -288,5 +348,85 @@ input[type="checkbox"] {
 				}
 			}
 		}
+	}
+}
+
+/***************************/
+/* FOOTER */
+/***************************/
+
+footer {
+	margin-top: 7.2rem;
+	padding-top: 4.8rem;
+	padding-bottom: 3.2rem;
+	/* background-color: var(--secondary-color); */
+	border-top: 1px solid var(--secondary-color-light);
+	text-align: center;
+
+	p {
+		color: var(--secondary-color-light);
+	}
+}
+
+/***************************/
+/* QUERIES - GENERAL */
+/***************************/
+
+@media screen and (max-width: 31em) {
+	html {
+		font-size: 60%;
+	}
+}
+
+/* 384px */
+@media screen and (max-width: 24em) {
+	html {
+		font-size: 50%;
+	}
+}
+
+/***************************/
+/* QUERIES - HOME */
+/***************************/
+
+/***************************/
+/* QUERIES - PROFILE */
+/***************************/
+
+/* 768px */
+@media screen and (max-width: 48em) {
+	.profile-wrapper {
+		flex-direction: column;
+		align-items: center;
+		padding: 2.4rem;
+
+		.profile-image-wrapper {
+			padding-right: 0;
+			border-right: none;
+			padding-bottom: 2rem;
+		}
+
+		.profile-info {
+			padding-top: 2rem;
+			padding-left: 0;
+		}
+	}
+}
+
+/* 496px */
+@media screen and (max-width: 31em) {
+	.profile-wrapper {
+		padding: 1.2rem;
+	}
+}
+
+/***************************/
+/* QUERIES - SETTINGS */
+/***************************/
+
+/* 576px */
+@media screen and (max-width: 36em) {
+	.settings-wrapper {
+		padding: 2.4rem;
 	}
 }
