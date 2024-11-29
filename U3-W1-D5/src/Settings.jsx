@@ -8,7 +8,7 @@ const requests = [
 	"I want to recieve newsletters",
 	"I want to recieve offers",
 	"I want to recieve updates",
-	"I want to recieve Gigi Sabbani",
+	"I want to recieve Gigi Sabani",
 ];
 
 function Settings({
