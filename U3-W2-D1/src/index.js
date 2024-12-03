@@ -19,7 +19,6 @@ function App() {
 	const [selectedBook, setSelectedBook] = useState(null);
 
 	const filterdLibrary = filterLibrary(search);
-	console.log(selectedBook);
 
 	return (
 		<>

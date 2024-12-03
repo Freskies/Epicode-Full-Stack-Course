@@ -205,6 +205,50 @@ main {
 		margin-top: 0.8em;
 		width: 90%;
 	}
+
+	.submit-btn {
+		font-size: 1.6rem;
+		margin-top: 0.8em;
+		padding: 0.4em 0.8em;
+		border: none;
+		border-radius: 0.4em;
+		color: #333;
+		font-weight: 800;
+		cursor: pointer;
+		transition: all 300ms linear;
+
+		&:hover {
+			background-color: #f1c40f99;
+		}
+	}
+}
+
+/****************************/
+/* RATE STAR */
+/****************************/
+
+.rating {
+	display: flex;
+	align-items: center;
+	justify-content: end;
+	direction: rtl;
+
+	.rating__star {
+		font-size: 3.2rem;
+
+		&:hover,
+		&:hover ~ .rating__star {
+			color: #f1c40f;
+		}
+	}
+
+	.rating__star.rating__star--selected {
+		color: #f1c40f;
+
+		& ~ .rating__star {
+			color: #f1c40f;
+		}
+	}
 }
 
 /****************************/
