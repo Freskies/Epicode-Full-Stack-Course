@@ -21,9 +21,7 @@ function BookPage({ returnHome, selectedBook, setSelectedBook }) {
 				if (!res.ok) throw new Error("Bho");
 				return res.json();
 			})
-			.then(data => {
-				setComments(data);
-			})
+			.then(data => setComments(data))
 			.catch(_ => setDisplayError(true))
 			.finally(setLoading(false));
 	}, [selectedBook]);
