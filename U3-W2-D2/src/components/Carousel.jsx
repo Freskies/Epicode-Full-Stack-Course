@@ -23,7 +23,9 @@ function Carousel({ episodes }) {
 		const carousel = document.querySelector(".carousel");
 		const film = document.querySelector(".episode");
 		if (!carousel || !film) return;
-		setColumns(Math.floor(carousel.clientWidth / (16 + film.clientWidth)));
+		setColumns(
+			Math.floor((carousel.clientWidth + 16) / (16 + film.clientWidth)),
+		);
 	};
 
 	useEffect(() => {
@@ -44,7 +46,9 @@ function Carousel({ episodes }) {
 			<div className="carousel-content">
 				<div
 					className="content-wrapper"
-					style={{ transform: `translateX(-${current * 28}rem)` }}
+					style={{
+						transform: `translateX(-${current * 28 + (columns - 1)}rem)`,
+					}}
 				>
 					{episodes.map(episode => (
 						<Film key={episode.imdbID} episode={episode} />
