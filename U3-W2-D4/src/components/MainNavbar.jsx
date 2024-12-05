@@ -1,12 +1,12 @@
 import netflix_logo from "../assets/netflix_logo.png";
 
 function MainNavbar({
-	profile: { name: personName, profileImage },
+	profile: { name: profileImage },
 	displayProfile,
 	displaySettings,
 }) {
 	return (
-		<nav className="main-navbar">
+		<nav className="main-navbar" aria-label="navbar">
 			<ul className="main-navbar-items">
 				<li className="main-navbar-item">
 					<img className="netflix-logo" src={netflix_logo} alt="Netflix logo" />

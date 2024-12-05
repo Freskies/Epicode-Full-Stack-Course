@@ -15,7 +15,7 @@ function normalizeTitle(title) {
 	).join(" ");
 }
 
-function App() {
+export function App() {
 	// SERIES TO RENDER
 	const [series, setSeries] = useState([
 		"Lord Of The Rings",
