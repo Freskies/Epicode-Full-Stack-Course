@@ -1,13 +1,13 @@
 import { render, screen } from "@testing-library/react";
-import { App } from "./index";
+import App from "./App";
 
 test("renders custom navbar", () => {
 	render(<App />);
-	const navbar = screen.getByLabelText("navbar");
+	const navbar = screen.getByRole("navigation");
 	expect(navbar).toBeInTheDocument();
 });
 
-// Verifica che vengano effettivamente renderizzate tante bootstrap cards quanti sono i libri nel file json utilizzato.
+// Verifica che vengano effettivamente renderizzate tante bootstrap cards quanti sono i libri nel file json.
 
 // Verifica che il componente CommentArea venga renderizzato correttamente.
 
