@@ -10,12 +10,10 @@ function MapPage() {
 			scrollWheelZoom={false}
 			data-testid="map-page"
 		>
-			<TileLayer
-				url={`https://tile.openweathermap.org/map/temp_new/{z}/{x}/{y}.png?appid=${OPEN_WEATHER_KEY}`}
-			/>
+			<TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 			<TileLayer
 				opacity={0.5}
-				url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+				url={`https://tile.openweathermap.org/map/temp_new/{z}/{x}/{y}.png?appid=${OPEN_WEATHER_KEY}`}
 			/>
 			<LocationMarker />
 		</MapContainer>
