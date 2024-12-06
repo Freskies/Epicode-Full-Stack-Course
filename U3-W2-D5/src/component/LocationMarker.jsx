@@ -42,14 +42,17 @@ function LocationMarker() {
 	}, [map, locate]);
 
 	return position === null ? null : (
-		<Marker position={position}>
+		<Marker position={position} data-testid="marker">
 			<Popup>
 				<Link
 					className="weather-info-popup"
 					to={`/details/${position.lat}-${position.lng}`}
 				>
 					{markerInfo || "See Weather"}{" "}
-					<i className="fa fa-external-link-alt"></i>
+					<i
+						data-testid="marker-link-icon"
+						className="fa fa-external-link-alt"
+					></i>
 				</Link>
 			</Popup>
 		</Marker>

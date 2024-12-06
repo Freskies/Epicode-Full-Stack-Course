@@ -3,7 +3,7 @@ import { useState } from "react";
 import { transformDate } from "../myFunctions";
 
 function ForecastPage({ forecast }) {
-	const [page, setPage] = useState(4);
+	const [page, setPage] = useState(0);
 
 	const days = new Set(
 		Array.from(forecast, ({ dt_txt }) => dt_txt.split(" ")[0]),
@@ -11,8 +11,6 @@ function ForecastPage({ forecast }) {
 	const pages = Array.from(days, day =>
 		forecast.filter(({ dt_txt }) => dt_txt.includes(day)),
 	);
-
-	console.log(forecast);
 
 	return (
 		<>
