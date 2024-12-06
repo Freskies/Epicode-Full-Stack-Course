@@ -1,3 +1,16 @@
+:root {
+	--primary-color: #2c3e50;
+	--primary-color-light: #34495e;
+	--primary-color-lighter: #7f8c8d50;
+	--primary-color-lightest: #bdc3c7;
+	--secondary-color: #f39c12;
+	--tertiary-color: #e74c3c;
+	--quaternary-color: #ecf0f1;
+	--quaternary-color-dark: #bdc3c760;
+	--quaternary-color-light: #f5f5f5;
+	--quaternary-color-lighter: #f9f9f9;
+}
+
 * {
 	margin: 0;
 	padding: 0;
@@ -9,19 +22,245 @@ html {
 }
 
 body {
-	margin: 0;
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-		"Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-		sans-serif;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
+	font-family: "Roboto", sans-serif;
+	font-size: 1.6rem;
+	background-color: var(--quaternary-color);
+	color: var(--primary-color);
 }
 
-code {
-	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-		monospace;
+a:link,
+a:hover,
+a:active,
+a:visited {
+	text-decoration: none;
+	color: inherit;
 }
+
+/********************************/
+/* MAP PAGE */
+/********************************/
 
 .leaflet-container {
 	height: 100vh;
+
+	a {
+		font-size: 1.6rem;
+	}
+}
+
+.leaflet-popup-content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	font-size: 2rem;
+}
+
+/********************************/
+/* FORECAST PAGE */
+/********************************/
+
+.forecast-page {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	min-height: 100vh;
+	background: linear-gradient(
+		var(--quaternary-color),
+		var(--primary-color-lighter)
+	);
+}
+
+.details-navbar {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	padding: 1rem;
+	background-color: #f0f0f0;
+	position: fixed;
+	top: 0;
+	font-size: 2.8rem;
+}
+
+.back {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+}
+
+.days-container {
+	margin-top: 7.2rem;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	gap: 0.5rem;
+	padding: 1rem;
+	background-color: #f0f0f0;
+	margin-bottom: 3.2rem;
+}
+
+.day-button {
+	padding: 1rem;
+	font-size: 2rem;
+	cursor: pointer;
+	transition: transform 700ms ease-in-out;
+	border: none;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	gap: 0.5rem;
+
+	&.active {
+		background-color: var(--primary-color-lighter);
+	}
+
+	&:hover {
+		background-color: var(--primary-color-lighter);
+	}
+
+	.weekday {
+		font-size: 2.4rem;
+	}
+
+	.date {
+		font-size: 1.8rem;
+	}
+}
+
+.forecast-table-container {
+	position: relative;
+	overflow: hidden;
+	width: 90vw;
+	min-height: 90vh;
+}
+
+.forecast-table {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 2.2rem;
+	transition: all 700ms ease-in-out;
+
+	th {
+		text-align: left;
+	}
+
+	th,
+	td {
+		padding: 2rem;
+	}
+
+	tr:not(:last-child),
+	th {
+		border-bottom: 1px solid #ccc;
+	}
+
+	tr:hover {
+		background-color: var(--primary-color-lighter);
+	}
+
+	.wheather-description {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+	}
+}
+
+.fa {
+	&.fa-cloud {
+		color: #6c6f6f;
+	}
+	&.fa-cloud-sun {
+		color: #8d6321;
+	}
+	&.fa-sun {
+		color: #9e670f;
+	}
+	&.fa-cloud-rain {
+		color: #2c3e50;
+	}
+	&.fa-cloud-showers-heavy {
+		color: #0b2c4d;
+	}
+}
+
+/********************************/
+/* MEDIA QUERIES */
+/********************************/
+
+@media screen and (max-width: 922px) {
+	.days-container {
+		flex-wrap: wrap;
+	}
+
+	.day-button {
+		font-size: 1.8rem;
+	}
+
+	.forecast-table-container {
+		width: 100vw;
+	}
+
+	.forecast-table {
+		font-size: 1.8rem;
+	}
+}
+
+@media screen and (max-width: 800px) {
+	.days-container {
+		flex-direction: column;
+		width: 100%;
+	}
+
+	.day-button {
+		width: 100%;
+		display: flex;
+		flex-direction: row;
+
+		& > *:first-child::after {
+			content: " ~";
+		}
+	}
+}
+
+@media screen and (max-width: 580px) {
+	.wheather-description {
+		.description-text {
+			display: none;
+		}
+	}
+
+	.forecast-table {
+		font-size: 1.4rem;
+	}
+}
+
+@media screen and (max-width: 475px) {
+	html {
+		font-size: 50%;
+	}
+
+	.forecast-table {
+		th,
+		td {
+			padding: 1rem;
+		}
+	}
+}
+
+@media screen and (max-width: 380) {
+	html {
+		font-size: 42.5%;
+	}
+}
+
+@media screen and (max-width: 345px) {
+	html {
+		font-size: 37.5%;
+	}
 }
