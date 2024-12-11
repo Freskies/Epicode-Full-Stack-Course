@@ -143,7 +143,7 @@ class LinkedList<T> {
 	}
 
 	static from(array: any[]): LinkedList<any> {
-		return new LinkedList();
+		return new LinkedList<any>();
 	}
 }
 
@@ -162,3 +162,5 @@ const sum = list.reduce(
 	0,
 );
 console.log(sum);
+
+const arr = [1, , 2, "a"];

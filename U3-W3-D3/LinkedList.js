@@ -148,3 +148,4 @@ var sum = list.reduce(function (accumulator, currentValue) {
     return accumulator + currentValue;
 }, 0);
 console.log(sum);
+var arr = [1, , 2, "a"];
