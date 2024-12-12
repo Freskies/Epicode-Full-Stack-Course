@@ -53,6 +53,11 @@ class myNode<T> {
 		}
 		return _reduce(this, 0, accumulator);
 	}
+
+	toArray(): T[] {
+		if (this === null) return [];
+		return [this.value, ...(this.next?.toArray() ?? [])];
+	}
 }
 
 class LinkedList<T> {
