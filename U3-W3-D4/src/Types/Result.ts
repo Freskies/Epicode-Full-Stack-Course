@@ -4,7 +4,7 @@ export default interface Result {
 	readonly id: number;
 	readonly title: string;
 	readonly url: string;
-	readonly imageURL: string;
+	readonly image_url: string;
 	readonly newsSite: string;
 	readonly summary: string;
 	readonly publishedAt: Date;

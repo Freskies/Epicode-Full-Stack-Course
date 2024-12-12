@@ -1,26 +1,43 @@
 import { useEffect, useState } from "react";
-import { Articles, Result } from "./interfaces";
+import Articles from "./components/Articles";
+import FactoryHeader from "./components/FactoryHeader";
+import ArticleType from "./Types/Articles";
+import Result from "./Types/Result";
 
 function App() {
-	const [data, setData] = useState<Result[] | null>(null);
+	const [articles, setArticles] = useState<Result[] | null>(null);
+	const [loading, setLoading] = useState<boolean>(false);
+	const [error, setError] = useState<boolean>(false);
 
 	useEffect(() => {
 		(async () => {
-			const res: Response = await fetch(
-				"https://api.spaceflightnewsapi.net/v4/articles",
-			);
-			const articles: Articles = await res.json();
-			setData(articles.results);
+			try {
+				setLoading(true);
+				const res: Response = await fetch(
+					"https://api.spaceflightnewsapi.net/v4/articles",
+				);
+				const data: ArticleType = await res.json();
+				setArticles(data.results);
+			} catch {
+				setError(true);
+			} finally {
+				setLoading(false);
+			}
 		})();
 	}, []);
 
-	console.log(data);
+	console.log(articles);
 
 	return (
 		<>
-			<header></header>
+			<FactoryHeader />
 			<main>
-				<p>Palle</p>
+				{error ||
+					(loading ? (
+						<p>Loading...</p>
+					) : (
+						articles && <Articles articles={articles as Result[]} />
+					))}
 			</main>
 			<footer></footer>
 		</>
