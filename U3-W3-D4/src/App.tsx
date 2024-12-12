@@ -1,7 +1,20 @@
+import { useEffect, useState } from "react";
+import { Articles, Result } from "./interfaces";
+
 function App() {
-	const set1 = new Set([1, 2, 3, 4, 5, 6]);
-	const set2 = new Set([1, 2, 3, 4]);
-	console.log(set1.difference(set2));
+	const [data, setData] = useState<Result[] | null>(null);
+
+	useEffect(() => {
+		(async () => {
+			const res: Response = await fetch(
+				"https://api.spaceflightnewsapi.net/v4/articles",
+			);
+			const articles: Articles = await res.json();
+			setData(articles.results);
+		})();
+	}, []);
+
+	console.log(data);
 
 	return (
 		<>
