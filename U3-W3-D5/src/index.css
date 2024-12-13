@@ -1,0 +1,79 @@
+/*****************************/
+/* GENERAL */
+/*****************************/
+
+:root {
+	/* COLORS */
+	--primary-color: #d60017;
+	--primary-color-shade: #f35668;
+	--secondary-color: #1f1f1f;
+	--secondary-color-light: #252526;
+	--secondary-color-lighter: #2c2c2c;
+	--secondary-color-lightest: #323232;
+	--accent-color: #bfbfbf;
+	--accent-color-light: #fff;
+	--accent-color-dark: #ababab;
+	--action-color: #626262;
+	--text-color: #ededed;
+	--text-accent-color: #aeaeae;
+	--logo-color: #eee;
+	/* DIMENTIONS */
+	--navbar-height: 7.6rem;
+	--sidebar-width: 30rem;
+	/* RADIUS */
+	--main-radius: 2.4rem;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html {
+	font-size: 62.5%;
+}
+
+body {
+	font-family: "Roboto", sans-serif;
+	font-size: 1.6rem;
+	color: var(--text-color);
+}
+
+/*****************************/
+/* SIDEBAR */
+/*****************************/
+
+.sidebar {
+	background-color: var(--secondary-color-light);
+	padding: 2.4rem 3.2rem;
+}
+
+.apple-music-logo {
+	fill: var(--logo-color);
+	height: 2.8rem;
+}
+
+/*****************************/
+/* NAVBAR */
+/*****************************/
+
+.navbar {
+	background-color: var(--secondary-color-lighter);
+}
+
+/*****************************/
+/* MAIN */
+/*****************************/
+
+.main {
+	background-color: var(--secondary-color);
+}
+
+/*****************************/
+/* FOOTER */
+/*****************************/
+
+.footer {
+	background-color: var(--secondary-color-lightest);
+}

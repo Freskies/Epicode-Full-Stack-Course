@@ -1,0 +1,59 @@
+/*****************************/
+/* PAGE LAYOUT */
+/*****************************/
+
+#root {
+	min-height: 100vh;
+	display: grid;
+	grid-template-columns: var(--sidebar-width) 1fr;
+	grid-template-areas:
+		"sidebar navbar"
+		"sidebar main"
+		"sidebar footer";
+	grid-template-rows: auto 1fr auto;
+}
+
+.navbar {
+	grid-area: navbar;
+	height: var(--navbar-height);
+	position: sticky;
+	top: 0;
+}
+
+.sidebar {
+	grid-area: sidebar;
+	position: sticky;
+	top: 0;
+	align-self: start;
+	height: 100vh;
+}
+
+.main {
+	grid-area: main;
+}
+
+.footer {
+	grid-area: footer;
+}
+
+@media screen and (max-width: 61em) {
+	#root {
+		grid-template-columns: 1fr;
+		grid-template-areas:
+			"navbar"
+			"main"
+			"footer";
+	}
+
+	.sidebar {
+		position: fixed;
+		top: var(--navbar-height);
+		width: var(--sidebar-width);
+		height: calc(100vh - var(--navbar-height));
+		display: none;
+
+		&.active {
+			display: block;
+		}
+	}
+}
