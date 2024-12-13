@@ -7,6 +7,7 @@ import Section from "./components/Section";
 import radioAlbums from "./albumInfo/radio_episode.json";
 import banners from "./albumInfo/banner_album.json";
 import explore from "./albumInfo/more_to_explore.json";
+import Apple from "./components/Apple";
 
 import ba from "./assets/images/1a.png";
 import bb from "./assets/images/1b.png";
@@ -18,6 +19,7 @@ import r2c from "./assets/images/2c.png";
 import r2d from "./assets/images/2d.png";
 import r2e from "./assets/images/2e.png";
 import r2f from "./assets/images/2f.png";
+import Footer from "./components/Footer";
 
 const bs = [ba, bb, bc];
 const rs = [r2a, r2b, r2c, r2d, r2e, r2f];
@@ -70,10 +72,32 @@ function App() {
 
 	return (
 		<>
-			<nav
-				className="navbar"
-				onClick={() => setActiveSideBar(!activeSideBar)}
-			></nav>
+			<nav className="navbar">
+				<i
+					className="fas fa-bars"
+					onClick={() => setActiveSideBar(!activeSideBar)}
+				></i>
+				<div className="player-buttons">
+					<i className="fas fa-random"></i>
+					<i className="fas fa-step-backward"></i>
+					<i className="fas fa-play"></i>
+					<i className="fas fa-step-forward"></i>
+					<i className="fas fa-redo"></i>
+				</div>
+				<div className="apple-container">
+					<Apple />
+				</div>
+				<div className="player-bar">
+					<i className="fas fa-volume-up"></i>
+					<div className="volume-bar">
+						<div className="volume"></div>
+					</div>
+				</div>
+				<button className="login">
+					<i className="fas fa-user"></i>
+					<span>Accedi</span>
+				</button>
+			</nav>
 			<aside className={`sidebar ${activeSideBar ? "active" : ""}`}>
 				<AppleMusicLogo />
 				<SearchBar />
@@ -121,7 +145,7 @@ function App() {
 					</div>
 				</section>
 			</main>
-			<footer className="footer">footer</footer>
+			<Footer />
 		</>
 	);
 }
