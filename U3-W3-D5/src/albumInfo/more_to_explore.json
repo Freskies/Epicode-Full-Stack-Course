@@ -1,0 +1,38 @@
+[
+	{
+		"id": "MTE1",
+		"label": "Esplora per genere"
+	},
+	{
+		"id": "MTE2",
+		"label": "Worldwide"
+	},
+	{
+		"id": "MTE3",
+		"label": "Video musicali"
+	},
+	{
+		"id": "MTE4",
+		"label": "Decenni"
+	},
+	{
+		"id": "MTE5",
+		"label": "Classifiche"
+	},
+	{
+		"id": "MTE6",
+		"label": "Nuovi artisti"
+	},
+	{
+		"id": "MTE7",
+		"label": "Attivit' e stati d'animo"
+	},
+	{
+		"id": "MTE8",
+		"label": "Audio spaziale"
+	},
+	{
+		"id": "MTE9",
+		"label": "Hit del passato"
+	}
+]

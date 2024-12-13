@@ -1,0 +1,32 @@
+[
+	{
+		"id": "RD1",
+		"cover": "./../assets/images/2a.png",
+		"firstCaption": "Prologo con Abuelo"
+	},
+	{
+		"id": "RD2",
+		"cover": "./../assets/images/2b.png",
+		"firstCaption": "The Wanderer"
+	},
+	{
+		"id": "RD3",
+		"cover": "./../assets/images/2c.png",
+		"firstCaption": "Michael Bublé & Carly Pearce"
+	},
+	{
+		"id": "RD4",
+		"cover": "./../assets/images/2d.png",
+		"firstCaption": "Stephan Moccio: The Zane Lowe Interview"
+	},
+	{
+		"id": "RD5",
+		"cover": "./../assets/images/2e.png",
+		"firstCaption": "Chart Spotlight: Julia Michaels"
+	},
+	{
+		"id": "RD6",
+		"cover": "./../assets/images/2f.png",
+		"firstCaption": "Gigi Sabani e la legge di Murphy"
+	}
+]

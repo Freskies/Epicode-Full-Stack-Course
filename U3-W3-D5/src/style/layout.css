@@ -45,7 +45,8 @@
 			"footer";
 	}
 
-	.sidebar {
+	#root .sidebar {
+		z-index: 999;
 		position: fixed;
 		top: var(--navbar-height);
 		width: var(--sidebar-width);
@@ -53,7 +54,7 @@
 		display: none;
 
 		&.active {
-			display: block;
+			display: flex;
 		}
 	}
 }
