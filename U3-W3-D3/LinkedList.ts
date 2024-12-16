@@ -1,8 +1,8 @@
-class myNode<T> {
+class LinkedListNode<T> {
 	value: T;
-	next: myNode<T> | null;
+	next: LinkedListNode<T> | null;
 
-	constructor(value: T, next: null | myNode<T> = null) {
+	constructor(value: T, next: null | LinkedListNode<T> = null) {
 		this.value = value;
 		this.next = next;
 	}
@@ -13,20 +13,20 @@ class myNode<T> {
 		return 1 + this.next.length;
 	}
 
-	at(index: number): myNode<T> | null {
+	at(index: number): LinkedListNode<T> | null {
 		if (this === null) return null;
 		if (index === 0) return this;
 		return this.next?.at(index - 1) ?? null;
 	}
 
-	getLastNode(): myNode<T> | null {
+	getLastNode(): LinkedListNode<T> | null {
 		if (this === null) return null;
 		if (this.next === null) return this;
 		return this.next.getLastNode();
 	}
 
 	forEach(callback: Function, linkedList: LinkedList<T>): void {
-		function _forEach(node: myNode<T> | null, index: number): void {
+		function _forEach(node: LinkedListNode<T> | null, index: number): void {
 			if (node === null) return;
 			callback(node.value, index, linkedList);
 			_forEach(node.next, index + 1);
@@ -40,7 +40,7 @@ class myNode<T> {
 		linkedList: LinkedList<T>,
 	): void {
 		function _reduce(
-			node: myNode<T> | null,
+			node: LinkedListNode<T> | null,
 			index: number,
 			accumulator: any,
 		): any {
@@ -61,7 +61,7 @@ class myNode<T> {
 }
 
 class LinkedList<T> {
-	head: myNode<T> | null;
+	head: LinkedListNode<T> | null;
 
 	constructor() {
 		this.head = null;
@@ -74,13 +74,13 @@ class LinkedList<T> {
 	// INSERT ELEMENT
 
 	unshift(value: T): this {
-		this.head = new myNode(value, this.head);
+		this.head = new LinkedListNode(value, this.head);
 		return this;
 	}
 
 	push(value: T): this {
 		if (this.head === null) return this.unshift(value);
-		this.getLastNode().next = new myNode<T>(value);
+		this.getLastNode().next = new LinkedListNode<T>(value);
 		return this;
 	}
 
@@ -102,21 +102,21 @@ class LinkedList<T> {
 
 	at(index: number): T {
 		const realIndex = index < 0 ? (this.head?.length ?? 0) + index : index;
-		const node: myNode<T> | null = this.head?.at(realIndex) ?? null;
+		const node: LinkedListNode<T> | null = this.head?.at(realIndex) ?? null;
 		if (node === null) throw new Error("Index out of bounce");
 		return node.value;
 	}
 
 	// NODES
 
-	getLastNode(): myNode<T> {
+	getLastNode(): LinkedListNode<T> {
 		if (this.head === null) throw new Error("List is empty");
 		return this.head?.getLastNode() ?? this.head;
 	}
 
-	nodeAt(index: number): myNode<T> {
+	nodeAt(index: number): LinkedListNode<T> {
 		const realIndex = index < 0 ? (this.head?.length ?? 0) + index : index;
-		const node: myNode<T> | null = this.head?.at(realIndex) ?? null;
+		const node: LinkedListNode<T> | null = this.head?.at(realIndex) ?? null;
 		if (node === null) throw new Error("Index out of bounce");
 		return node;
 	}
@@ -146,26 +146,20 @@ class LinkedList<T> {
 		}
 		return arr;
 	}
-
-	static from(array: any[]): LinkedList<any> {
-		return new LinkedList<any>();
-	}
 }
 
-const list = new LinkedList<number>();
-list.unshift(1).push(2).push(3).push(4);
+const linkedList = new LinkedList<number>();
+linkedList.unshift(1).push(2).push(3).push(4);
 
-console.log(list.toString());
-// console.log(list.length);
-// console.log(list.pop().toString());
-list.forEach((num: number): void => console.log(num * 2));
+console.log(linkedList.toString());
+// console.log(linkedList.length);
+// console.log(linkedList.pop().toString());
+linkedList.forEach((num: number): void => console.log(num * 2));
 // new LinkedList<number>().forEach((num: number) => num * 2);
 
-const sum = list.reduce(
+const totalSum: number = linkedList.reduce(
 	(accumulator: number, currentValue: number): number =>
 		accumulator + currentValue,
 	0,
 );
-console.log(sum);
-
-const arr = [1, , 2, "a"];
+console.log(totalSum);

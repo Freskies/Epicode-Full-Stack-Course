@@ -1,10 +1,19 @@
-var myNode = /** @class */ (function () {
-    function myNode(value, next) {
+var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
+};
+var LinkedListNode = /** @class */ (function () {
+    function LinkedListNode(value, next) {
         if (next === void 0) { next = null; }
         this.value = value;
         this.next = next;
     }
-    Object.defineProperty(myNode.prototype, "length", {
+    Object.defineProperty(LinkedListNode.prototype, "length", {
         get: function () {
             if (this === null)
                 return 0;
@@ -15,7 +24,7 @@ var myNode = /** @class */ (function () {
         enumerable: false,
         configurable: true
     });
-    myNode.prototype.at = function (index) {
+    LinkedListNode.prototype.at = function (index) {
         var _a, _b;
         if (this === null)
             return null;
@@ -23,14 +32,14 @@ var myNode = /** @class */ (function () {
             return this;
         return (_b = (_a = this.next) === null || _a === void 0 ? void 0 : _a.at(index - 1)) !== null && _b !== void 0 ? _b : null;
     };
-    myNode.prototype.getLastNode = function () {
+    LinkedListNode.prototype.getLastNode = function () {
         if (this === null)
             return null;
         if (this.next === null)
             return this;
         return this.next.getLastNode();
     };
-    myNode.prototype.forEach = function (callback, linkedList) {
+    LinkedListNode.prototype.forEach = function (callback, linkedList) {
         function _forEach(node, index) {
             if (node === null)
                 return;
@@ -39,7 +48,7 @@ var myNode = /** @class */ (function () {
         }
         _forEach(this, 0);
     };
-    myNode.prototype.reduce = function (callback, accumulator, linkedList) {
+    LinkedListNode.prototype.reduce = function (callback, accumulator, linkedList) {
         function _reduce(node, index, accumulator) {
             if (node === null)
                 return accumulator;
@@ -47,7 +56,13 @@ var myNode = /** @class */ (function () {
         }
         return _reduce(this, 0, accumulator);
     };
-    return myNode;
+    LinkedListNode.prototype.toArray = function () {
+        var _a, _b;
+        if (this === null)
+            return [];
+        return __spreadArray([this.value], ((_b = (_a = this.next) === null || _a === void 0 ? void 0 : _a.toArray()) !== null && _b !== void 0 ? _b : []), true);
+    };
+    return LinkedListNode;
 }());
 var LinkedList = /** @class */ (function () {
     function LinkedList() {
@@ -63,13 +78,13 @@ var LinkedList = /** @class */ (function () {
     });
     // INSERT ELEMENT
     LinkedList.prototype.unshift = function (value) {
-        this.head = new myNode(value, this.head);
+        this.head = new LinkedListNode(value, this.head);
         return this;
     };
     LinkedList.prototype.push = function (value) {
         if (this.head === null)
             return this.unshift(value);
-        this.getLastNode().next = new myNode(value);
+        this.getLastNode().next = new LinkedListNode(value);
         return this;
     };
     // DELETE ELEMENT
@@ -132,20 +147,16 @@ var LinkedList = /** @class */ (function () {
         }
         return arr;
     };
-    LinkedList.from = function (array) {
-        return new LinkedList();
-    };
     return LinkedList;
 }());
-var list = new LinkedList();
-list.unshift(1).push(2).push(3).push(4);
-console.log(list.toString());
-// console.log(list.length);
-// console.log(list.pop().toString());
-list.forEach(function (num) { return console.log(num * 2); });
+var linkedList = new LinkedList();
+linkedList.unshift(1).push(2).push(3).push(4);
+console.log(linkedList.toString());
+// console.log(linkedList.length);
+// console.log(linkedList.pop().toString());
+linkedList.forEach(function (num) { return console.log(num * 2); });
 // new LinkedList<number>().forEach((num: number) => num * 2);
-var sum = list.reduce(function (accumulator, currentValue) {
+var totalSum = linkedList.reduce(function (accumulator, currentValue) {
     return accumulator + currentValue;
 }, 0);
-console.log(sum);
-var arr = [1, , 2, "a"];
+console.log(totalSum);
