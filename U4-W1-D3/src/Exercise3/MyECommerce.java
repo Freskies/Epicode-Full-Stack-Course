@@ -1,7 +1,7 @@
 package Exercise3;
 
 public class MyECommerce {
-	public static void main(String[] argv) {
+	public static void main (String[] argv) {
 		Customer customer = new Customer(
 			"1234567890",
 			"John",

@@ -42,7 +42,7 @@ public class Sim {
 			'}';
 	}
 
-	public static void main(String[] argv) {
+	public static void main (String[] argv) {
 		Sim sim = new Sim("0812345678", 100);
 		sim.charge(50).call("Ryan").call("Marcelo");
 		System.out.println(sim);
