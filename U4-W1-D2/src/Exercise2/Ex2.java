@@ -4,12 +4,10 @@ import java.util.Scanner;
 
 public class Ex2 {
 	public static void start () {
-		try {
-			Scanner scanner = new Scanner(System.in);
+		try (Scanner scanner = new Scanner(System.in)) {
 			System.out.print("Insert a number: ");
 			int number = Integer.parseInt(scanner.nextLine());
 			System.out.println(getResult(number));
-			scanner.close();
 		} catch (NumberFormatException e) {
 			System.out.println("The input is not a number!");
 		}
