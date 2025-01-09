@@ -24,8 +24,8 @@ public class Rectangle {
 	@Override
 	public String toString () {
 		return "Rectangle{" +
-			"base=" + base +
-			", height=" + height +
+			"base=" + this.base +
+			", height=" + this.height +
 			'}';
 	}
 

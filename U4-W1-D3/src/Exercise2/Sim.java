@@ -36,9 +36,9 @@ public class Sim {
 	@Override
 	public String toString () {
 		return "Sim{" +
-			"phoneNumber='" + phoneNumber + '\'' +
-			", credit=" + credit +
-			", last5Calls=" + Arrays.toString(last5Calls) +
+			"phoneNumber='" + this.phoneNumber + '\'' +
+			", credit=" + this.credit +
+			", last5Calls=" + Arrays.toString(this.last5Calls) +
 			'}';
 	}
 

@@ -18,9 +18,9 @@ public class Customer {
 	@Override
 	public String toString () {
 		return "Customer{" +
-			"name='" + name + '\'' +
-			", surname='" + surname + '\'' +
-			", fiscalCode='" + fiscalCode + '\'' +
+			"name='" + this.name + '\'' +
+			", surname='" + this.surname + '\'' +
+			", fiscalCode='" + this.fiscalCode + '\'' +
 			'}';
 	}
 }

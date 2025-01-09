@@ -20,10 +20,10 @@ public class Article {
 	@Override
 	public String toString () {
 		return "Article{" +
-			"articleCode='" + articleCode + '\'' +
-			", description='" + description + '\'' +
-			", price=" + price +
-			", piecesAvailable=" + piecesAvailable +
+			"articleCode='" + this.articleCode + '\'' +
+			", description='" + this.description + '\'' +
+			", price=" + this.price +
+			", piecesAvailable=" + this.piecesAvailable +
 			'}';
 	}
 }

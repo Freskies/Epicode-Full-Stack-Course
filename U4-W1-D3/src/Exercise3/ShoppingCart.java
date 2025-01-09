@@ -20,9 +20,9 @@ public class ShoppingCart {
 	@Override
 	public String toString () {
 		return "ShoppingCart{" +
-			"owner=" + owner +
-			", articles=" + Arrays.toString(articles) +
-			", totalPrice=" + totalPrice +
+			"owner=" + this.owner +
+			", articles=" + Arrays.toString(this.articles) +
+			", totalPrice=" + this.totalPrice +
 			'}';
 	}
 }
