@@ -30,10 +30,15 @@ public class Rectangle {
 	}
 
 	public static void printRectangles (Rectangle... rectangles) {
+		double totArea = 0;
+		double totPerimeter = 0;
 		for (Rectangle rectangle : rectangles) {
+			totArea += rectangle.getArea();
+			totPerimeter += rectangle.getPerimeter();
 			rectangle.print();
 			System.out.println();
 		}
+		System.out.printf("Tot area: %s | Tot perimeter: %s", totArea, totPerimeter);
 	}
 
 	public static void main (String[] argv) {
