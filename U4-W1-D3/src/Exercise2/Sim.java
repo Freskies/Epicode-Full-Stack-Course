@@ -44,7 +44,14 @@ public class Sim {
 
 	public static void main (String[] argv) {
 		Sim sim = new Sim("0812345678", 100);
-		sim.charge(50).call("Ryan").call("Marcelo");
+		sim
+			.charge(50)
+			.call("Ryan")
+			.call("Marcelo")
+			.call("Orlando")
+			.call("John")
+			.call("Liam")
+			.call("Arthur");
 		System.out.println(sim);
 	}
 }

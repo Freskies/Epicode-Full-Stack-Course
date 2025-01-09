@@ -44,6 +44,7 @@ public class Rectangle {
 	public static void main (String[] argv) {
 		Rectangle r1 = new Rectangle(15, 20);
 		Rectangle r2 = new Rectangle(7.6, 5.4);
-		Rectangle.printRectangles(r1, r2);
+		Rectangle r3 = new Rectangle(30, 40);
+		Rectangle.printRectangles(r1, r2, r3);
 	}
 }
