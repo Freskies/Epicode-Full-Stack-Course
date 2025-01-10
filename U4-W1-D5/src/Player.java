@@ -8,7 +8,7 @@ import Media.Video;
 import java.util.Arrays;
 
 public class Player {
-	public static final int MEDIA_REQUIRED = 2;
+	public static final int MEDIA_REQUIRED = 5;
 
 	private final Media[] mediaList = new Media[Player.MEDIA_REQUIRED];
 
