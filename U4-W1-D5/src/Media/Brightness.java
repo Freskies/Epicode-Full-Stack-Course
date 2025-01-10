@@ -35,7 +35,7 @@ public interface Brightness {
 	 * @return true if the brightness is invalid, false otherwise.
 	 */
 	static boolean isInvalidBrightness (int brightness) {
-		return Brightness.MIN_BRIGHTNESS > brightness || brightness > Brightness.MAX_BRIGHTNESS;
+		return brightness < Brightness.MIN_BRIGHTNESS || Brightness.MAX_BRIGHTNESS < brightness;
 	}
 
 	/**
