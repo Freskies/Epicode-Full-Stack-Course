@@ -114,8 +114,9 @@ public class Main {
 
 	private static void playPlayer (Player player) {
 		System.out.print(Main.PLAYER_MENU);
+		String input = Main.scan();
 
-		switch (Main.scan()) {
+		switch (input) {
 			case "0" -> {
 				return;
 			}
@@ -138,17 +139,18 @@ public class Main {
 		System.out.print(Main.generateMediaActionMenu(actions));
 		String input = Main.scan();
 
+		if (input.equals("0")) return;
+
 		try {
 			int action = Integer.parseInt(input);
 			if (actions.isValidAction(action)) {
 				Main.doAction(player.getMedia(index), action);
-				return;
+				Main.modifyMedia(player, index);
 			}
 		} catch (NumberFormatException ignored) {
+			System.out.println("Invalid action!");
+			Main.modifyMedia(player, index);
 		}
-
-		System.out.println("Invalid action!");
-		Main.modifyMedia(player, index);
 	}
 
 	private static int selectMedia (Player player) {
@@ -185,19 +187,24 @@ public class Main {
 		return switch (media) {
 			case Image _ -> new PlayerActions(2, """
 				1. Increase brightness
-				2. Decrease brightness"""
+				2. Decrease brightness
+				0. Exit"""
 			);
 			case Audio _ -> new PlayerActions(2, """
 				1. Increase volume
-				2. Decrease volume"""
+				2. Decrease volume
+				0. Exit"""
 			);
 			case Video _ -> new PlayerActions(4, """
 				1. Increase brightness
 				2. Decrease brightness
 				3. Increase volume
-				4. Decrease volume"""
+				4. Decrease volume
+				0. Exit"""
 			);
-			case null, default -> new PlayerActions(0, "Media does not support actions.");
+			case null, default -> new PlayerActions(0, """
+				Media does not support actions.
+				0. Exit""");
 		};
 	}
 
@@ -217,12 +224,14 @@ public class Main {
 	private static void doPNGAction (PNG png, int action) {
 		switch (action) {
 			case 1 -> {
+				int preBrightness = png.getBrightness();
 				png.increaseBrightness();
-				System.out.println("Brightness increased.");
+				System.out.printf("Brightness increased (%d -> %d).\n", preBrightness, png.getBrightness());
 			}
 			case 2 -> {
+				int preBrightness = png.getBrightness();
 				png.decreaseBrightness();
-				System.out.println("Brightness decreased.");
+				System.out.printf("Brightness decreased (%d -> %d).\n", preBrightness, png.getBrightness());
 			}
 		}
 	}
@@ -230,12 +239,14 @@ public class Main {
 	private static void doMP3Action (MP3 mp3, int action) {
 		switch (action) {
 			case 1 -> {
+				int preVolume = mp3.getVolume();
 				mp3.increaseVolume();
-				System.out.println("Volume increased.");
+				System.out.printf("Volume increased (%d -> %d).\n", preVolume, mp3.getVolume());
 			}
 			case 2 -> {
+				int preVolume = mp3.getVolume();
 				mp3.decreaseVolume();
-				System.out.println("Volume decreased.");
+				System.out.printf("Volume decreased (%d -> %d).\n", preVolume, mp3.getVolume());
 			}
 		}
 	}
@@ -243,20 +254,24 @@ public class Main {
 	private static void doMP4Action (MP4 mp4, int action) {
 		switch (action) {
 			case 1 -> {
+				int preBrightness = mp4.getBrightness();
 				mp4.increaseBrightness();
-				System.out.println("Brightness increased.");
+				System.out.printf("Brightness increased (%d -> %d).\n", preBrightness, mp4.getBrightness());
 			}
 			case 2 -> {
+				int preBrightness = mp4.getBrightness();
 				mp4.decreaseBrightness();
-				System.out.println("Brightness decreased.");
+				System.out.printf("Brightness decreased (%d -> %d).\n", preBrightness, mp4.getBrightness());
 			}
 			case 3 -> {
+				int preVolume = mp4.getVolume();
 				mp4.increaseVolume();
-				System.out.println("Volume increased.");
+				System.out.printf("Volume increased (%d -> %d).\n", preVolume, mp4.getVolume());
 			}
 			case 4 -> {
+				int preVolume = mp4.getVolume();
 				mp4.decreaseVolume();
-				System.out.println("Volume decreased.");
+				System.out.printf("Volume decreased (%d -> %d).\n", preVolume, mp4.getVolume());
 			}
 		}
 	}

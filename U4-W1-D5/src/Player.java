@@ -1,9 +1,6 @@
 import Media.Media;
 import Media.ShowableMedia;
 import Media.PlayableMedia;
-import Media.Image;
-import Media.Audio;
-import Media.Video;
 
 import java.util.Arrays;
 
@@ -49,37 +46,6 @@ public class Player {
 			case PlayableMedia playable -> playable.play();
 			default -> System.out.println("Media type not supported.");
 		}
-	}
-
-	/**
-	 * Get the actions of the media at index.
-	 * If media is Image, return 2 actions to increase and decrease brightness.
-	 * If media is Audio, return 2 actions to increase and decrease volume.
-	 * If media is Video, return 4 actions to increase and decrease brightness and volume.
-	 * If media is null, return 0 actions with message "Media does not support actions."
-	 *
-	 * @param index Index of media to get actions.
-	 * @return Actions of the media at index.
-	 * @throws ArrayIndexOutOfBoundsException If index is out of bounds.
-	 */
-	public PlayerActions getActionsOfMedia (int index) {
-		return switch (this.mediaList[index]) {
-			case Image _ -> new PlayerActions(2, """
-				1. Increase brightness
-				2. Decrease brightness"""
-			);
-			case Audio _ -> new PlayerActions(2, """
-				1. Increase volume
-				2. Decrease volume"""
-			);
-			case Video _ -> new PlayerActions(4, """
-				1. Increase brightness
-				2. Decrease brightness
-				3. Increase volume
-				4. Decrease volume"""
-			);
-			case null, default -> new PlayerActions(0, "Media does not support actions.");
-		};
 	}
 
 	@Override
