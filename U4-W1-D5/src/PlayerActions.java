@@ -9,6 +9,13 @@ public record PlayerActions(int numberOfActions, String mediaActions) {
 		return this.numberOfActions;
 	}
 
+	/**
+	 * Check if the action is valid.
+	 * An action is valid if it is greater than 0 and less than or equal to the number of actions.
+	 *
+	 * @param action the action to check
+	 * @return true if the action is valid, false otherwise
+	 */
 	public boolean isValidAction (int action) {
 		return 0 < action && action <= this.numberOfActions;
 	}

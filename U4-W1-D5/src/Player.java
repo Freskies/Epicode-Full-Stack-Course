@@ -23,10 +23,22 @@ public class Player {
 		System.arraycopy(mediaList, 0, this.mediaList, 0, Player.MEDIA_REQUIRED);
 	}
 
+	/**
+	 * Get the media list.
+	 *
+	 * @return The media list.
+	 */
 	public Media[] getMediaList () {
 		return this.mediaList;
 	}
 
+	/**
+	 * Get media at index.
+	 *
+	 * @param index Index of media to get.
+	 * @return Media at index.
+	 * @throws ArrayIndexOutOfBoundsException If index is out of bounds.
+	 */
 	public Media getMedia (int index) {
 		return this.mediaList[index];
 	}
