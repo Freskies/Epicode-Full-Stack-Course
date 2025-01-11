@@ -52,12 +52,11 @@ public class Player {
 	 * @throws ArrayIndexOutOfBoundsException If index is out of bounds.
 	 */
 	public void openMedia (int index) {
-		if (this.mediaList[index] instanceof ShowableMedia)
-			((ShowableMedia) mediaList[index]).show();
-		else if (this.mediaList[index] instanceof PlayableMedia)
-			((PlayableMedia) mediaList[index]).play();
-		else
-			System.out.println("Media type not supported.");
+		switch (this.mediaList[index]) {
+			case ShowableMedia showable -> showable.show();
+			case PlayableMedia playable -> playable.play();
+			default -> System.out.println("Media type not supported.");
+		}
 	}
 
 	/**

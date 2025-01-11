@@ -6,85 +6,118 @@ import MyMedia.PNG;
 import java.util.Scanner;
 
 public class Main {
+	private static final String LOAD_MENU = """
+		#############
+		1. Load PNG
+		2. Load MP3
+		3. Load MP4
+		0. Exit
+		->\s""";
+
+	private static final String PLAYER_MENU = """
+		#############
+		1. Open media
+		2. Modify media
+		0. Exit
+		->\s""";
+
+	private static final Scanner scanner = new Scanner(System.in);
+
+	private static String scan () {
+		return Main.scanner.nextLine();
+	}
+
 	public static void main (String[] args) {
-		Scanner scanner = new Scanner(System.in);
-		Media[] mediaList = new Media[5];
-		String input;
-		int mediaCount = 0;
-
-		while (mediaCount < Player.MEDIA_REQUIRED) {
-			String title;
-			int duration = 0;
-
-			System.out.println("###########");
-			System.out.println("1. Load PNG");
-			System.out.println("2. Load MP3");
-			System.out.println("3. Load MP4");
-			System.out.println("0. Exit");
-			System.out.print("-> ");
-			input = scanner.nextLine();
-
-			// GET TITLE
-			switch (input) {
-				case "0":
-					return;
-				case "1":
-				case "2":
-				case "3":
-					title = Main.askTitle(scanner);
-					break;
-				default:
-					System.out.println("Invalid input.");
-					continue;
-			}
-
-			// GET DURATION
-			switch (input) {
-				case "1":
-					break;
-				case "2":
-				case "3":
-					duration = Main.askDuration(scanner);
-					break;
-				default:
-					System.out.println("Invalid input.");
-					continue;
-			}
-
-			// LOAD MEDIA
-			switch (input) {
-				case "1":
-					mediaList[mediaCount] = new PNG(title);
-					System.out.println("PNG loaded.");
-					break;
-				case "2":
-					mediaList[mediaCount] = new MP3(title, duration);
-					System.out.println("MP3 loaded.");
-					break;
-				case "3":
-					mediaList[mediaCount] = new MP4(title, duration);
-					System.out.println("MP4 loaded.");
-					break;
-				default:
-					System.out.println("Invalid input.");
-					continue;
-			}
-
-			// INCREMENT MEDIA COUNT
-			mediaCount++;
-		}
-
-		System.out.println("All media loaded.");
-		Player player = new Player(mediaList);
+		Player player = Main.generatePlayer();
+		if (player == null) return;
 		System.out.println("Player created.");
 
-		input = "";
+		Main.playPlayer(player);
+	}
+
+	// GENERATE PLAYER
+
+	private static Player generatePlayer () {
+		Media[] mediaList = new Media[Player.MEDIA_REQUIRED];
+
+		for (int i = 0; i < mediaList.length; i++) {
+			mediaList[i] = Main.loadMedia();
+			if (mediaList[i] == null)
+				return null;
+			System.out.printf("Media %d loaded, %d remaining\n", i + 1, mediaList.length - i - 1);
+		}
+
+		return new Player(mediaList);
+	}
+
+	private static Media loadMedia () {
+		String input;
+		System.out.print(Main.LOAD_MENU);
+		input = Main.scan();
+
+		return switch (input) {
+			case "0" -> null;
+			case "1" -> Main.askPNG();
+			case "2" -> Main.askMP3();
+			case "3" -> Main.askMP4();
+			default -> {
+				System.out.println("Invalid input.");
+				yield Main.loadMedia();
+			}
+		};
+	}
+
+	private static PNG askPNG () {
+		String title = Main.askTitle();
+		return new PNG(title);
+	}
+
+	private static MP3 askMP3 () {
+		String title = Main.askTitle();
+		int duration = Main.askDuration();
+		return new MP3(title, duration);
+	}
+
+	private static MP4 askMP4 () {
+		String title = Main.askTitle();
+		int duration = Main.askDuration();
+		return new MP4(title, duration);
+	}
+
+	private static String askTitle () {
+		System.out.print("Enter title: ");
+		String title = Main.scan();
+		if (!title.isEmpty())
+			return title;
+		System.out.println("Title cannot be empty.");
+		return Main.askTitle();
+	}
+
+	private static int askDuration () {
+		try {
+			System.out.print("Enter duration: ");
+			String input = Main.scan();
+			int duration = Integer.parseInt(input);
+			if (duration > 0)
+				return duration;
+			System.out.println("Duration cannot be less than or equal to 0.");
+		} catch (NumberFormatException e) {
+			System.out.println("Duration must be a number.");
+		}
+		return Main.askDuration();
+	}
+
+	// PLAY PLAYER
+
+	private static void playPlayer (Player player) {
+		String input;
+
+		System.out.print(Main.PLAYER_MENU);
+		input = Main.scanner.nextLine();
+
+		/*
 		while (!input.equals("0")) {
-			System.out.println("###########");
-			System.out.println("1. Open media");
-			System.out.println("2. Modify media");
-			System.out.println("0. Exit");
-			System.out.print("-> ");
+			System.out.print(Main.PLAYER_MENU);
 			input = scanner.nextLine();
 
 			switch (input) {
@@ -206,30 +239,7 @@ public class Main {
 					break;
 			}
 		}
-	}
 
-	private static String askTitle (Scanner scanner) {
-		while (true) {
-			System.out.print("Enter title: ");
-			String title = scanner.nextLine();
-			if (title.isEmpty())
-				System.out.println("Title cannot be empty.");
-			else return title;
-		}
-	}
-
-	private static int askDuration (Scanner scanner) {
-		while (true) {
-			try {
-				System.out.print("Enter duration: ");
-				String input = scanner.nextLine();
-				int duration = Integer.parseInt(input);
-				if (duration <= 0)
-					System.out.println("Duration cannot be less than or equal to 0.");
-				else return duration;
-			} catch (NumberFormatException e) {
-				System.out.println("Duration must be a number.");
-			}
-		}
+		 */
 	}
 }
