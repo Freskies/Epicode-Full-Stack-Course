@@ -26,20 +26,12 @@ public class Player {
 		System.arraycopy(mediaList, 0, this.mediaList, 0, Player.MEDIA_REQUIRED);
 	}
 
-	/**
-	 * Get the list of media.
-	 *
-	 * @return List of media.
-	 */
-	public String getMediaList () {
-		StringBuilder mediaListString = new StringBuilder("\n");
-		for (int i = 0; i < this.mediaList.length; i++)
-			mediaListString
-				.append(i + 1)
-				.append(". ")
-				.append(this.mediaList[i].getTitle())
-				.append("\n");
-		return mediaListString.toString();
+	public Media[] getMediaList () {
+		return this.mediaList;
+	}
+
+	public Media getMedia (int index) {
+		return this.mediaList[index];
 	}
 
 	/**

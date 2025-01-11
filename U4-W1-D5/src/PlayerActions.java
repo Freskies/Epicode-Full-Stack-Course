@@ -9,6 +9,10 @@ public record PlayerActions(int numberOfActions, String mediaActions) {
 		return this.numberOfActions;
 	}
 
+	public boolean isValidAction (int action) {
+		return 0 < action && action <= this.numberOfActions;
+	}
+
 	@Override
 	public String toString () {
 		return this.mediaActions;

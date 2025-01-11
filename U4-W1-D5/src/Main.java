@@ -1,4 +1,7 @@
 import Media.Media;
+import Media.Image;
+import Media.Audio;
+import Media.Video;
 import MyMedia.MP3;
 import MyMedia.MP4;
 import MyMedia.PNG;
@@ -110,136 +113,151 @@ public class Main {
 	// PLAY PLAYER
 
 	private static void playPlayer (Player player) {
-		String input;
-
 		System.out.print(Main.PLAYER_MENU);
-		input = Main.scanner.nextLine();
 
-		/*
-		while (!input.equals("0")) {
-			System.out.print(Main.PLAYER_MENU);
-			input = scanner.nextLine();
-
-			switch (input) {
-				case "1":
-					while (true) {
-						System.out.print("--------------");
-						System.out.print(player.getMediaList());
-						System.out.println("0. Back");
-						System.out.print("-> ");
-						try {
-							int mediaIndex = Integer.parseInt(scanner.nextLine());
-							if (mediaIndex == 0)
-								break;
-							if (mediaIndex < 1 || mediaIndex > Player.MEDIA_REQUIRED) {
-								System.out.println("Invalid index.");
-								continue;
-							}
-							player.openMedia(mediaIndex - 1);
-							break;
-						} catch (ArrayIndexOutOfBoundsException e) {
-							System.out.println("Index out of bounds.");
-						} catch (NumberFormatException e) {
-							System.out.println("Index must be a number.");
-						}
-					}
-					break;
-				case "2":
-					while (true) {
-						System.out.print("--------------");
-						System.out.print(player.getMediaList());
-						System.out.println("0. Back");
-						System.out.print("-> ");
-						try {
-							int mediaIndex = Integer.parseInt(scanner.nextLine());
-							if (mediaIndex == 0)
-								break;
-							if (mediaIndex < 1 || mediaIndex > Player.MEDIA_REQUIRED) {
-								System.out.println("Invalid index.");
-								continue;
-							}
-							PlayerActions actions = player.getActionsOfMedia(mediaIndex - 1);
-							while (true) {
-								System.out.println("--------------");
-								System.out.println(actions);
-								System.out.println("0. Back");
-								System.out.print("-> ");
-								try {
-									int actionIndex = Integer.parseInt(scanner.nextLine());
-									if (actionIndex == 0)
-										break;
-									if (actionIndex < 1 || actionIndex > actions.getNumberOfActions()) {
-										System.out.println("Invalid index.");
-										continue;
-									}
-									switch (mediaList[mediaIndex - 1]) {
-										case PNG png -> {
-											switch (actionIndex) {
-												case 1 -> {
-													png.increaseBrightness();
-													System.out.println("Brightness increased.");
-												}
-												case 2 -> {
-													png.decreaseBrightness();
-													System.out.println("Brightness decreased.");
-												}
-											}
-										}
-										case MP3 mp3 -> {
-											switch (actionIndex) {
-												case 1 -> {
-													mp3.increaseVolume();
-													System.out.println("Volume increased.");
-												}
-												case 2 -> {
-													mp3.decreaseVolume();
-													System.out.println("Volume decreased.");
-												}
-											}
-										}
-										case MP4 mp4 -> {
-											switch (actionIndex) {
-												case 1 -> {
-													mp4.increaseBrightness();
-													System.out.println("Brightness increased.");
-												}
-												case 2 -> {
-													mp4.decreaseBrightness();
-													System.out.println("Brightness decreased.");
-												}
-												case 3 -> {
-													mp4.increaseVolume();
-													System.out.println("Volume increased.");
-												}
-												case 4 -> {
-													mp4.decreaseVolume();
-													System.out.println("Volume decreased.");
-												}
-											}
-										}
-										default -> System.out.println("Media type not supported.");
-									}
-								} catch (ArrayIndexOutOfBoundsException e) {
-									System.out.println("Index out of bounds.");
-								} catch (NumberFormatException e) {
-									System.out.println("Index must be a number.");
-								}
-							}
-							break;
-						} catch (ArrayIndexOutOfBoundsException e) {
-							System.out.println("Index out of bounds.");
-						} catch (NumberFormatException e) {
-							System.out.println("Index must be a number.");
-						}
-					}
-				case "0":
-					break;
-				default:
-					System.out.println("Invalid input.");
-					break;
+		switch (Main.scan()) {
+			case "0" -> {
+				return;
 			}
+			case "1" -> Main.openMedia(player, Main.selectMedia(player));
+			case "2" -> Main.modifyMedia(player, Main.selectMedia(player));
+			default -> System.out.println("Invalid input!");
+		}
+		Main.playPlayer(player);
+	}
+
+	private static void openMedia (Player player, int index) {
+		if (index == -1) return;
+		player.openMedia(index);
+	}
+
+	private static void modifyMedia (Player player, int index) {
+		if (index == -1) return;
+		PlayerActions actions = Main.generatePlayerActions(player.getMedia(index));
+
+		System.out.print(Main.generateMediaActionMenu(actions));
+		String input = Main.scan();
+
+		try {
+			int action = Integer.parseInt(input);
+			if (actions.isValidAction(action)) {
+				Main.doAction(player.getMedia(index), action);
+				return;
+			}
+		} catch (NumberFormatException ignored) {
 		}
 
-		 */
+		System.out.println("Invalid action!");
+		Main.modifyMedia(player, index);
+	}
+
+	private static int selectMedia (Player player) {
+		System.out.print(Main.generateSelectMediaMenu(player.getMediaList()));
+		String input = Main.scan();
+
+		if (input.equals("0"))
+			return -1;
+
+		try {
+			int index = Integer.parseInt(input);
+			player.getMedia(index - 1);
+			return index - 1;
+		} catch (NumberFormatException | ArrayIndexOutOfBoundsException ignored) {
+		}
+
+		System.out.println("Invalid selection!");
+		return Main.selectMedia(player);
+	}
+
+	private static String generateSelectMediaMenu (Media[] mediaList) {
+		StringBuilder mediaListString = new StringBuilder("--------------\n");
+		for (int i = 0; i < mediaList.length; i++)
+			mediaListString
+				.append(i + 1)
+				.append(". ")
+				.append(mediaList[i].getTitle())
+				.append("\n");
+		mediaListString.append("0. Back\n-> ");
+		return mediaListString.toString();
+	}
+
+	private static PlayerActions generatePlayerActions (Media media) {
+		return switch (media) {
+			case Image _ -> new PlayerActions(2, """
+				1. Increase brightness
+				2. Decrease brightness"""
+			);
+			case Audio _ -> new PlayerActions(2, """
+				1. Increase volume
+				2. Decrease volume"""
+			);
+			case Video _ -> new PlayerActions(4, """
+				1. Increase brightness
+				2. Decrease brightness
+				3. Increase volume
+				4. Decrease volume"""
+			);
+			case null, default -> new PlayerActions(0, "Media does not support actions.");
+		};
+	}
+
+	private static String generateMediaActionMenu (PlayerActions mediaAction) {
+		return "~~~~~~~~~~~~~~\n%s\n-> ".formatted(mediaAction);
+	}
+
+	private static void doAction (Media media, int action) {
+		switch (media) {
+			case PNG png -> Main.doPNGAction(png, action);
+			case MP3 mp3 -> Main.doMP3Action(mp3, action);
+			case MP4 mp4 -> Main.doMP4Action(mp4, action);
+			case null, default -> System.out.println("Media type not supported.");
+		}
+	}
+
+	private static void doPNGAction (PNG png, int action) {
+		switch (action) {
+			case 1 -> {
+				png.increaseBrightness();
+				System.out.println("Brightness increased.");
+			}
+			case 2 -> {
+				png.decreaseBrightness();
+				System.out.println("Brightness decreased.");
+			}
+		}
+	}
+
+	private static void doMP3Action (MP3 mp3, int action) {
+		switch (action) {
+			case 1 -> {
+				mp3.increaseVolume();
+				System.out.println("Volume increased.");
+			}
+			case 2 -> {
+				mp3.decreaseVolume();
+				System.out.println("Volume decreased.");
+			}
+		}
+	}
+
+	private static void doMP4Action (MP4 mp4, int action) {
+		switch (action) {
+			case 1 -> {
+				mp4.increaseBrightness();
+				System.out.println("Brightness increased.");
+			}
+			case 2 -> {
+				mp4.decreaseBrightness();
+				System.out.println("Brightness decreased.");
+			}
+			case 3 -> {
+				mp4.increaseVolume();
+				System.out.println("Volume increased.");
+			}
+			case 4 -> {
+				mp4.decreaseVolume();
+				System.out.println("Volume decreased.");
+			}
+		}
 	}
 }
