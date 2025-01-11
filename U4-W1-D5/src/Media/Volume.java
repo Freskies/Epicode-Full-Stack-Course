@@ -28,14 +28,14 @@ public interface Volume {
 	void decreaseVolume ();
 
 	/**
-	 * Checks if the volume is valid.
+	 * Checks if the volume is invalid.
 	 * A volume is valid if it is between MIN_VOLUME and MAX_VOLUME.
 	 *
 	 * @param volume The volume to check.
-	 * @return true if the volume is valid, false otherwise.
+	 * @return true if the volume is invalid, false otherwise.
 	 */
-	static boolean isValidVolume (int volume) {
-		return Volume.MIN_VOLUME <= volume && volume <= Volume.MAX_VOLUME;
+	static boolean isInvalidVolume (int volume) {
+		return volume < Volume.MIN_VOLUME || Volume.MAX_VOLUME < volume;
 	}
 
 	/**
