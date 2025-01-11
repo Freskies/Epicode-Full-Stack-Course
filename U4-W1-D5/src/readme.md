@@ -20,13 +20,13 @@ There are two types of media objects:
 - `PlayableMedia`  can be opened with `.play()` method
 
 ### ShowableMedia
-ShowableMedia objects have an abstract method `show()`
+ShowableMedia class has an abstract method `show()`
 that is implemented by the subclasses. `ShowableMedia` also
 implements the `Brightness` interface (Everything that can
 be shown has a brightness).
 
 ### PlayableMedia
-PlayableMedia objects have an abstract method `play()`
+PlayableMedia class has an abstract method `play()`
 that is implemented by the subclasses. `PlayableMedia`
 also implements the `Duration` interface
 (Everything that can be played has a duration).
