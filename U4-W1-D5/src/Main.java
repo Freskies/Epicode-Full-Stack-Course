@@ -54,11 +54,9 @@ public class Main {
 	}
 
 	private static Media loadMedia () {
-		String input;
 		System.out.print(Main.LOAD_MENU);
-		input = Main.scan();
 
-		return switch (input) {
+		return switch (Main.scan()) {
 			case "0" -> null;
 			case "1" -> Main.askPNG();
 			case "2" -> Main.askMP3();
@@ -114,9 +112,8 @@ public class Main {
 
 	private static void playPlayer (Player player) {
 		System.out.print(Main.PLAYER_MENU);
-		String input = Main.scan();
 
-		switch (input) {
+		switch (Main.scan()) {
 			case "0" -> {
 				return;
 			}
@@ -143,12 +140,12 @@ public class Main {
 
 		try {
 			int action = Integer.parseInt(input);
-			if (actions.isValidAction(action)) {
+			if (actions.isValidAction(action))
 				Main.doAction(player.getMedia(index), action);
-				Main.modifyMedia(player, index);
-			}
+			else throw new NumberFormatException();
 		} catch (NumberFormatException ignored) {
 			System.out.println("Invalid action!");
+		} finally {
 			Main.modifyMedia(player, index);
 		}
 	}
