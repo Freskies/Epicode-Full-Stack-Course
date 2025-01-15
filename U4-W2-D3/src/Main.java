@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -66,9 +67,9 @@ public class Main {
 		// ES 2
 		System.out.print("Exercise 2: ");
 		List<Order> orderWithBabyProducts = orders.stream().filter(
-			order -> !order.products.stream().filter(
+			order -> order.products.stream().anyMatch(
 				product -> product.category.equals("Baby")
-			).toList().isEmpty()
+			)
 		).toList();
 		System.out.println(orderWithBabyProducts);
 
@@ -82,7 +83,7 @@ public class Main {
 				product.id,
 				product.name,
 				product.category,
-				product.price * 1.1
+				product.price * 0.9
 			)
 		).toList();
 		System.out.print(boysProduct + " -> ");
@@ -91,13 +92,31 @@ public class Main {
 		// ES 4
 		System.out.print("Exercise 4: ");
 		List<Product> orderedByVIPS = orders.stream()
-			.filter(
-				order -> order.customer.tier == 2 &&
+			.filter(order -> order.customer.tier == 2 &&
 					order.orderDate.isAfter(LocalDate.of(2021, 2, 1)) &&
 					order.orderDate.isBefore(LocalDate.of(2021, 4, 1))
 			)
 			.flatMap(order -> order.products.stream())
 			.toList();
 		System.out.println(orderedByVIPS);
+
+		System.out.print("Exercise 4+: ");
+		List<Product> orderedByVIPS2 = orders.stream()
+			.filter(order -> order.customer.tier == 2 &&
+				order.orderDate.isAfter(LocalDate.of(2021, 2, 1)) &&
+				order.orderDate.isBefore(LocalDate.of(2021, 4, 1))
+			)
+			.reduce(
+				new ArrayList<>(),
+				(List<Product> acc, Order order) -> {
+					acc.addAll(order.products);
+					return acc;
+				},
+				(acc1, acc2) -> {
+					acc1.addAll(acc2);
+					return acc1;
+				}
+			);
+		System.out.println(orderedByVIPS2);
 	}
 }
