@@ -1,1 +1,0 @@
-Apple@Fruit@1.000000#Banana@Fruit@1.500000#Carrot@Vegetable@0.500000#Donut@Pastry@2.000000
