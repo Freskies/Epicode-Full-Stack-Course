@@ -1,0 +1,1 @@
+Apple@Fruit@1.00#Banana@Fruit@1.50#Carrot@Vegetable@0.50#Donut@Pastry@2.00

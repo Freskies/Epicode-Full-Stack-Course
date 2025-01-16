@@ -4,8 +4,8 @@ import Shop.Customer;
 import Shop.Order;
 import Shop.Product;
 
+import java.io.IOException;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Main {
@@ -71,5 +71,19 @@ public class Main {
 		System.out.println(Product.getPricesPerCategory(
 			Arrays.asList(apple, banana, carrot, donut)
 		));
+
+		// ES 6
+		try {
+			Product.saveProductsInFile(
+				Arrays.asList(apple, banana, carrot, donut),
+				"products.txt"
+			);
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+
+		// ES 7
+		System.out.println("\nES7");
+		System.out.println(Product.readProductsFrom("products.txt"));
 	}
 }

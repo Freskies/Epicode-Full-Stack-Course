@@ -1,9 +1,7 @@
 package Shop;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Random;
+import java.io.*;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Product {
@@ -72,6 +70,28 @@ public class Product {
 		);
 	}
 
+	public static void saveProductsInFile(List<Product> products, String path) throws IOException {
+		try (FileWriter writer = new FileWriter(path)) {
+			List<String> stringsProduct = new LinkedList<>();
+			for (Product product : products)
+				stringsProduct.add(product.transformToSavableString());
+			writer.write(String.join("#", stringsProduct));
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	public static List<Product> readProductsFrom(String path) {
+		try (Scanner reader = new Scanner(new File(path))) {
+			String stringProducts = reader.nextLine();
+			return Arrays.stream(stringProducts.split("#")).map(
+				Product::getProductFromString
+			).toList();
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
 	@Override
 	public boolean equals (Object o) {
 		if (o == null || getClass() != o.getClass()) return false;
@@ -87,5 +107,18 @@ public class Product {
 	@Override
 	public String toString () {
 		return "Product{%s: %.2f€}".formatted(this.getName(), this.getPrice());
+	}
+
+	public String transformToSavableString () {
+		return "%s@%s@%.2f".formatted(this.getName(), this.getCategory(), this.getPrice());
+	}
+
+	public static Product getProductFromString (String product) {
+		List<String> props = Arrays.asList(product.split("@"));
+		return new Product(
+			props.get(0),
+			props.get(1),
+			Double.parseDouble(props.get(2))
+		);
 	}
 }
