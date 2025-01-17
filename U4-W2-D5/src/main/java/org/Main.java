@@ -306,7 +306,7 @@ public class Main {
 	public static @NotNull String askPublicationYear () {
 		System.out.print("\tEnter publication year: ");
 		String input = Main.scan();
-		if (input.length() != 4) {
+		if (!input.matches("-?\\d+")) {
 			System.out.println("\tInvalid publication year");
 			return Main.askPublicationYear();
 		}
