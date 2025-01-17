@@ -1,5 +1,7 @@
 # Project Structure
 
+## Visual Representation
+
 ```mermaid
 classDiagram
     class Publication {
@@ -27,13 +29,30 @@ classDiagram
 
     Publication <|-- Book
     Publication <|-- Magazine
-    Archive "1" *-- "0..*" Publication
+    Archive <|-- Publication
     Main --> Archive
 ```
+
+## Classes notes
+
+### Publication
 
 There is an abstract class `Publication` that
 represents all types of publications (`Book`
 and `Article` in this case).
 Each publication has a title, author,
 and year of publication.
+
+### Book and Magazine
+
+`Book` and `Magazine` are concrete classes
+that extend the `Publication` class.
+`Book` has a genre and author,
+and `Magazine` has a periodicity.
+
+### Archive
+
+`Archive` is a class that contains a set of
+`Publication` objects. It has methods to add and
+modify publications.
 
