@@ -54,5 +54,6 @@ and `Magazine` has a periodicity.
 
 `Archive` is a class that contains a set of
 `Publication` objects. It has methods to add and
-modify publications.
+modify publications. Archive also has all info
+methods to get statistics of data.
 
