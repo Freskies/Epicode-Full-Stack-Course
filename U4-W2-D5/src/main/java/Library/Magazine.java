@@ -38,4 +38,17 @@ public class Magazine extends Publication {
 			throw new IllegalArgumentException("Periodicity cannot be null");
 		this.periodicity = periodicity;
 	}
+
+	// OVERRIDE
+
+	@Override
+	public String toString () {
+		return "Magazine{" +
+			"periodicity=" + getPeriodicity() +
+			", isbn='" + getIsbn() + '\'' +
+			", title='" + getTitle() + '\'' +
+			", publicationYear='" + getPublicationYear() + '\'' +
+			", pageCount=" + getPageCount() +
+			'}';
+	}
 }

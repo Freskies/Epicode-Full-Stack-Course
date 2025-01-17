@@ -72,4 +72,18 @@ public class Book extends Publication {
 			throw new IllegalArgumentException("Genre must contain only letters and spaces");
 		this.genre = genre.trim();
 	}
+
+	// OVERRIDES
+
+	@Override
+	public String toString () {
+		return "Book{" +
+			"author='" + getAuthor() + '\'' +
+			", genre='" + getGenre() + '\'' +
+			", isbn='" + getIsbn() + '\'' +
+			", title='" + getTitle() + '\'' +
+			", publicationYear='" + getPublicationYear() + '\'' +
+			", pageCount=" + getPageCount() +
+			'}';
+	}
 }

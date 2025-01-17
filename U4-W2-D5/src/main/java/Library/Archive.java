@@ -28,6 +28,15 @@ public class Archive {
 	// GET
 
 	/**
+	 * Get all publications in the archive
+	 *
+	 * @return Set of all publications in the archive
+	 */
+	public Set<Publication> getAllPublication () {
+		return this.publications;
+	}
+
+	/**
 	 * Get all books in the archive
 	 *
 	 * @return Set of all books in the archive
@@ -52,9 +61,10 @@ public class Archive {
 	}
 
 	/**
-	 * Get all publications in the archive
+	 * Get a publication by its ISBN
 	 *
-	 * @return Set of all publications in the archive
+	 * @return Publication with the provided ISBN
+	 * @throws IllegalISBNProvided If the publication is not found
 	 */
 	public Publication getPublication (String isbn) {
 		return this.publications.stream()
@@ -84,6 +94,30 @@ public class Archive {
 	public Set<Book> getBooksOfAuthor (String author) {
 		return this.getAllBooks().stream()
 			.filter(book -> book.getAuthor().equals(author))
+			.collect(Collectors.toSet());
+	}
+
+	/**
+	 * Get all books of a specific genre
+	 *
+	 * @param genre genre of the books
+	 * @return Set of all books of the genre
+	 */
+	public Set<Book> getBooksOfGenre (String genre) {
+		return this.getAllBooks().stream()
+			.filter(book -> book.getGenre().equals(genre))
+			.collect(Collectors.toSet());
+	}
+
+	/**
+	 * Get all magazines of a specific periodicity
+	 *
+	 * @param periodicity Periodicity of the magazines
+	 * @return Set of all magazines of the periodicity
+	 */
+	public Set<Magazine> getMagazinesOfPeriodicity (Periodicity periodicity) {
+		return this.getAllMagazine().stream()
+			.filter(magazine -> magazine.getPeriodicity().equals(periodicity))
 			.collect(Collectors.toSet());
 	}
 
