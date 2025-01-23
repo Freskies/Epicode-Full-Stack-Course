@@ -1,49 +1,67 @@
-package org.events;
+package org.database;
 
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @Entity
-@Table(name = "events")
+@Table (name = "events")
 public class Event {
+
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "title")
+	@Column (name = "title")
 	private String title;
 
-	@Column(name = "event_date")
+	@Column (name = "event_date")
 	private LocalDate eventDate;
 
-	@Column(name = "description")
+	@Column (name = "description")
 	private String description;
 
-	@Column(name = "event_type")
-	private String eventType;
+	@Column (name = "event_type")
+	@Enumerated (EnumType.STRING)
+	private EventType eventType;
 
-	@Column(name = "max_participants")
-	private int maxParticipants;
+	@Column (name = "max_participants")
+	private Integer maxParticipants;
 
-	public Event () {}
+	@ManyToOne
+	@JoinColumn (name = "location_id")
+	private Location location;
+
+	@OneToMany (mappedBy = "event", cascade = CascadeType.ALL)
+	private Set<Participant> participants = new LinkedHashSet<>();
+
+	public Event () {
+	}
 
 	public Event (
 		String title,
 		LocalDate eventDate,
 		String description,
 		EventType eventType,
-		Integer maxParticipants
+		Integer maxParticipants,
+		Location location
 	) {
 		this.title = title;
 		this.eventDate = eventDate;
 		this.description = description;
-		this.eventType = eventType.toString();
+		this.eventType = eventType;
 		this.maxParticipants = maxParticipants;
+		this.location = location;
 	}
 
 	public Long getId () {
 		return this.id;
+	}
+
+	public void setId (Long id) {
+		this.id = id;
 	}
 
 	public String getTitle () {
@@ -71,30 +89,47 @@ public class Event {
 	}
 
 	public EventType getEventType () {
-		return EventType.valueOf(this.eventType.toUpperCase());
+		return this.eventType;
 	}
 
 	public void setEventType (EventType eventType) {
-		this.eventType = eventType.toString();
+		this.eventType = eventType;
 	}
 
-	public int getMaxParticipants () {
+	public Integer getMaxParticipants () {
 		return this.maxParticipants;
 	}
 
-	public void setMaxParticipants (int maxParticipants) {
+	public void setMaxParticipants (Integer maxParticipants) {
 		this.maxParticipants = maxParticipants;
+	}
+
+	public Location getLocation () {
+		return this.location;
+	}
+
+	public void setLocation (Location location) {
+		this.location = location;
 	}
 
 	@Override
 	public String toString () {
-		return "org.events.Event{" +
+		return "Event{" +
 			"id=" + getId() +
 			", title='" + getTitle() + '\'' +
 			", eventDate=" + getEventDate() +
 			", description='" + getDescription() + '\'' +
-			", eventType='" + getEventType() + '\'' +
+			", eventType=" + getEventType() +
 			", maxParticipants=" + getMaxParticipants() +
+			", location=" + getLocation() +
 			'}';
+	}
+
+	public Set<Participant> getParticipants () {
+		return participants;
+	}
+
+	public void setParticipants (Set<Participant> participants) {
+		this.participants = participants;
 	}
 }

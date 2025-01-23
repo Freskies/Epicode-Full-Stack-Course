@@ -1,8 +1,8 @@
-package org.events;
+package org.database;
 
-public enum EventType {
-	PUBLIC,
-	PRIVATE;
+public enum State {
+	CONFIRMED,
+	PENDING;
 
 	@Override
 	public String toString () {

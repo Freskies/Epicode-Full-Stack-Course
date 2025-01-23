@@ -1,4 +1,4 @@
-package org.events;
+package org.dao;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
