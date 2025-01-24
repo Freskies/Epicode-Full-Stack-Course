@@ -104,5 +104,7 @@ public class Main {
 	public static void task8 (PublicationDAO publicationDAO) {
 		System.out.println("TASK 8");
 		publicationDAO.findLoanedAndExpired().forEach(System.out::println);
+		System.out.println("TASK 8 (MY EXTRA) - Late loans");
+		publicationDAO.findLateLoans().forEach(System.out::println);
 	}
 }

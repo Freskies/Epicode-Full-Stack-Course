@@ -77,4 +77,23 @@ public class PublicationDAO extends DAO<Publication, Long> {
 		entityManager.getTransaction().commit();
 		return publication;
 	}
+
+	public List<Publication> findLateLoans () {
+		entityManager.getTransaction().begin();
+		List<Publication> publication = this.entityManager.createQuery(
+			"""
+				SELECT p
+				FROM Publication p, Loan l
+				WHERE l.isbn.id = p.id
+				AND l.exceptedReturnDate < CURRENT DATE
+				AND (
+					l.effectiveReturnDate IS NULL
+					OR l.effectiveReturnDate > l.exceptedReturnDate
+					)
+				""",
+			Publication.class
+		).getResultList();
+		entityManager.getTransaction().commit();
+		return publication;
+	}
 }
