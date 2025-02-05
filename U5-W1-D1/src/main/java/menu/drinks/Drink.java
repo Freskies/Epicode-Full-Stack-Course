@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import menu.MenuItem;
+import org.springframework.stereotype.Repository;
 
 @EqualsAndHashCode (callSuper = true)
 @Data
