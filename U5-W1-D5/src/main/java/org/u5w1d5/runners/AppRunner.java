@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import org.u5w1d5.database.*;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -341,11 +342,12 @@ public class AppRunner implements CommandLineRunner {
 	private LocalDate askDate () {
 		System.out.print("\tEnter the date (yyyy-mm-dd): ");
 		String date = scan();
-		if (!date.matches("^\\d{4}-\\d{2}-\\d{2}$")) {
+		try {
+			return LocalDate.parse(date);
+		} catch (DateTimeParseException _) {
 			System.out.println("\tInvalid date format!");
 			return this.askDate();
 		}
-		return LocalDate.parse(date);
 	}
 
 	/**
