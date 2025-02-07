@@ -6,6 +6,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.u5w1d5.database.*;
 
+import java.util.List;
 import java.util.Scanner;
 
 @Component
@@ -156,9 +157,40 @@ public class AppRunner implements CommandLineRunner {
 
 	// APPLICATION
 
+	/**
+	 * <h1>Main Menu</h1>
+	 * <p>1. New Reservation</p>
+	 * <p>2. My Reservations</p>
+	 * <p>0. Logout</p>
+	 */
 	public void mainMenu (User loggedUser) {
 		System.out.print("""
-			CIOLA
-			""");
+			##################
+			1. New Reservation
+			2. My Reservations
+			0. Logout
+			->\s""");
+
+		switch (scan()) {
+			case "1" -> this.newReservation(loggedUser);
+			case "2" -> this.myReservations(loggedUser);
+			case "0" -> this.loginMenu();
+			default -> this.mainMenu(loggedUser);
+		}
 	}
+
+	private void newReservation (User loggedUser) {
+
+	}
+
+	/**
+	 * Print all reservations of the logged user
+	 * @param loggedUser the user logged in
+	 */
+	private void myReservations (User loggedUser) {
+		List<Reservation> reservations = reservationRepository.findByUser(loggedUser);
+		PrintHelper.printReservations(reservations.toArray(new Reservation[0]));
+	}
+
+
 }
