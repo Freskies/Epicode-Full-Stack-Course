@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.proxy.HibernateProxy;
 
+import java.util.List;
 import java.util.Objects;
 
 @Getter
@@ -24,6 +25,10 @@ public class Workstation {
 
 	@ManyToOne
 	private Building building;
+
+	@OneToMany
+	@ToString.Exclude
+	private List<Reservation> reservation;
 
 	public Workstation (String description, WorkstationType type, int maxOccupancy, Building building) {
 		this.description = description;

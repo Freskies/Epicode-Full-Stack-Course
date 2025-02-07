@@ -87,7 +87,7 @@ public class FooDataConfig {
 
 	@Bean
 	public User user3() {
-		return new User("Pavo", "Paone Giovanni", "nanni2002@hotmail.com");
+		return new User("PavoJ", "Paone Giovanni", "nanni2002@hotmail.com");
 	}
 
 	@Bean
@@ -105,5 +105,15 @@ public class FooDataConfig {
 	@Bean
 	public Reservation reservation2() {
 		return new Reservation(user3(), c1(), Date.valueOf("2025-08-15").toLocalDate());
+	}
+
+	@Bean
+	public Reservation reservation3() {
+		return new Reservation(user1(), b1(), Date.valueOf("2025-06-01").toLocalDate());
+	}
+
+	@Bean
+	public Reservation reservation4() {
+		return new Reservation(user1(), a1(), Date.valueOf("2025-06-02").toLocalDate());
 	}
 }

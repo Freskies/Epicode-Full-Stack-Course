@@ -1,11 +1,13 @@
 package org.u5w1d5.runners;
 
 import lombok.RequiredArgsConstructor;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.u5w1d5.database.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
@@ -13,34 +15,33 @@ import java.util.Scanner;
 @RequiredArgsConstructor
 @Order (2)
 public class AppRunner implements CommandLineRunner {
-
-	// REPOSITORY
 	private final BuildingRepository buildingRepository;
 	private final ReservationRepository reservationRepository;
 	private final UserRepository userRepository;
 	private final WorkstationRepository workstationRepository;
 
-	// SCANNER
 	private static final Scanner scanner = new Scanner(System.in);
 
 	private static String scan () {
 		return scanner.nextLine();
 	}
 
+	/**
+	 * <h1>Run</h1>
+	 * @param args incoming main method arguments
+	 */
 	@Override
 	public void run (String... args) {
 		this.loginMenu();
 	}
 
-	// LOGIN
-
 	/**
-	 * <h1>Login Menu</h1>
+	 * <h2>Login Menu</h2>
 	 * <p>1. Login</p>
 	 * <p>2. Register</p>
 	 * <p>0. Exit</p>
 	 */
-	public void loginMenu () {
+	private void loginMenu () {
 		System.out.print("""
 			------------------
 			1. Login
@@ -57,10 +58,11 @@ public class AppRunner implements CommandLineRunner {
 	}
 
 	/**
+	 * <h3>Login</h3>
 	 * Ask for username and check if exists.
 	 * If exists, go to main menu
 	 */
-	public void login () {
+	private void login () {
 		String username = this.askUsername();
 		if (userRepository.existsByUsername(username))
 			this.mainMenu(userRepository.findByUsername(username));
@@ -71,9 +73,10 @@ public class AppRunner implements CommandLineRunner {
 	}
 
 	/**
+	 * <h3>Register</h3>
 	 * Register a new user and go to main menu
 	 */
-	public void register () {
+	private void register () {
 		String username = this.askUsername();
 		if (userRepository.existsByUsername(username)) {
 			System.out.println("\tUsername already exists!");
@@ -92,7 +95,7 @@ public class AppRunner implements CommandLineRunner {
 	 *
 	 * @return username
 	 */
-	public String askUsername () {
+	private @NotNull String askUsername () {
 		System.out.print("\tEnter your username: ");
 		String username = scan();
 		if (username.isBlank()) {
@@ -113,7 +116,7 @@ public class AppRunner implements CommandLineRunner {
 	 *
 	 * @return full name
 	 */
-	public String askFullName () {
+	private @NotNull String askFullName () {
 		System.out.print("\tEnter your full name: ");
 		String fullName = scan();
 		if (fullName.isBlank()) {
@@ -141,7 +144,7 @@ public class AppRunner implements CommandLineRunner {
 	 *
 	 * @return email
 	 */
-	public String askEmail () {
+	private @NotNull String askEmail () {
 		System.out.print("\tEnter your email: ");
 		String email = scan();
 		if (email.isBlank()) {
@@ -155,21 +158,20 @@ public class AppRunner implements CommandLineRunner {
 		return email;
 	}
 
-	// APPLICATION
-
 	/**
-	 * <h1>Main Menu</h1>
+	 * <h2>Main Menu</h2>
 	 * <p>1. New Reservation</p>
 	 * <p>2. My Reservations</p>
 	 * <p>0. Logout</p>
 	 */
-	public void mainMenu (User loggedUser) {
-		System.out.print("""
+	private void mainMenu (@NotNull User loggedUser) {
+		System.out.printf("""
 			##################
+			WELCOME %s!
 			1. New Reservation
 			2. My Reservations
 			0. Logout
-			->\s""");
+			->\s""", loggedUser.getUsername());
 
 		switch (scan()) {
 			case "1" -> this.newReservation(loggedUser);
@@ -179,18 +181,171 @@ public class AppRunner implements CommandLineRunner {
 		}
 	}
 
+	/**
+	 * <h3>New Reservation</h3>
+	 * Ask for a date and make a new reservation
+	 *
+	 * @param loggedUser the user logged in
+	 */
 	private void newReservation (User loggedUser) {
-
+		System.out.println("When do you want to make the reservation?");
+		LocalDate date = this.askDate();
+		if (reservationRepository.existsByUserAndReservationDate(loggedUser, date)) {
+			System.out.println("You already have a reservation on this date!");
+			this.newReservation(loggedUser);
+		}
+		this.newReservationMenu(loggedUser, date, null, null);
 	}
 
 	/**
-	 * Print all reservations of the logged user
+	 * <h3>New Reservation Menu</h3>
+	 * @param loggedUser the user logged in
+	 * @param date the date of the reservation
+	 * @param type the type of workstation
+	 * @param city the city of the building
+	 */
+	private void newReservationMenu (User loggedUser, LocalDate date, WorkstationType type, String city) {
+		String tSelection = type == null
+			? "Filter by type"
+			: "Remove the filter by " + type;
+
+		String cSelection = city == null
+			? "Filter by city"
+			: "Remove the filter by " + city;
+
+		List<Workstation> workstations = this.getWorkstations(date, type, city);
+
+		System.out.printf("""
+			Workstations available on %s:
+			T. %s
+			C. %s
+			
+			%s
+			0. Back
+			->\s""",
+			date,
+			tSelection,
+			cSelection,
+			this.getWorkstationsMenuString(workstations)
+		);
+
+		String selection = AppRunner.scan();
+
+		switch (selection) {
+			case "T" -> this.newReservationMenu(loggedUser, date, type == null ? this.askWorkstationType() : null, city);
+			case "C" -> this.newReservationMenu(loggedUser, date, type, city == null ? this.askCity() : null);
+			case "0" -> this.mainMenu(loggedUser);
+			default -> {
+				try {
+					int intSelection = Integer.parseInt(selection);
+					if (intSelection > 0 && intSelection <= workstations.size()) {
+						Workstation workstation = workstations.get(intSelection - 1);
+						reservationRepository.save(new Reservation(loggedUser, workstation, date));
+						System.out.println("Reservation made successfully!");
+						this.mainMenu(loggedUser);
+					} else {
+						System.out.println("Invalid selection!");
+						this.newReservationMenu(loggedUser, date, type, city);
+					}
+				} catch (NumberFormatException e) {
+					System.out.println("Invalid selection!");
+					this.newReservationMenu(loggedUser, date, type, city);
+				}
+			}
+		}
+	}
+
+	/**
+	 * Get all workstations available on a date
+	 * @param date the date of the reservation
+	 * @param type the type of workstation
+	 * @param city the city of the building
+	 * @return list of workstations available
+	 */
+	private List<Workstation> getWorkstations (LocalDate date, WorkstationType type, String city) {
+		if (type != null && city != null)
+			return workstationRepository.findAllNotReservedOnDateAndTypeAndCity(date, type, city);
+		else if (type != null) return workstationRepository.findAllNotReservedOnDateAndType(date, type);
+		else if (city != null) return workstationRepository.findAllNotReservedOnDateAndCity(date, city);
+		else return workstationRepository.findAllNotReservedOnDate(date);
+	}
+
+	/**
+	 * Get a string with all workstations available
+	 *
+	 * @param workstations list of workstations
+	 * @return string with all workstations available
+	 */
+	private @NotNull String getWorkstationsMenuString (@NotNull List<Workstation> workstations) {
+		StringBuilder sb = new StringBuilder();
+		for (int i = 0; i < workstations.size(); i++)
+			sb.append(i + 1)
+				.append(". ")
+				.append(workstations.get(i).getDescription())
+				.append(" (")
+				.append(workstations.get(i).getBuilding().getName())
+				.append(")\n");
+		return sb.toString();
+	}
+
+	/**
+	 * Ask for a workstation type
+	 * @return workstation type
+	 */
+	private WorkstationType askWorkstationType () {
+		try {
+			System.out.println("Select a type:");
+			for (int i = 0; i < WorkstationType.values().length; i++)
+				System.out.println(i + 1 + ". " + WorkstationType.values()[i]);
+			System.out.print("-> ");
+			int selection = Integer.parseInt(AppRunner.scan());
+			return WorkstationType.values()[selection - 1];
+		}
+		catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
+			System.out.println("Invalid selection!");
+			return this.askWorkstationType();
+		}
+	}
+
+	/**
+	 * Ask for a city
+	 * @return city
+	 */
+	private @NotNull String askCity () {
+		System.out.print("Enter the city: ");
+		String city = AppRunner.scan();
+		if (city.isBlank()) {
+			System.out.println("City cannot be empty!");
+			return this.askCity();
+		}
+		return city;
+	}
+
+	/**
+	 * Ask for a date until is valid
+	 * A valid date is not empty and has a valid date format
+	 * @return date
+	 */
+	private LocalDate askDate () {
+		System.out.print("\tEnter the date (yyyy-mm-dd): ");
+		String date = scan();
+		if (!date.matches("^\\d{4}-\\d{2}-\\d{2}$")) {
+			System.out.println("\tInvalid date format!");
+			return this.askDate();
+		}
+		return LocalDate.parse(date);
+	}
+
+	/**
+	 * <h3>My Reservations</h3>
+	 * Print all reservations of the logged user ordered by date
+	 *
 	 * @param loggedUser the user logged in
 	 */
 	private void myReservations (User loggedUser) {
-		List<Reservation> reservations = reservationRepository.findByUser(loggedUser);
+		List<Reservation> reservations = reservationRepository.findAllByUserOrderByReservationDateAsc(loggedUser);
 		PrintHelper.printReservations(reservations.toArray(new Reservation[0]));
+		this.mainMenu(loggedUser);
 	}
-
 
 }

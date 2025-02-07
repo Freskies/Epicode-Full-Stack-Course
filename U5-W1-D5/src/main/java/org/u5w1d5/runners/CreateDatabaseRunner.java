@@ -43,6 +43,8 @@ public class CreateDatabaseRunner implements CommandLineRunner {
 	// RESERVATIONS
 	private final Reservation reservation1;
 	private final Reservation reservation2;
+	private final Reservation reservation3;
+	private final Reservation reservation4;
 
 	@Override
 	public void run (String... args) {
@@ -65,7 +67,7 @@ public class CreateDatabaseRunner implements CommandLineRunner {
 
 		System.out.println(" > Creating reservations...");
 		reservationRepository.saveAll(
-			List.of(this.reservation1, this.reservation2)
+			List.of(this.reservation1, this.reservation2, this.reservation3, this.reservation4)
 		);
 
 		System.out.println("Database created!");
