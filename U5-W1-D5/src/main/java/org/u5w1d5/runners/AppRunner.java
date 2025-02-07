@@ -28,6 +28,7 @@ public class AppRunner implements CommandLineRunner {
 
 	/**
 	 * <h1>Run</h1>
+	 *
 	 * @param args incoming main method arguments
 	 */
 	@Override
@@ -199,12 +200,15 @@ public class AppRunner implements CommandLineRunner {
 
 	/**
 	 * <h3>New Reservation Menu</h3>
+	 *
 	 * @param loggedUser the user logged in
-	 * @param date the date of the reservation
-	 * @param type the type of workstation
-	 * @param city the city of the building
+	 * @param date       the date of the reservation
+	 * @param type       the type of workstation
+	 * @param city       the city of the building
 	 */
 	private void newReservationMenu (User loggedUser, LocalDate date, WorkstationType type, String city) {
+		List<Workstation> workstations = this.getWorkstations(date, type, city);
+
 		String tSelection = type == null
 			? "Filter by type"
 			: "Remove the filter by " + type;
@@ -213,20 +217,17 @@ public class AppRunner implements CommandLineRunner {
 			? "Filter by city"
 			: "Remove the filter by " + city;
 
-		List<Workstation> workstations = this.getWorkstations(date, type, city);
+		String workstationSelection = workstations.isEmpty()
+			? "No workstation found."
+			: this.getWorkstationsMenuString(workstations);
 
 		System.out.printf("""
-			Workstations available on %s:
-			T. %s
-			C. %s
-			
-			%s
-			0. Back
-			->\s""",
-			date,
-			tSelection,
-			cSelection,
-			this.getWorkstationsMenuString(workstations)
+				Workstations available on %s:
+				T. %s
+				C. %s
+				%s0. Back
+				->\s""",
+			date, tSelection, cSelection, workstationSelection
 		);
 
 		String selection = AppRunner.scan();
@@ -257,6 +258,7 @@ public class AppRunner implements CommandLineRunner {
 
 	/**
 	 * Get all workstations available on a date
+	 *
 	 * @param date the date of the reservation
 	 * @param type the type of workstation
 	 * @param city the city of the building
@@ -290,40 +292,50 @@ public class AppRunner implements CommandLineRunner {
 
 	/**
 	 * Ask for a workstation type
+	 *
 	 * @return workstation type
 	 */
 	private WorkstationType askWorkstationType () {
+		System.out.println("Select a type:");
+		for (int i = 0; i < WorkstationType.values().length; i++)
+			System.out.println(i + 1 + ". " + WorkstationType.values()[i]);
+		System.out.print("-> ");
+
 		try {
-			System.out.println("Select a type:");
-			for (int i = 0; i < WorkstationType.values().length; i++)
-				System.out.println(i + 1 + ". " + WorkstationType.values()[i]);
-			System.out.print("-> ");
 			int selection = Integer.parseInt(AppRunner.scan());
 			return WorkstationType.values()[selection - 1];
-		}
-		catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
+		} catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
 			System.out.println("Invalid selection!");
 			return this.askWorkstationType();
 		}
 	}
 
 	/**
-	 * Ask for a city
+	 * Ask for a city. The list of cities is retrieved from the database
+	 *
 	 * @return city
 	 */
 	private @NotNull String askCity () {
-		System.out.print("Enter the city: ");
-		String city = AppRunner.scan();
-		if (city.isBlank()) {
-			System.out.println("City cannot be empty!");
+		List<String> cities = buildingRepository.findDistinctCities();
+
+		System.out.println("Select a city:");
+		for (int i = 0; i < cities.size(); i++)
+			System.out.println(i + 1 + ". " + cities.get(i));
+		System.out.print("-> ");
+
+		try {
+			int selection = Integer.parseInt(AppRunner.scan());
+			return cities.get(selection - 1);
+		} catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
+			System.out.println("Invalid selection!");
 			return this.askCity();
 		}
-		return city;
 	}
 
 	/**
 	 * Ask for a date until is valid
 	 * A valid date is not empty and has a valid date format
+	 *
 	 * @return date
 	 */
 	private LocalDate askDate () {
