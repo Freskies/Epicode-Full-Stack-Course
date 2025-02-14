@@ -84,4 +84,11 @@ public class EmployeeService {
 
 		this.employeeRepository.deleteById(id);
 	}
+
+	public EmployeeDetailResponse addAvatar (Long id, String avatarUrl) {
+		Employee employee = this.findById(id);
+		employee.setAvatarUrl(avatarUrl);
+		this.employeeRepository.save(employee);
+		return this.employeeDetailResponseFromEntity(employee);
+	}
 }

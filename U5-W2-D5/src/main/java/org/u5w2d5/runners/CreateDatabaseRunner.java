@@ -3,6 +3,8 @@ package org.u5w2d5.runners;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+import org.u5w2d5.booking.Booking;
+import org.u5w2d5.booking.BookingRepository;
 import org.u5w2d5.employee.Employee;
 import org.u5w2d5.employee.EmployeeRepository;
 import org.u5w2d5.travel.Travel;
@@ -17,6 +19,7 @@ import java.util.Arrays;
 public class CreateDatabaseRunner implements CommandLineRunner {
 	private final EmployeeRepository employeeRepository;
 	private final TravelRepository travelRepository;
+	private final BookingRepository bookingRepository;
 
 	@Override
 	public void run (String... args) throws Exception {
@@ -50,5 +53,16 @@ public class CreateDatabaseRunner implements CommandLineRunner {
 		};
 
 		this.travelRepository.saveAll(Arrays.asList(travels));
+
+		Booking[] bookings = new Booking[] {
+			new Booking(LocalDate.of(2021, 4, 1), "Notes 1", travels[0], employees[0]),
+			new Booking(LocalDate.of(2021, 4, 2), "Notes 2", travels[1], employees[1]),
+			new Booking(LocalDate.of(2021, 4, 3), "Notes 3", travels[2], employees[2]),
+			new Booking(LocalDate.of(2021, 4, 4), "Notes 4", travels[3], employees[3]),
+			new Booking(LocalDate.of(2021, 4, 5), "Notes 5", travels[4], employees[4]),
+			new Booking(LocalDate.of(2021, 4, 6), "Notes 6", travels[5], employees[5]),
+		};
+
+		this.bookingRepository.saveAll(Arrays.asList(bookings));
 	}
 }

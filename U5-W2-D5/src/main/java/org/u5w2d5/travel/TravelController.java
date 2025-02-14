@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.*;
 import org.u5w2d5.response.CreateResponse;
 
 import java.util.List;
-import java.util.regex.Pattern;
 
 @RestController
 @RequestMapping ("/api/travels")
@@ -44,13 +43,9 @@ public class TravelController {
 		this.travelService.deleteById(id);
 	}
 
-	@PatchMapping ("/{id}")
+	@PatchMapping ("/{id}/state")
 	@ResponseStatus (HttpStatus.OK)
-	public TravelDetailResponse updateState (@PathVariable Long id, @RequestBody String state) {
-		Pattern pattern = Pattern.compile("\"state\":\\s*\"(.*?)\"");
-		TravelState travelState = TravelState.valueOf(
-			pattern.matcher(state).results().findFirst().orElseThrow().group(1)
-		);
-		return this.travelService.updateState(id, travelState);
+	public TravelDetailResponse updateState (@PathVariable Long id, @RequestBody TravelStateRequest request) {
+		return this.travelService.updateState(id, request.state());
 	}
 }

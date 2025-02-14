@@ -30,6 +30,13 @@ public class Booking {
 	@ManyToOne
 	private Employee employee;
 
+	public Booking (LocalDate requestedAt, String notes, Travel travel, Employee employee) {
+		this.requestedAt = requestedAt;
+		this.notes = notes;
+		this.travel = travel;
+		this.employee = employee;
+	}
+
 	@Override
 	public final boolean equals (Object o) {
 		if (this == o) return true;
