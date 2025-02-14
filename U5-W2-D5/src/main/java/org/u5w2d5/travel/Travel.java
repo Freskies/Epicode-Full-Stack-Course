@@ -23,6 +23,12 @@ public class Travel {
 	private LocalDate startDate;
 	private TravelState state;
 
+	public Travel (String destination, LocalDate startDate, TravelState state) {
+		this.destination = destination;
+		this.startDate = startDate;
+		this.state = state;
+	}
+
 	@Override
 	public final boolean equals (Object o) {
 		if (this == o) return true;

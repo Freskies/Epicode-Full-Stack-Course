@@ -23,6 +23,13 @@ public class Employee {
 	private String lastName;
 	private String email;
 
+	public Employee (String username, String firstName, String lastName, String email) {
+		this.username = username;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+	}
+
 	@Override
 	public final boolean equals (Object o) {
 		if (this == o) return true;
