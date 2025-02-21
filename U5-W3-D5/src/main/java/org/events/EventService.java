@@ -51,7 +51,7 @@ public class EventService {
 
 	public Event eventFromEventRequest (@Valid EventRequest eventRequest) {
 		Event event = new Event();
-		BeanUtils.copyProperties(event, eventRequest);
+		BeanUtils.copyProperties(eventRequest, event);
 		event.setParticipants(event.getParticipants().stream().map(
 			participant -> this.appUserRepository.findById(participant.getId()).get()
 		).toList());
