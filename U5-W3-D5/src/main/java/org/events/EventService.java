@@ -67,7 +67,8 @@ public class EventService {
 
 	public EventResponse update (@Valid EventRequest eventRequest, Long id) {
 		Event event = this.eventFromEventRequest(eventRequest);
-		if (!Objects.equals(event.getOrganizer().getId(), this.getCurrentUserId()))
+		long eventOwnerId = this.eventRepository.findById(id).get().getOrganizer().getId();
+		if (!Objects.equals(eventOwnerId, this.getCurrentUserId()))
 			throw new SecurityException("You can only update your own events");
 		event.setId(id);
 		return this.eventResponseFromEvent(this.eventRepository.save(event));
