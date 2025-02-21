@@ -1,7 +1,6 @@
 package org.auth;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -15,18 +14,15 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-
 
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity (prePostEnabled = true)
 @RequiredArgsConstructor
 public class SecurityConfig {
-	private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
-	private CustomUserDetailsService customUserDetailsService;
-	private JwtRequestFilter jwtRequestFilter;
-
+	private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
+	private final CustomUserDetailsService customUserDetailsService;
+	private final JwtRequestFilter jwtRequestFilter;
 
 	@Bean
 	public SecurityFilterChain securityFilterChain (HttpSecurity http) throws Exception {

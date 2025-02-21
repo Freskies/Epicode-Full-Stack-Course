@@ -22,8 +22,8 @@ import java.util.List;
 @Component
 @RequiredArgsConstructor
 public class JwtRequestFilter extends OncePerRequestFilter {
-    private CustomUserDetailsService customUserDetailsService;
-    private JwtTokenUtil jwtTokenUtil;
+    private final CustomUserDetailsService customUserDetailsService;
+    private final JwtTokenUtil jwtTokenUtil;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request,

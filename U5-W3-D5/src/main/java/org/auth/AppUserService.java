@@ -3,7 +3,6 @@ package org.auth;
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -18,10 +17,10 @@ import java.util.Set;
 @Service
 @RequiredArgsConstructor
 public class AppUserService {
-	private AppUserRepository appUserRepository;
-	private PasswordEncoder passwordEncoder;
-	private AuthenticationManager authenticationManager;
-	private JwtTokenUtil jwtTokenUtil;
+	private final AppUserRepository appUserRepository;
+	private final PasswordEncoder passwordEncoder;
+	private final AuthenticationManager authenticationManager;
+	private final JwtTokenUtil jwtTokenUtil;
 
 	public AppUser registerUser (String username, String password, Set<Role> roles) {
 		if (appUserRepository.existsByUsername(username)) {
