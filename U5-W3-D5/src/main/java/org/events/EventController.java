@@ -28,6 +28,19 @@ public class EventController {
 		return this.eventService.findEventById(id);
 	}
 
+	@GetMapping ("/myEvents")
+	@ResponseStatus (HttpStatus.OK)
+	@PreAuthorize ("hasRole('ORGANIZER')")
+	public List<EventResponse> findMyEvents () {
+		return this.eventService.findMyEvents();
+	}
+
+	@GetMapping ("/subscribedEvents")
+	@ResponseStatus (HttpStatus.OK)
+	public List<EventResponse> findSubscribedEvents () {
+		return this.eventService.findSubscribedEvents();
+	}
+
 	@PostMapping
 	@ResponseStatus (HttpStatus.CREATED)
 	@PreAuthorize ("hasRole('ORGANIZER')")
@@ -55,4 +68,9 @@ public class EventController {
 		return this.eventService.subscribe(id);
 	}
 
+	@PatchMapping ("/{id}/unsubscribe")
+	@ResponseStatus (HttpStatus.OK)
+	public EventResponse unsubscribe (@PathVariable Long id) {
+		return this.eventService.unsubscribe(id);
+	}
 }

@@ -87,7 +87,32 @@ public class EventService {
 			participant -> Objects.equals(participant.getId(), this.getCurrentUserId())
 		))
 			throw new EntityExistsException("You are already subscribed to this event");
+		if (event.getParticipants().size() >= event.getMaxParticipants())
+			throw new IllegalStateException("Event is full");
 		event.getParticipants().add(this.appUserRepository.findById(this.getCurrentUserId()).get());
 		return this.eventResponseFromEvent(this.eventRepository.save(event));
+	}
+
+	public EventResponse unsubscribe (Long eventId) {
+		Event event = this.eventRepository.findById(eventId).orElseThrow(
+			() -> new EntityNotFoundException("Event not found")
+		);
+		if (!event.getParticipants().removeIf(
+			participant -> Objects.equals(participant.getId(), this.getCurrentUserId())
+		))
+			throw new EntityNotFoundException("You are not subscribed to this event");
+		return this.eventResponseFromEvent(this.eventRepository.save(event));
+	}
+
+	public List<EventResponse> findMyEvents () {
+		return this.eventResponseListFromEventList(this.eventRepository.findAllByOrganizerId(this.getCurrentUserId()));
+	}
+
+	public List<EventResponse> findSubscribedEvents () {
+		return this.eventRepository.findAll().stream().filter(
+			event -> event.getParticipants().stream().anyMatch(
+				participant -> Objects.equals(participant.getId(), this.getCurrentUserId())
+			)
+		).map(this::eventResponseFromEvent).toList();
 	}
 }
