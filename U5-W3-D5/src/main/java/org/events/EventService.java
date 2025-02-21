@@ -4,6 +4,7 @@ import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.auth.AppUser;
 import org.auth.AppUserRepository;
 import org.jetbrains.annotations.NotNull;
 import org.response.CreateResponse;
@@ -52,9 +53,6 @@ public class EventService {
 	public Event eventFromEventRequest (@Valid EventRequest eventRequest) {
 		Event event = new Event();
 		BeanUtils.copyProperties(eventRequest, event);
-		event.setParticipants(event.getParticipants().stream().map(
-			participant -> this.appUserRepository.findById(participant.getId()).get()
-		).toList());
 		return event;
 	}
 
@@ -70,6 +68,8 @@ public class EventService {
 		long eventOwnerId = this.eventRepository.findById(id).get().getOrganizer().getId();
 		if (!Objects.equals(eventOwnerId, this.getCurrentUserId()))
 			throw new SecurityException("You can only update your own events");
+		List<AppUser> participants = this.eventRepository.findById(id).get().getParticipants();
+		event.setParticipants(participants);
 		event.setId(id);
 		return this.eventResponseFromEvent(this.eventRepository.save(event));
 	}
