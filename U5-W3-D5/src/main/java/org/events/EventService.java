@@ -1,14 +1,19 @@
 package org.events;
 
+import jakarta.persistence.EntityExistsException;
+import jakarta.persistence.EntityNotFoundException;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.auth.AppUser;
 import org.auth.AppUserRepository;
 import org.jetbrains.annotations.NotNull;
+import org.response.CreateResponse;
 import org.springframework.beans.BeanUtils;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -16,6 +21,11 @@ import java.util.List;
 public class EventService {
 	private final EventRepository eventRepository;
 	private final AppUserRepository appUserRepository;
+
+	private @NotNull Long getCurrentUserId () {
+		return this.appUserRepository.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName())
+			.get().getId();
+	}
 
 	public EventResponse eventResponseFromEvent (Event event) {
 		EventResponse eventResponse = new EventResponse();
@@ -37,5 +47,37 @@ public class EventService {
 
 	public EventResponse findEventById (Long id) {
 		return this.eventResponseFromEvent(this.eventRepository.findById(id).get());
+	}
+
+	public Event eventFromEventRequest (@Valid EventRequest eventRequest) {
+		Event event = new Event();
+		BeanUtils.copyProperties(event, eventRequest);
+		event.setOrganizer(this.appUserRepository.findById(event.getOrganizer().getId()).get());
+		event.setParticipants(event.getParticipants().stream().map(
+			participant -> this.appUserRepository.findById(participant.getId()).get()
+		).toList());
+		return event;
+	}
+
+	public CreateResponse save (@Valid EventRequest eventRequest) {
+		Event event = this.eventFromEventRequest(eventRequest);
+		event.setOrganizer(this.appUserRepository.findById(this.getCurrentUserId()).get());
+		this.eventRepository.save(event);
+		return new CreateResponse(event.getId());
+	}
+
+	public EventResponse update (@Valid EventRequest eventRequest, Long id) {
+		Event event = this.eventFromEventRequest(eventRequest);
+		if (!Objects.equals(event.getOrganizer().getId(), this.getCurrentUserId()))
+			throw new SecurityException("You can only update your own events");
+		event.setId(id);
+		return this.eventResponseFromEvent(this.eventRepository.save(event));
+	}
+
+	public void delete (Long id) {
+		Event event = this.eventRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Event not found"));
+		if (!Objects.equals(event.getOrganizer().getId(), this.getCurrentUserId()))
+			throw new SecurityException("You can only delete your own events");
+		this.eventRepository.delete(event);
 	}
 }

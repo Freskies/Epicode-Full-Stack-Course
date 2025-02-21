@@ -27,8 +27,10 @@ public class Event {
 	private String location;
 	private LocalDate date;
 	private int maxParticipants;
-	private AppUser organizer;
 	@ManyToOne
+	private AppUser organizer;
+	@OneToMany
+	@ToString.Exclude
 	private List<AppUser> participants = new ArrayList<>();
 
 	@Override

@@ -9,6 +9,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
+import java.security.SignatureException;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -80,5 +81,13 @@ public class JwtTokenUtil {
     public Boolean validateToken(String token, @NotNull UserDetails userDetails) {
         final String username = getUsernameFromToken(token);
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
+    }
+
+    public String getUserIdFromToken(String token) {
+       Claims claims = Jwts.parser()
+          .setSigningKey(secret)
+          .parseClaimsJws(token)
+          .getBody();
+       return claims.getSubject();
     }
 }
