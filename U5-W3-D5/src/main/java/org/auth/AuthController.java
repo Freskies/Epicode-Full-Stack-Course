@@ -10,28 +10,28 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Set;
 
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping ("/api/auth")
 @RequiredArgsConstructor
 public class AuthController {
 
-    private final AppUserService appUserService;
+	private final AppUserService appUserService;
 
-    @PostMapping("/register")
-    public ResponseEntity<String> register(@RequestBody RegisterRequest registerRequest) {
-        appUserService.registerUser(
-                registerRequest.getUsername(),
-                registerRequest.getPassword(),
-                Set.of(Role.USER) // Assegna il ruolo di default
-        );
-        return ResponseEntity.ok("Registrazione avvenuta con successo");
-    }
+	@PostMapping ("/register")
+	public ResponseEntity<String> register (@RequestBody RegisterRequest registerRequest) {
+		appUserService.registerUser(
+			registerRequest.getUsername(),
+			registerRequest.getPassword(),
+			Set.of(Role.USER)
+		);
+		return ResponseEntity.ok("User registered successfully");
+	}
 
-    @PostMapping("/login")
-    public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest loginRequest) {
-        String token = appUserService.authenticateUser(
-                loginRequest.getUsername(),
-                loginRequest.getPassword()
-        );
-        return ResponseEntity.ok(new AuthResponse(token));
-    }
+	@PostMapping ("/login")
+	public ResponseEntity<AuthResponse> login (@RequestBody LoginRequest loginRequest) {
+		String token = appUserService.authenticateUser(
+			loginRequest.getUsername(),
+			loginRequest.getPassword()
+		);
+		return ResponseEntity.ok(new AuthResponse(token));
+	}
 }
