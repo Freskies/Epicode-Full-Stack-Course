@@ -80,4 +80,14 @@ public class EventService {
 			throw new SecurityException("You can only delete your own events");
 		this.eventRepository.delete(event);
 	}
+
+	public EventResponse subscribe (Long eventId) {
+		Event event = this.eventRepository.findById(eventId).orElseThrow(() -> new EntityNotFoundException("Event not found"));
+		if (event.getParticipants().stream().anyMatch(
+			participant -> Objects.equals(participant.getId(), this.getCurrentUserId())
+		))
+			throw new EntityExistsException("You are already subscribed to this event");
+		event.getParticipants().add(this.appUserRepository.findById(this.getCurrentUserId()).get());
+		return this.eventResponseFromEvent(this.eventRepository.save(event));
+	}
 }

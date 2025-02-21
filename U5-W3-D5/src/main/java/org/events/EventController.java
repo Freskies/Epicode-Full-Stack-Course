@@ -49,4 +49,10 @@ public class EventController {
 		this.eventService.delete(id);
 	}
 
+	@PatchMapping ("/{id}/subscribe")
+	@ResponseStatus (HttpStatus.OK)
+	public EventResponse subscribe (@PathVariable Long id) {
+		return this.eventService.subscribe(id);
+	}
+
 }
