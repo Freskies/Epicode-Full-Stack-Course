@@ -29,4 +29,25 @@ public class ExceptionHandlerClass {
 		);
 		return new ResponseEntity<>(error, HttpStatus.CONFLICT);
 	}
+
+	@ExceptionHandler (value = SecurityException.class)
+	protected ResponseEntity<Error> securityException (@NotNull SecurityException ex) {
+		Error error = new Error(
+			"You are not authorized to perform this action",
+			ex.getMessage(),
+			"403"
+		);
+		return new ResponseEntity<>(error, HttpStatus.UNAUTHORIZED);
+	}
+
+	@ExceptionHandler (value = IllegalStateException.class)
+	protected ResponseEntity<Error> illegalStateException (@NotNull IllegalStateException ex) {
+		Error error = new Error(
+			"Invalid state",
+			ex.getMessage(),
+			"400"
+		);
+		return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+	}
+
 }
