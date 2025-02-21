@@ -1,4 +1,4 @@
-package it.epicode.security.auth;
+package org.auth;
 
 public enum Role {
     ROLE_USER,

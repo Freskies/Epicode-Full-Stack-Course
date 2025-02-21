@@ -1,5 +1,6 @@
-package it.epicode.security.auth;
+package org.auth;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -10,12 +11,9 @@ import java.util.Optional;
 import java.util.Set;
 
 @Component
+@RequiredArgsConstructor
 public class AuthRunner implements ApplicationRunner {
-
-    @Autowired
     private AppUserService appUserService;
-
-    @Autowired
     private PasswordEncoder passwordEncoder;
 
     @Override

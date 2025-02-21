@@ -1,4 +1,4 @@
-package it.epicode.security.auth;
+package org.auth;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

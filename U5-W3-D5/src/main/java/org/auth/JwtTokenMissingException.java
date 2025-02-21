@@ -1,4 +1,4 @@
-package it.epicode.security.auth;
+package org.auth;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

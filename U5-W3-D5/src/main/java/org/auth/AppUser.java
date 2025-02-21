@@ -1,4 +1,4 @@
-package it.epicode.security.auth;
+package org.auth;
 
 import jakarta.persistence.*;
 import lombok.Data;

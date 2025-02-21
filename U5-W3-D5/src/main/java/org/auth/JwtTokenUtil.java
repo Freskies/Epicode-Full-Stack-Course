@@ -1,8 +1,9 @@
-package it.epicode.security.auth;
+package org.auth;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -34,7 +35,7 @@ public class JwtTokenUtil {
     }
 
     // Estrae un claim specifico dal token JWT
-    public <T> T getClaimFromToken(String token, Function<Claims, T> claimsResolver) {
+    public <T> T getClaimFromToken(String token, @NotNull Function<Claims, T> claimsResolver) {
         final Claims claims = getAllClaimsFromToken(token);
         return claimsResolver.apply(claims);
     }
@@ -48,13 +49,13 @@ public class JwtTokenUtil {
     }
 
     // Verifica se il token JWT è scaduto
-    private Boolean isTokenExpired(String token) {
+    private @NotNull Boolean isTokenExpired(String token) {
         final Date expiration = getExpirationDateFromToken(token);
         return expiration.before(new Date());
     }
 
     // Genera un token JWT per l'utente, includendo i ruoli
-    public String generateToken(UserDetails userDetails) {
+    public String generateToken(@NotNull UserDetails userDetails) {
         Collection<? extends GrantedAuthority> authorities = userDetails.getAuthorities();
         List<String> roles = authorities.stream()
                                         .map(GrantedAuthority::getAuthority)
@@ -76,7 +77,7 @@ public class JwtTokenUtil {
     }
 
     // Valida il token JWT
-    public Boolean validateToken(String token, UserDetails userDetails) {
+    public Boolean validateToken(String token, @NotNull UserDetails userDetails) {
         final String username = getUsernameFromToken(token);
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
